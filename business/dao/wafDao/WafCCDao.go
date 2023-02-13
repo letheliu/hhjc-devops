@@ -1,10 +1,10 @@
 package wafDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"gorm.io/gorm"
 )
 
@@ -94,7 +94,8 @@ VALUES(#Id#,#Path#,#VisitCount#,#VisitSec#,#BlockSec#)
 type WafCCDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafCCDao) GetWafCCCount(wafCCDto waf.WafCCDto) (int64, error) {
@@ -110,7 +111,8 @@ func (*WafCCDao) GetWafCCCount(wafCCDto waf.WafCCDto) (int64, error) {
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafCCDao) GetWafCCs(wafCCDto waf.WafCCDto) ([]*waf.WafCCDto, error) {
@@ -122,21 +124,24 @@ func (*WafCCDao) GetWafCCs(wafCCDto waf.WafCCDto) ([]*waf.WafCCDto, error) {
 	return wafCCDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*WafCCDao) SaveWafCC(wafCCDto waf.WafCCDto) error {
 	return sqlTemplate.Insert(insert_wafCC, objectConvert.Struct2Map(wafCCDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*WafCCDao) UpdateWafCC(wafCCDto waf.WafCCDto) error {
 	return sqlTemplate.Update(update_wafCC, objectConvert.Struct2Map(wafCCDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*WafCCDao) DeleteWafCC(wafCCDto waf.WafCCDto) error {

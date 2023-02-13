@@ -1,10 +1,10 @@
 package logTraceParamDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/log"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/log"
 	"gorm.io/gorm"
 )
 
@@ -66,7 +66,8 @@ VALUES(#Id#,#SpanId#,#ReqParam#,#ResParam#,#ReqHeader#,#ResHeader#)
 type LogTraceParamDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*LogTraceParamDao) GetLogTraceParamCount(logTraceParamDto log.LogTraceParamDto) (int64, error) {
@@ -82,7 +83,8 @@ func (*LogTraceParamDao) GetLogTraceParamCount(logTraceParamDto log.LogTracePara
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*LogTraceParamDao) GetLogTraceParams(logTraceParamDto log.LogTraceParamDto) ([]*log.LogTraceParamDto, error) {
@@ -94,21 +96,24 @@ func (*LogTraceParamDao) GetLogTraceParams(logTraceParamDto log.LogTraceParamDto
 	return logTraceParamDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*LogTraceParamDao) SaveLogTraceParam(logTraceParamDto log.LogTraceParamDto) error {
 	return sqlTemplate.Insert(insert_logTraceParam, objectConvert.Struct2Map(logTraceParamDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*LogTraceParamDao) UpdateLogTraceParam(logTraceParamDto log.LogTraceParamDto) error {
 	return sqlTemplate.Update(update_logTraceParam, objectConvert.Struct2Map(logTraceParamDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*LogTraceParamDao) DeleteLogTraceParam(logTraceParamDto log.LogTraceParamDto) error {

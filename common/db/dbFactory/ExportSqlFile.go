@@ -2,10 +2,10 @@ package dbFactory
 
 import (
 	"fmt"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/entity/dto/dbLink"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/entity/dto/dbLink"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"gorm.io/gorm"
 	"math"
 	"os"
@@ -292,7 +292,8 @@ func exportTables(fileName string, db *gorm.DB, dblinkDto dbLink.DbLinkDto, srcO
 	return nil
 }
 
-/**
+/*
+*
 exportTableIndex(fileName,db *gorm.DB,tableName string)
 SELECT a.TABLE_SCHEMA,
 a.TABLE_NAME,
@@ -309,7 +310,7 @@ func exportTableIndex(fileName string, db *gorm.DB, tableName string) error {
 		"\na.COLUMN_NAME," +
 		"\na.NON_UNIQUE" +
 		"\nFROM information_schema.STATISTICS a" +
-		"\nwhere a.TABLE_NAME='" + tableName +"';"
+		"\nwhere a.TABLE_NAME='" + tableName + "';"
 
 	recordsRs, err := ExecuteWithDbConn(db, sqlStr, make([]interface{}, 0))
 	if err != nil {
@@ -325,13 +326,13 @@ func exportTableIndex(fileName string, db *gorm.DB, tableName string) error {
 			continue
 		}
 
-		if uni != nil && uni.(string) == "0"{
+		if uni != nil && uni.(string) == "0" {
 			strExport += ("ALTER TABLE " + tableName + " ADD UNIQUE(" + col.(string) + ");\n")
 			continue
 		}
 
-		if uni != nil && uni.(string) == "1"{
-			strExport += ("ALTER TABLE " + tableName + " ADD INDEX "+index_name.(string)+"(" + col.(string) + ");\n")
+		if uni != nil && uni.(string) == "1" {
+			strExport += ("ALTER TABLE " + tableName + " ADD INDEX " + index_name.(string) + "(" + col.(string) + ");\n")
 			continue
 		}
 	}

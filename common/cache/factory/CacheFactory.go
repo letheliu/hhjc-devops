@@ -1,12 +1,12 @@
 package factory
 
 import (
-	"github.com/zihao-boy/zihao/common/cache/local"
-	"github.com/zihao-boy/zihao/common/cache/redis"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/mapping"
-	"github.com/zihao-boy/zihao/entity/dto/serviceSql"
+	"github.com/letheliu/hhjc-devops/common/cache/local"
+	"github.com/letheliu/hhjc-devops/common/cache/redis"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/mapping"
+	"github.com/letheliu/hhjc-devops/entity/dto/serviceSql"
 )
 
 type CacheFactory struct {

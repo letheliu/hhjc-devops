@@ -2,13 +2,13 @@ package innerNetService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/innerNetDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/business/dao/innerNetDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 	"strings"
 )
@@ -22,7 +22,7 @@ type InnerNetService struct {
 // all db by this user
 func (innerNetService *InnerNetService) GetInnerNetAll(InnerNetDto innerNet.InnerNetDto) ([]*innerNet.InnerNetDto, error) {
 	var (
-		err     error
+		err          error
 		InnerNetDtos []*innerNet.InnerNetDto
 	)
 
@@ -35,15 +35,16 @@ func (innerNetService *InnerNetService) GetInnerNetAll(InnerNetDto innerNet.Inne
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (innerNetService *InnerNetService) GetInnerNets(ctx iris.Context) result.ResultDto {
 	var (
-		err     error
-		page    int64
-		row     int64
-		total   int64
+		err          error
+		page         int64
+		row          int64
+		total        int64
 		innerNetDto  = innerNet.InnerNetDto{}
 		innerNetDtos []*innerNet.InnerNetDto
 	)
@@ -92,12 +93,13 @@ func (innerNetService *InnerNetService) GetInnerNets(ctx iris.Context) result.Re
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (innerNetService *InnerNetService) SaveInnerNets(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		innerNetDto innerNet.InnerNetDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {
@@ -115,12 +117,13 @@ func (innerNetService *InnerNetService) SaveInnerNets(ctx iris.Context) result.R
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (innerNetService *InnerNetService) UpdateInnerNets(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		innerNetDto innerNet.InnerNetDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {
@@ -150,7 +153,7 @@ func (innerNetService *InnerNetService) UpdateInnerNets(ctx iris.Context) result
 		innerNetHostsDto = innerNet.InnerNetHostsDto{
 			InnerNetId:     innerNetDto.InnerNetId,
 			InnerNetHostId: seq.Generator(),
-			HostId:    hostId,
+			HostId:         hostId,
 		}
 		innerNetService.innerNetHostsDao.SaveInnerNetHosts(innerNetHostsDto)
 	}
@@ -159,12 +162,13 @@ func (innerNetService *InnerNetService) UpdateInnerNets(ctx iris.Context) result
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (innerNetService *InnerNetService) DeleteInnerNets(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		innerNetDto innerNet.InnerNetDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {
@@ -182,7 +186,7 @@ func (innerNetService *InnerNetService) DeleteInnerNets(ctx iris.Context) result
 
 func (innerNetService *InnerNetService) StartInnerNetf(ctx iris.Context) interface{} {
 	var (
-		err    error
+		err         error
 		innerNetDto innerNet.InnerNetDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {
@@ -211,7 +215,7 @@ func (innerNetService *InnerNetService) StartInnerNetf(ctx iris.Context) interfa
 
 	tmpInnerNetDto = innerNet.InnerNetDto{
 		InnerNetId: innerNetDto.InnerNetId,
-		State: innerNet.InnerNet_state_start,
+		State:      innerNet.InnerNet_state_start,
 	}
 
 	err = innerNetService.innerNetDao.UpdateInnerNet(tmpInnerNetDto)
@@ -224,7 +228,7 @@ func (innerNetService *InnerNetService) StartInnerNetf(ctx iris.Context) interfa
 
 func (innerNetService *InnerNetService) StopInnerNetf(ctx iris.Context) interface{} {
 	var (
-		err    error
+		err         error
 		innerNetDto innerNet.InnerNetDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {
@@ -249,7 +253,7 @@ func (innerNetService *InnerNetService) StopInnerNetf(ctx iris.Context) interfac
 
 	tmpInnerNetDto = innerNet.InnerNetDto{
 		InnerNetId: innerNetDto.InnerNetId,
-		State: innerNet.InnerNet_state_stop,
+		State:      innerNet.InnerNet_state_stop,
 	}
 
 	err = innerNetService.innerNetDao.UpdateInnerNet(tmpInnerNetDto)
@@ -262,7 +266,7 @@ func (innerNetService *InnerNetService) StopInnerNetf(ctx iris.Context) interfac
 
 func (innerNetService *InnerNetService) RefreshInnerNetConfig(ctx iris.Context) interface{} {
 	var (
-		err    error
+		err         error
 		innerNetDto innerNet.InnerNetDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {
@@ -289,7 +293,7 @@ func (innerNetService *InnerNetService) RefreshInnerNetConfig(ctx iris.Context) 
 // get innerNet config
 func (innerNetService *InnerNetService) getInnerNetConfig(innerNetDto innerNet.InnerNetDto) innerNet.SlaveInnerNetDataDto {
 	var (
-		innerNetUserDao        innerNetDao.InnerNetUserDao
+		innerNetUserDao      innerNetDao.InnerNetUserDao
 		innerNetPrivilageDao innerNetDao.InnerNetPrivilegeDao
 	)
 
@@ -300,21 +304,17 @@ func (innerNetService *InnerNetService) getInnerNetConfig(innerNetDto innerNet.I
 	innerNetDto.InnerNetHosts = innerNetHostsDtos
 
 	// start innerNet
-	tmpInnerNetUserDto := innerNet.InnerNetUserDto{
-		
-	}
+	tmpInnerNetUserDto := innerNet.InnerNetUserDto{}
 	users, _ := innerNetUserDao.GetInnerNetUsers(tmpInnerNetUserDto)
 
-	innerNetPrivilageDto := innerNet.InnerNetPrivilegeDto{
-
-	}
-	innerNetPrivilageDtos ,_ := innerNetPrivilageDao.GetInnerNetPrivileges(innerNetPrivilageDto)
+	innerNetPrivilageDto := innerNet.InnerNetPrivilegeDto{}
+	innerNetPrivilageDtos, _ := innerNetPrivilageDao.GetInnerNetPrivileges(innerNetPrivilageDto)
 
 	return innerNet.SlaveInnerNetDataDto{
 		ServerIpUrl: config.G_AppConfig.ServerIpUrl,
-		InnerNet:         innerNetDto,
-		Users:      users,
-		Privileges: innerNetPrivilageDtos,
+		InnerNet:    innerNetDto,
+		Users:       users,
+		Privileges:  innerNetPrivilageDtos,
 	}
 
 }

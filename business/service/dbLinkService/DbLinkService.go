@@ -2,14 +2,14 @@ package dbLinkService
 
 import (
 	"github.com/kataras/iris/v12"
-	hostDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/business/dao/dbLinkDao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/db/dbFactory"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/dbLink"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
+	hostDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/business/dao/dbLinkDao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/db/dbFactory"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/dbLink"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
 	"strconv"
 )
 
@@ -35,7 +35,8 @@ func (dbLinkService *DbLinkService) GetDbLinkAll(DbLinkDto dbLink.DbLinkDto) ([]
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (dbLinkService *DbLinkService) GetDbLinks(ctx iris.Context) result.ResultDto {
@@ -86,7 +87,8 @@ func (dbLinkService *DbLinkService) GetDbLinks(ctx iris.Context) result.ResultDt
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (dbLinkService *DbLinkService) SaveDbLinks(ctx iris.Context) result.ResultDto {
@@ -113,7 +115,8 @@ func (dbLinkService *DbLinkService) SaveDbLinks(ctx iris.Context) result.ResultD
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (dbLinkService *DbLinkService) UpdateDbLinks(ctx iris.Context) result.ResultDto {
@@ -140,7 +143,8 @@ func (dbLinkService *DbLinkService) UpdateDbLinks(ctx iris.Context) result.Resul
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (dbLinkService *DbLinkService) DeleteDbLinks(ctx iris.Context) result.ResultDto {
@@ -230,7 +234,7 @@ func (dbLinkService *DbLinkService) ExportSqlFile(ctx iris.Context) interface{} 
 	}
 
 	// execute sql
-	data := dbFactory.ExportSqlFile(*dblinkDtos[0], dbSqlDto,"*")
+	data := dbFactory.ExportSqlFile(*dblinkDtos[0], dbSqlDto, "*")
 
 	return data
 }

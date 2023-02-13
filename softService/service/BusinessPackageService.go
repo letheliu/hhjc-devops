@@ -1,24 +1,24 @@
 package service
 
 import (
-	hostDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
-	"github.com/zihao-boy/zihao/entity/dto/host"
+	"github.com/kataras/iris/v12"
+	hostDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
 	"os"
 	"path/filepath"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/businessPackage"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	"github.com/zihao-boy/zihao/softService/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessPackage"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/softService/dao"
 )
 
 type BusinessPackageService struct {
@@ -28,7 +28,8 @@ type BusinessPackageService struct {
 
 const maxSize = 1000 * iris.MB // 第二种方法
 
-/**
+/*
+*
 查询 系统信息
 */
 func (businessPackageService *BusinessPackageService) GetBusinessPackageAll(businessPackageDto businessPackage.BusinessPackageDto) ([]*businessPackage.BusinessPackageDto, error) {
@@ -46,7 +47,8 @@ func (businessPackageService *BusinessPackageService) GetBusinessPackageAll(busi
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (businessPackageService *BusinessPackageService) GetBusinessPackages(ctx iris.Context) result.ResultDto {
@@ -110,7 +112,8 @@ func (businessPackageService *BusinessPackageService) GetBusinessPackages(ctx ir
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (businessPackageService *BusinessPackageService) SaveBusinessPackages(ctx iris.Context) result.ResultDto {
@@ -172,7 +175,8 @@ func (businessPackageService *BusinessPackageService) SaveBusinessPackages(ctx i
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (businessPackageService *BusinessPackageService) UpdateBusinessPackages(ctx iris.Context) result.ResultDto {
@@ -235,7 +239,8 @@ func (businessPackageService *BusinessPackageService) UpdateBusinessPackages(ctx
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (businessPackageService *BusinessPackageService) DeleteBusinessPackages(ctx iris.Context) result.ResultDto {
@@ -384,4 +389,3 @@ func (businessPackageService *BusinessPackageService) EditBusinessPackageContext
 	resultDto, _ := shell.ExecEditFile(hostDto)
 	return resultDto
 }
-

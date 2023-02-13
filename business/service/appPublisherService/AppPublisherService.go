@@ -3,23 +3,23 @@ package appPublisherService
 import (
 	"encoding/json"
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/appService/dao"
-	"github.com/zihao-boy/zihao/business/dao/appPublisherDao"
-	"github.com/zihao-boy/zihao/business/dao/businessImagesExtDao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/encrypt"
-	"github.com/zihao-boy/zihao/common/httpReq"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/config"
-	appPublisher "github.com/zihao-boy/zihao/entity/dto/appPublisherDto"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
-	"github.com/zihao-boy/zihao/entity/dto/businessImages"
-	"github.com/zihao-boy/zihao/entity/dto/composeYaml"
-	installApp2 "github.com/zihao-boy/zihao/entity/dto/installApp"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	dao2 "github.com/zihao-boy/zihao/softService/dao"
+	"github.com/letheliu/hhjc-devops/appService/dao"
+	"github.com/letheliu/hhjc-devops/business/dao/appPublisherDao"
+	"github.com/letheliu/hhjc-devops/business/dao/businessImagesExtDao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/encrypt"
+	"github.com/letheliu/hhjc-devops/common/httpReq"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/config"
+	appPublisher "github.com/letheliu/hhjc-devops/entity/dto/appPublisherDto"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessImages"
+	"github.com/letheliu/hhjc-devops/entity/dto/composeYaml"
+	installApp2 "github.com/letheliu/hhjc-devops/entity/dto/installApp"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	dao2 "github.com/letheliu/hhjc-devops/softService/dao"
 	"gopkg.in/yaml.v3"
 	"strconv"
 )
@@ -49,7 +49,8 @@ func (appPublisherService *AppPublisherService) GetAppPublisherAll(AppPublisherD
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (appPublisherService *AppPublisherService) GetAppPublishers(ctx iris.Context) result.ResultDto {
@@ -97,7 +98,8 @@ func (appPublisherService *AppPublisherService) GetAppPublishers(ctx iris.Contex
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (appPublisherService *AppPublisherService) SaveAppPublishers(ctx iris.Context) result.ResultDto {
@@ -147,7 +149,8 @@ func (appPublisherService *AppPublisherService) SaveAppPublishers(ctx iris.Conte
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (appPublisherService *AppPublisherService) UpdateAppPublishers(ctx iris.Context) result.ResultDto {
@@ -195,7 +198,8 @@ func (appPublisherService *AppPublisherService) UpdateAppPublishers(ctx iris.Con
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (appPublisherService *AppPublisherService) DeleteAppPublishers(ctx iris.Context) result.ResultDto {
@@ -216,7 +220,7 @@ func (appPublisherService *AppPublisherService) DeleteAppPublishers(ctx iris.Con
 
 }
 
-//apply publish app
+// apply publish app
 func (appPublisherService *AppPublisherService) ApplyPublishApp(ctx iris.Context) result.ResultDto {
 	var (
 		err                error

@@ -1,10 +1,10 @@
 package wafDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"gorm.io/gorm"
 )
 
@@ -75,7 +75,8 @@ VALUES(#GroupId#,#GroupName#,#State#)
 type WafRuleGroupDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafRuleGroupDao) GetWafRuleGroupCount(wafRuleGroupDto waf.WafRuleGroupDto) (int64, error) {
@@ -91,7 +92,8 @@ func (*WafRuleGroupDao) GetWafRuleGroupCount(wafRuleGroupDto waf.WafRuleGroupDto
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafRuleGroupDao) GetWafRuleGroups(wafRuleGroupDto waf.WafRuleGroupDto) ([]*waf.WafRuleGroupDto, error) {
@@ -103,21 +105,24 @@ func (*WafRuleGroupDao) GetWafRuleGroups(wafRuleGroupDto waf.WafRuleGroupDto) ([
 	return wafRuleGroupDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*WafRuleGroupDao) SaveWafRuleGroup(wafRuleGroupDto waf.WafRuleGroupDto) error {
 	return sqlTemplate.Insert(insert_wafRuleGroup, objectConvert.Struct2Map(wafRuleGroupDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*WafRuleGroupDao) UpdateWafRuleGroup(wafRuleGroupDto waf.WafRuleGroupDto) error {
 	return sqlTemplate.Update(update_wafRuleGroup, objectConvert.Struct2Map(wafRuleGroupDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*WafRuleGroupDao) DeleteWafRuleGroup(wafRuleGroupDto waf.WafRuleGroupDto) error {

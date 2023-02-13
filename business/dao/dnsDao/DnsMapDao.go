@@ -1,10 +1,10 @@
 package dnsDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/dns"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/dns"
 	"gorm.io/gorm"
 )
 
@@ -84,7 +84,8 @@ VALUES(#DnsMapId#,#Host#,#Type#,#Value#)
 type DnsMapDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*DnsMapDao) GetDnsMapCount(dnsMapDto dns.DnsMapDto) (int64, error) {
@@ -100,7 +101,8 @@ func (*DnsMapDao) GetDnsMapCount(dnsMapDto dns.DnsMapDto) (int64, error) {
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*DnsMapDao) GetDnsMaps(dnsMapDto dns.DnsMapDto) ([]*dns.DnsMapDto, error) {
@@ -112,21 +114,24 @@ func (*DnsMapDao) GetDnsMaps(dnsMapDto dns.DnsMapDto) ([]*dns.DnsMapDto, error) 
 	return dnsMapDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*DnsMapDao) SaveDnsMap(dnsMapDto dns.DnsMapDto) error {
 	return sqlTemplate.Insert(insert_dnsMap, objectConvert.Struct2Map(dnsMapDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*DnsMapDao) UpdateDnsMap(dnsMapDto dns.DnsMapDto) error {
 	return sqlTemplate.Update(update_dnsMap, objectConvert.Struct2Map(dnsMapDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*DnsMapDao) DeleteDnsMap(dnsMapDto dns.DnsMapDto) error {

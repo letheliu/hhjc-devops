@@ -1,11 +1,10 @@
 package logTraceParamService
 
 import (
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/logTraceParamDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/log"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/business/dao/logTraceParamDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/log"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 )
 
@@ -17,7 +16,7 @@ type LogTraceParamService struct {
 // all db by this user
 func (logTraceParamService *LogTraceParamService) GetLogTraceParamAll(LogTraceParamDto log.LogTraceParamDto) ([]*log.LogTraceParamDto, error) {
 	var (
-		err        error
+		err               error
 		LogTraceParamDtos []*log.LogTraceParamDto
 	)
 
@@ -35,10 +34,10 @@ func (logTraceParamService *LogTraceParamService) GetLogTraceParamAll(LogTracePa
 */
 func (logTraceParamService *LogTraceParamService) GetLogTraceParams(ctx iris.Context) result.ResultDto {
 	var (
-		err        error
-		page       int64
-		row        int64
-		total      int64
+		err               error
+		page              int64
+		row               int64
+		total             int64
 		logTraceParamDto  = log.LogTraceParamDto{}
 		logTraceParamDtos []*log.LogTraceParamDto
 	)
@@ -83,7 +82,7 @@ func (logTraceParamService *LogTraceParamService) GetLogTraceParams(ctx iris.Con
 */
 func (logTraceParamService *LogTraceParamService) SaveLogTraceParams(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err              error
 		logTraceParamDto log.LogTraceParamDto
 	)
 	if err = ctx.ReadJSON(&logTraceParamDto); err != nil {
@@ -106,7 +105,7 @@ func (logTraceParamService *LogTraceParamService) SaveLogTraceParams(ctx iris.Co
 */
 func (logTraceParamService *LogTraceParamService) UpdateLogTraceParams(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err              error
 		logTraceParamDto log.LogTraceParamDto
 	)
 	if err = ctx.ReadJSON(&logTraceParamDto); err != nil {
@@ -131,7 +130,7 @@ func (logTraceParamService *LogTraceParamService) UpdateLogTraceParams(ctx iris.
 */
 func (logTraceParamService *LogTraceParamService) DeleteLogTraceParams(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err              error
 		logTraceParamDto log.LogTraceParamDto
 	)
 	if err = ctx.ReadJSON(&logTraceParamDto); err != nil {

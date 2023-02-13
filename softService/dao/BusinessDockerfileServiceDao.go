@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/businessDockerfile"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessDockerfile"
 	"gorm.io/gorm"
 )
 
@@ -90,7 +90,8 @@ VALUES(#Id#,#Name#,#Version#,#Dockerfile#,#CreateUserId#,#TenantId#,#LogPath#)
 type BusinessDockerfileDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*BusinessDockerfileDao) GetBusinessDockerfileCount(businessDockerfileDto businessDockerfile.BusinessDockerfileDto) (int64, error) {
@@ -106,7 +107,8 @@ func (*BusinessDockerfileDao) GetBusinessDockerfileCount(businessDockerfileDto b
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*BusinessDockerfileDao) GetBusinessDockerfiles(businessDockerfileDto businessDockerfile.BusinessDockerfileDto) ([]*businessDockerfile.BusinessDockerfileDto, error) {
@@ -118,21 +120,24 @@ func (*BusinessDockerfileDao) GetBusinessDockerfiles(businessDockerfileDto busin
 	return businessDockerfileDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*BusinessDockerfileDao) SaveBusinessDockerfile(businessDockerfileDto businessDockerfile.BusinessDockerfileDto) error {
 	return sqlTemplate.Insert(insert_businessDockerfile, objectConvert.Struct2Map(businessDockerfileDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*BusinessDockerfileDao) UpdateBusinessDockerfile(businessDockerfileDto businessDockerfile.BusinessDockerfileDto) error {
 	return sqlTemplate.Update(update_businessDockerfile, objectConvert.Struct2Map(businessDockerfileDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*BusinessDockerfileDao) DeleteBusinessDockerfile(businessDockerfileDto businessDockerfile.BusinessDockerfileDto) error {

@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/appVersionJob"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/appVersionJob"
 	"gorm.io/gorm"
 )
 
@@ -71,7 +71,8 @@ VALUES (#DetailId#, #JobId#, #LogPath#, #TenantId#, #State#)
 type AppVersionJobDetailDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppVersionJobDetailDao) GetAppVersionJobDetailCount(appVersionJobDetailDto appVersionJob.AppVersionJobDetailDto) (int64, error) {
@@ -87,7 +88,8 @@ func (*AppVersionJobDetailDao) GetAppVersionJobDetailCount(appVersionJobDetailDt
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppVersionJobDetailDao) GetAppVersionJobDetails(appVersionJobDetailDto appVersionJob.AppVersionJobDetailDto) ([]*appVersionJob.AppVersionJobDetailDto, error) {
@@ -99,21 +101,24 @@ func (*AppVersionJobDetailDao) GetAppVersionJobDetails(appVersionJobDetailDto ap
 	return appVersionJobDetailDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*AppVersionJobDetailDao) SaveAppVersionJobDetail(appVersionJobDetailDto appVersionJob.AppVersionJobDetailDto) error {
 	return sqlTemplate.Insert(insert_appVersionJobDetail, objectConvert.Struct2Map(appVersionJobDetailDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*AppVersionJobDetailDao) UpdateAppVersionJobDetail(appVersionJobDetailDto appVersionJob.AppVersionJobDetailDto) error {
 	return sqlTemplate.Update(update_appVersionJobDetail, objectConvert.Struct2Map(appVersionJobDetailDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*AppVersionJobDetailDao) DeleteAppVersionJobDetail(appVersionJobDetailDto appVersionJob.AppVersionJobDetailDto) error {

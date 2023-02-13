@@ -1,22 +1,23 @@
 package service
 
 import (
+	"github.com/kataras/iris/v12"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/appService/dao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/appVersion"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/appService/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/appVersion"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
 )
 
 type AppVersionAttrService struct {
 	appVersionAttrDao dao.AppVersionAttrDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (appVersionAttrService *AppVersionAttrService) GetAppVersionAttrAll(appVersionAttrDto appVersion.AppVersionAttrDto) ([]*appVersion.AppVersionAttrDto, error) {
@@ -34,7 +35,8 @@ func (appVersionAttrService *AppVersionAttrService) GetAppVersionAttrAll(appVers
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (appVersionAttrService *AppVersionAttrService) GetAppVersionAttrs(ctx iris.Context) result.ResultDto {
@@ -88,7 +90,8 @@ func (appVersionAttrService *AppVersionAttrService) GetAppVersionAttrs(ctx iris.
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (appVersionAttrService *AppVersionAttrService) SaveAppVersionAttrs(ctx iris.Context) result.ResultDto {
@@ -113,7 +116,8 @@ func (appVersionAttrService *AppVersionAttrService) SaveAppVersionAttrs(ctx iris
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (appVersionAttrService *AppVersionAttrService) UpdateAppVersionAttrs(ctx iris.Context) result.ResultDto {
@@ -135,7 +139,8 @@ func (appVersionAttrService *AppVersionAttrService) UpdateAppVersionAttrs(ctx ir
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (appVersionAttrService *AppVersionAttrService) DeleteAppVersionAttrs(ctx iris.Context) result.ResultDto {

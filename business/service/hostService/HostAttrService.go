@@ -1,13 +1,12 @@
 package service
 
 import (
-	dao "github.com/zihao-boy/zihao/business/dao/host"
+	dao "github.com/letheliu/hhjc-devops/business/dao/host"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/host"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 )
 
 type HostAttrService struct {
@@ -19,7 +18,7 @@ type HostAttrService struct {
 */
 func (hostAttrService *HostAttrService) GetHostAttrAll(hostAttrDto host.HostAttrDto) ([]*host.HostAttrDto, error) {
 	var (
-		err                error
+		err          error
 		hostAttrDtos []*host.HostAttrDto
 	)
 
@@ -37,10 +36,10 @@ func (hostAttrService *HostAttrService) GetHostAttrAll(hostAttrDto host.HostAttr
 */
 func (hostAttrService *HostAttrService) GetHostAttrs(ctx iris.Context) result.ResultDto {
 	var (
-		err                error
-		page               int64
-		row                int64
-		total              int64
+		err          error
+		page         int64
+		row          int64
+		total        int64
 		hostAttrDto  = host.HostAttrDto{}
 		hostAttrDtos []*host.HostAttrDto
 	)
@@ -87,7 +86,7 @@ func (hostAttrService *HostAttrService) GetHostAttrs(ctx iris.Context) result.Re
 */
 func (hostAttrService *HostAttrService) SaveHostAttrs(ctx iris.Context) result.ResultDto {
 	var (
-		err               error
+		err         error
 		hostAttrDto host.HostAttrDto
 	)
 
@@ -110,7 +109,7 @@ func (hostAttrService *HostAttrService) SaveHostAttrs(ctx iris.Context) result.R
 */
 func (hostAttrService *HostAttrService) UpdateHostAttrs(ctx iris.Context) result.ResultDto {
 	var (
-		err               error
+		err         error
 		hostAttrDto host.HostAttrDto
 	)
 
@@ -132,7 +131,7 @@ func (hostAttrService *HostAttrService) UpdateHostAttrs(ctx iris.Context) result
 */
 func (hostAttrService *HostAttrService) DeleteHostAttrs(ctx iris.Context) result.ResultDto {
 	var (
-		err               error
+		err         error
 		hostAttrDto host.HostAttrDto
 	)
 

@@ -1,10 +1,10 @@
 package notifyMessage
 
 import (
-	"github.com/zihao-boy/zihao/common/cache/factory"
-	"github.com/zihao-boy/zihao/common/httpReq"
-	"github.com/zihao-boy/zihao/entity/dto/tenant"
-	"github.com/zihao-boy/zihao/user/service"
+	"github.com/letheliu/hhjc-devops/common/cache/factory"
+	"github.com/letheliu/hhjc-devops/common/httpReq"
+	"github.com/letheliu/hhjc-devops/entity/dto/tenant"
+	"github.com/letheliu/hhjc-devops/user/service"
 )
 
 const DINGDING = "DINGDING"
@@ -43,7 +43,7 @@ func sendToCompanyWechat(tenantId, message string) (string, error) {
 	var url string = tenantSettingDtos[0].Value
 	// 1、构建需要的参数
 	context := map[string]string{
-		"content": "[梓豪平台]" + message,
+		"content": "[华恒DevOps平台]" + message,
 	}
 	data := map[string]interface{}{
 		"msgtype": "text",
@@ -71,7 +71,7 @@ func sendToDingDing(tenantId, message string) (string, error) {
 	var url string = tenantSettingDtos[0].Value
 	// 1、构建需要的参数
 	context := map[string]string{
-		"content": "[梓豪平台]" + message,
+		"content": "[华恒DevOps平台]" + message,
 	}
 	data := map[string]interface{}{
 		"msgtype": "text",

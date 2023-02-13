@@ -2,10 +2,10 @@ package dnsService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/dnsDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/dns"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/business/dao/dnsDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/dns"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 )
 
@@ -30,7 +30,8 @@ func (dnsService *DnsMapService) GetDnsMapAll(DnsMapDto dns.DnsMapDto) ([]*dns.D
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (dnsService *DnsMapService) GetDnsMaps(ctx iris.Context) result.ResultDto {
@@ -78,7 +79,8 @@ func (dnsService *DnsMapService) GetDnsMaps(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (dnsService *DnsMapService) SaveDnsMaps(ctx iris.Context) result.ResultDto {
@@ -101,7 +103,8 @@ func (dnsService *DnsMapService) SaveDnsMaps(ctx iris.Context) result.ResultDto 
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (dnsService *DnsMapService) UpdateDnsMaps(ctx iris.Context) result.ResultDto {
@@ -126,7 +129,8 @@ func (dnsService *DnsMapService) UpdateDnsMaps(ctx iris.Context) result.ResultDt
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (dnsService *DnsMapService) DeleteDnsMaps(ctx iris.Context) result.ResultDto {

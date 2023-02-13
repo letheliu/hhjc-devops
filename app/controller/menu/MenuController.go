@@ -3,7 +3,7 @@ package menu
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/system/service"
+	"github.com/letheliu/hhjc-devops/system/service"
 )
 
 type MenuController struct {

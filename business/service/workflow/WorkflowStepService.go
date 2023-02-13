@@ -2,18 +2,18 @@ package workflow
 
 import (
 	"github.com/kataras/iris/v12"
-	hostDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/business/dao/workflowDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/workflow"
+	hostDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/business/dao/workflowDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/workflow"
 	"strconv"
 )
 
 const maxSize = 1000 * iris.MB // 第二种方法
 type WorkflowStepService struct {
 	workflowDao workflowDao.WorkflowStepDao
-	hostDao         hostDao.HostDao
+	hostDao     hostDao.HostDao
 }
 
 // get db link
@@ -33,7 +33,8 @@ func (resourcesOssService *WorkflowStepService) GetWorkflowStepAll(WorkflowStepD
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (resourcesOssService *WorkflowStepService) GetWorkflowSteps(ctx iris.Context) result.ResultDto {
@@ -81,7 +82,8 @@ func (resourcesOssService *WorkflowStepService) GetWorkflowSteps(ctx iris.Contex
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (resourcesOssService *WorkflowStepService) SaveWorkflowSteps(ctx iris.Context) result.ResultDto {
@@ -105,7 +107,8 @@ func (resourcesOssService *WorkflowStepService) SaveWorkflowSteps(ctx iris.Conte
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (resourcesOssService *WorkflowStepService) UpdateWorkflowSteps(ctx iris.Context) result.ResultDto {
@@ -127,7 +130,8 @@ func (resourcesOssService *WorkflowStepService) UpdateWorkflowSteps(ctx iris.Con
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (resourcesOssService *WorkflowStepService) DeleteWorkflowSteps(ctx iris.Context) result.ResultDto {

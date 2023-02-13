@@ -4,8 +4,8 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
-	"github.com/zihao-boy/zihao/common/waf/ruleAdapt"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/waf/ruleAdapt"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"golang.org/x/net/http2"
 	"net"
 	"net/http"
@@ -42,13 +42,13 @@ func RootHandle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	refreshAccessLogByRoute(&accessLog,tRoute)
+	refreshAccessLogByRoute(&accessLog, tRoute)
 
 	// rule
-	err = ruleAdapt.Rule(w,r,&accessLog,wafData.rules,tRoute)
+	err = ruleAdapt.Rule(w, r, &accessLog, wafData.rules, tRoute)
 
 	if err != nil {
-		w.Write([]byte("梓豪平台提醒您，"+err.Error()+"\n"))
+		w.Write([]byte("华恒DevOps平台提醒您，" + err.Error() + "\n"))
 		return
 	}
 
@@ -102,9 +102,9 @@ func RootHandle(w http.ResponseWriter, r *http.Request) {
 			req.URL.Scheme = tRoute.Scheme
 			req.URL.Host = r.Host
 		},
-		Transport:      transport,
+		Transport: transport,
 		ModifyResponse: func(response *http.Response) error {
-			return rewriteResponse(response,&accessLog)
+			return rewriteResponse(response, &accessLog)
 		},
 	}
 	//if utils.Debug {
@@ -146,10 +146,10 @@ func RedirectRequest(w http.ResponseWriter, r *http.Request, location string) {
 	http.Redirect(w, r, location, http.StatusPermanentRedirect)
 }
 
-func rewriteResponse(resp *http.Response,accessLog *waf.WafAccessLogDto) (err error) {
+func rewriteResponse(resp *http.Response, accessLog *waf.WafAccessLogDto) (err error) {
 	r := resp.Request
 	accessLog.ResponseCode = strconv.Itoa(resp.StatusCode)
-	accessLog.ResponseLength = strconv.FormatInt(resp.ContentLength,10)
+	accessLog.ResponseLength = strconv.FormatInt(resp.ContentLength, 10)
 	locationStr := resp.Header.Get("Location")
 	indexHTTP := strings.Index(locationStr, "http")
 	if indexHTTP == 0 {
@@ -169,14 +169,14 @@ func rewriteResponse(resp *http.Response,accessLog *waf.WafAccessLogDto) (err er
 				if wafData.wafDto.HttpsPort == ":443" {
 					newHost = host
 				} else {
-					newHost = host +":"+ wafData.wafDto.HttpsPort
+					newHost = host + ":" + wafData.wafDto.HttpsPort
 				}
 			} else {
 				userScheme = "http"
 				if wafData.wafDto.Port == ":80" {
 					newHost = host
 				} else {
-					newHost = host +":"+ wafData.wafDto.Port
+					newHost = host + ":" + wafData.wafDto.Port
 				}
 			}
 			newLocation := strings.Replace(locationURL.String(), oldHost, newHost, -1)

@@ -2,23 +2,23 @@ package firewallService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/firewallRuleDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/entity/dto/firewall"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/business/dao/firewallRuleDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/entity/dto/firewall"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 )
 
 type FirewallRuleService struct {
-	firewallDao             firewallRuleDao.FirewallRuleDao
+	firewallDao firewallRuleDao.FirewallRuleDao
 }
 
 // get db link
 // all db by this user
 func (firewallService *FirewallRuleService) GetFirewallRuleAll(FirewallRuleDto firewall.FirewallRuleDto) ([]*firewall.FirewallRuleDto, error) {
 	var (
-		err          error
+		err              error
 		FirewallRuleDtos []*firewall.FirewallRuleDto
 	)
 
@@ -31,15 +31,16 @@ func (firewallService *FirewallRuleService) GetFirewallRuleAll(FirewallRuleDto f
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (firewallService *FirewallRuleService) GetFirewallRules(ctx iris.Context) result.ResultDto {
 	var (
-		err     error
-		page    int64
-		row     int64
-		total   int64
+		err          error
+		page         int64
+		row          int64
+		total        int64
 		firewallDto  = firewall.FirewallRuleDto{}
 		firewallDtos []*firewall.FirewallRuleDto
 	)
@@ -77,18 +78,17 @@ func (firewallService *FirewallRuleService) GetFirewallRules(ctx iris.Context) r
 		return result.Error(err.Error())
 	}
 
-
-
 	return result.SuccessData(firewallDtos, total, row)
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (firewallService *FirewallRuleService) SaveFirewallRules(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		firewallDto firewall.FirewallRuleDto
 	)
 	if err = ctx.ReadJSON(&firewallDto); err != nil {
@@ -108,12 +108,13 @@ func (firewallService *FirewallRuleService) SaveFirewallRules(ctx iris.Context) 
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (firewallService *FirewallRuleService) UpdateFirewallRules(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		firewallDto firewall.FirewallRuleDto
 	)
 	if err = ctx.ReadJSON(&firewallDto); err != nil {
@@ -135,12 +136,13 @@ func (firewallService *FirewallRuleService) UpdateFirewallRules(ctx iris.Context
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (firewallService *FirewallRuleService) DeleteFirewallRules(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		firewallDto firewall.FirewallRuleDto
 	)
 	if err = ctx.ReadJSON(&firewallDto); err != nil {
@@ -161,16 +163,15 @@ func (firewallService *FirewallRuleService) DeleteFirewallRules(ctx iris.Context
 func (firewallService *FirewallRuleService) GetFirewallRulesByHost(ctx iris.Context) interface{} {
 
 	// query rule
-	hostFirewallGroupDto :=firewall.HostFirewallGroupDto{
+	hostFirewallGroupDto := firewall.HostFirewallGroupDto{
 		HostId: ctx.URLParam("hostId"),
 	}
-	firewallRuleDtos,_ :=firewallService.firewallDao.GetFirewallRulesByHost(hostFirewallGroupDto)
+	firewallRuleDtos, _ := firewallService.firewallDao.GetFirewallRulesByHost(hostFirewallGroupDto)
 
-	if firewallRuleDtos == nil{
+	if firewallRuleDtos == nil {
 		firewallRuleDtos = []*firewall.FirewallRuleDto{}
 	}
 
 	return result.SuccessData(firewallRuleDtos)
 
 }
-

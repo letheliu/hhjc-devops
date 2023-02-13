@@ -2,24 +2,25 @@ package service
 
 import (
 	"fmt"
+	"github.com/kataras/iris/v12"
 	"os/exec"
 	systemUser "os/user"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/appService/dao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/appVersionJob"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/appService/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/appVersionJob"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
 )
 
 type AppVersionJobDetailService struct {
 	appVersionJobDetailDao dao.AppVersionJobDetailDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (appVersionJobDetailService *AppVersionJobDetailService) GetAppVersionJobDetailAll(appVersionJobDetailDto appVersionJob.AppVersionJobDetailDto) ([]*appVersionJob.AppVersionJobDetailDto, error) {
@@ -37,7 +38,8 @@ func (appVersionJobDetailService *AppVersionJobDetailService) GetAppVersionJobDe
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (appVersionJobDetailService *AppVersionJobDetailService) GetAppVersionJobDetails(ctx iris.Context) result.ResultDto {
@@ -91,7 +93,8 @@ func (appVersionJobDetailService *AppVersionJobDetailService) GetAppVersionJobDe
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (appVersionJobDetailService *AppVersionJobDetailService) SaveAppVersionJobDetails(ctx iris.Context) result.ResultDto {
@@ -117,7 +120,8 @@ func (appVersionJobDetailService *AppVersionJobDetailService) SaveAppVersionJobD
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (appVersionJobDetailService *AppVersionJobDetailService) UpdateAppVersionJobDetails(ctx iris.Context) result.ResultDto {
@@ -140,7 +144,8 @@ func (appVersionJobDetailService *AppVersionJobDetailService) UpdateAppVersionJo
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (appVersionJobDetailService *AppVersionJobDetailService) DoJob(ctx iris.Context) result.ResultDto {
@@ -181,7 +186,8 @@ func (appVersionJobDetailService *AppVersionJobDetailService) DoJob(ctx iris.Con
 
 }
 
-/**
+/*
+*
 构建
 */
 func (appVersionJobDetailService *AppVersionJobDetailService) DeleteAppVersionJobDetails(ctx iris.Context) result.ResultDto {

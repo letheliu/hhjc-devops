@@ -2,10 +2,10 @@ package wafService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/wafDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/business/dao/wafDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"strconv"
 )
 
@@ -18,7 +18,7 @@ type WafRuleService struct {
 // all db by this user
 func (wafService *WafRuleService) GetWafRuleAll(WafRuleDto waf.WafRuleDto) ([]*waf.WafRuleDto, error) {
 	var (
-		err          error
+		err         error
 		WafRuleDtos []*waf.WafRuleDto
 	)
 
@@ -31,7 +31,8 @@ func (wafService *WafRuleService) GetWafRuleAll(WafRuleDto waf.WafRuleDto) ([]*w
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (wafService *WafRuleService) GetWafRules(ctx iris.Context) result.ResultDto {
@@ -75,13 +76,12 @@ func (wafService *WafRuleService) GetWafRules(ctx iris.Context) result.ResultDto
 		return result.Error(err.Error())
 	}
 
-
-
 	return result.SuccessData(wafDtos, total, row)
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (wafService *WafRuleService) SaveWafRules(ctx iris.Context) result.ResultDto {
@@ -104,7 +104,8 @@ func (wafService *WafRuleService) SaveWafRules(ctx iris.Context) result.ResultDt
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (wafService *WafRuleService) UpdateWafRules(ctx iris.Context) result.ResultDto {
@@ -125,12 +126,12 @@ func (wafService *WafRuleService) UpdateWafRules(ctx iris.Context) result.Result
 		return result.Error(err.Error())
 	}
 
-
 	return result.SuccessData(wafDto)
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (wafService *WafRuleService) DeleteWafRules(ctx iris.Context) result.ResultDto {

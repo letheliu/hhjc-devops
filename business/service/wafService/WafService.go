@@ -3,14 +3,14 @@ package wafService
 import (
 	"errors"
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/wafDao"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/business/dao/wafDao"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"strconv"
 	"strings"
 )
@@ -37,7 +37,8 @@ func (wafService *WafService) GetWafAll(WafDto waf.WafDto) ([]*waf.WafDto, error
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (wafService *WafService) GetWafs(ctx iris.Context) result.ResultDto {
@@ -94,7 +95,8 @@ func (wafService *WafService) GetWafs(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (wafService *WafService) SaveWafs(ctx iris.Context) result.ResultDto {
@@ -117,7 +119,8 @@ func (wafService *WafService) SaveWafs(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (wafService *WafService) UpdateWafs(ctx iris.Context) result.ResultDto {
@@ -161,7 +164,8 @@ func (wafService *WafService) UpdateWafs(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (wafService *WafService) DeleteWafs(ctx iris.Context) result.ResultDto {
@@ -307,8 +311,7 @@ func (wafService *WafService) getWafConfig(wafDto waf.WafDto) waf.SlaveWafDataDt
 		WafId: wafDto.WafId,
 	}
 	routes, _ := wafRouteDao.GetWafRoutes(tmpWafRouteDto)
-	tmpWafHostnameCertDto := waf.WafHostnameCertDto{
-	}
+	tmpWafHostnameCertDto := waf.WafHostnameCertDto{}
 	certs, _ := wafHostnameCertDao.GetWafHostnameCerts(tmpWafHostnameCertDto)
 
 	// query rule group
@@ -348,8 +351,7 @@ func (wafService *WafService) getRules(grops []*waf.WafRuleGroupDto) []*waf.WafR
 	}
 
 	for _, rule := range wafRules {
-		ruleData = &waf.WafRuleDataDto{
-		}
+		ruleData = &waf.WafRuleDataDto{}
 		objectConvert.Struct2Struct(rule, ruleData)
 
 		err := wafService.getRuleObject(ruleData)

@@ -1,15 +1,15 @@
 package jwt
 
 import (
+	"github.com/dgrijalva/jwt-go"
+	"github.com/kataras/iris/v12"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
 	"github.com/kataras/golog"
-	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/context"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
 )
 
 // Middleware the middleware for JSON Web tokens authentication method

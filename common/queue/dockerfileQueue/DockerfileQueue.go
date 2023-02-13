@@ -3,21 +3,21 @@ package dockerfileQueue
 import (
 	"bufio"
 	"fmt"
-	appServiceDao "github.com/zihao-boy/zihao/appService/dao"
-	hostDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/common/cache/factory"
-	"github.com/zihao-boy/zihao/common/containerScheduling"
-	"github.com/zihao-boy/zihao/common/costTime"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/notifyMessage"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
-	"github.com/zihao-boy/zihao/entity/dto/businessDockerfile"
-	"github.com/zihao-boy/zihao/entity/dto/businessImages"
-	"github.com/zihao-boy/zihao/entity/dto/host"
-	"github.com/zihao-boy/zihao/softService/dao"
+	appServiceDao "github.com/letheliu/hhjc-devops/appService/dao"
+	hostDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/common/cache/factory"
+	"github.com/letheliu/hhjc-devops/common/containerScheduling"
+	"github.com/letheliu/hhjc-devops/common/costTime"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/notifyMessage"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessDockerfile"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessImages"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/softService/dao"
 	"os"
 	"os/exec"
 	"path"
@@ -30,7 +30,8 @@ import (
 var lock sync.Mutex
 var que chan *businessDockerfile.BusinessDockerfileDto
 
-/**
+/*
+*
 初始化
 */
 func initQueue() {
@@ -270,7 +271,7 @@ func dealData(businessDockerfileDto *businessDockerfile.BusinessDockerfileDto) {
 	var hosts []*host.HostDto
 	for _, appServiceDto := range appServiceDtos {
 
-		if !ifInAvgIds(appServiceDto,businessDockerfileDto.AvgIds){
+		if !ifInAvgIds(appServiceDto, businessDockerfileDto.AvgIds) {
 			continue
 		}
 		tmpAppServiceDto := appService.AppServiceDto{
@@ -318,17 +319,17 @@ func dealData(businessDockerfileDto *businessDockerfile.BusinessDockerfileDto) {
 }
 
 func ifInAvgIds(dto *appService.AppServiceDto, ids string) bool {
-	if utils.IsEmpty(ids){
+	if utils.IsEmpty(ids) {
 		return true
 	}
 
-	ids1 := strings.Split(ids,",")
+	ids1 := strings.Split(ids, ",")
 
-	for _,id := range ids1{
-		if dto.AsGroupId == id{
+	for _, id := range ids1 {
+		if dto.AsGroupId == id {
 			return true
 		}
 	}
 
-	return false;
+	return false
 }

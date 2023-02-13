@@ -1,11 +1,10 @@
 package ip
 
-
 import (
 	"bytes"
 	"compress/zlib"
 	"encoding/binary"
-	"github.com/zihao-boy/zihao/config"
+	"github.com/letheliu/hhjc-devops/config"
 	"io/ioutil"
 	"net/http"
 )

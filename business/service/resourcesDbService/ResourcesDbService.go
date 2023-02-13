@@ -2,26 +2,26 @@ package resourcesDbService
 
 import (
 	"github.com/kataras/iris/v12"
-	hostDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/business/dao/resourcesDbDao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/resources"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
+	hostDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/business/dao/resourcesDbDao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/resources"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
 	"strconv"
 )
 
 type ResourcesDbService struct {
 	resourcesDbDao resourcesDbDao.ResourcesDbDao
-	hostDao         hostDao.HostDao
+	hostDao        hostDao.HostDao
 }
 
 // get db link
 // all db by this user
 func (resourcesDbService *ResourcesDbService) GetResourcesDbAll(ResourcesDbDto resources.ResourcesDbDto) ([]*resources.ResourcesDbDto, error) {
 	var (
-		err              error
+		err             error
 		ResourcesDbDtos []*resources.ResourcesDbDto
 	)
 
@@ -34,15 +34,16 @@ func (resourcesDbService *ResourcesDbService) GetResourcesDbAll(ResourcesDbDto r
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (resourcesDbService *ResourcesDbService) GetResourcesDbs(ctx iris.Context) result.ResultDto {
 	var (
-		err              error
-		page             int64
-		row              int64
-		total            int64
+		err             error
+		page            int64
+		row             int64
+		total           int64
 		resourcesDbDto  = resources.ResourcesDbDto{}
 		resourcesDbDtos []*resources.ResourcesDbDto
 	)
@@ -84,12 +85,13 @@ func (resourcesDbService *ResourcesDbService) GetResourcesDbs(ctx iris.Context) 
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (resourcesDbService *ResourcesDbService) SaveResourcesDbs(ctx iris.Context) result.ResultDto {
 	var (
-		err             error
+		err            error
 		resourcesDbDto resources.ResourcesDbDto
 	)
 	if err = ctx.ReadJSON(&resourcesDbDto); err != nil {
@@ -110,12 +112,13 @@ func (resourcesDbService *ResourcesDbService) SaveResourcesDbs(ctx iris.Context)
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (resourcesDbService *ResourcesDbService) UpdateResourcesDbs(ctx iris.Context) result.ResultDto {
 	var (
-		err             error
+		err            error
 		resourcesDbDto resources.ResourcesDbDto
 	)
 	if err = ctx.ReadJSON(&resourcesDbDto); err != nil {
@@ -136,12 +139,13 @@ func (resourcesDbService *ResourcesDbService) UpdateResourcesDbs(ctx iris.Contex
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (resourcesDbService *ResourcesDbService) DeleteResourcesDbs(ctx iris.Context) result.ResultDto {
 	var (
-		err             error
+		err            error
 		resourcesDbDto resources.ResourcesDbDto
 	)
 	if err = ctx.ReadJSON(&resourcesDbDto); err != nil {

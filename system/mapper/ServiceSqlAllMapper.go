@@ -1,10 +1,10 @@
 package mapper
 
 import (
-	"github.com/zihao-boy/zihao/common/db/mysql"
-	"github.com/zihao-boy/zihao/common/db/sqlite"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/serviceSql"
+	"github.com/letheliu/hhjc-devops/common/db/mysql"
+	"github.com/letheliu/hhjc-devops/common/db/sqlite"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/serviceSql"
 )
 
 const (
@@ -15,10 +15,9 @@ const (
 type ServiceSqlAllMapper struct {
 }
 
-/**
+/*
+*
 查询用户
-
-
 */
 func (*ServiceSqlAllMapper) GetServiceSqls(serviceSqlDto serviceSql.ServiceSqlDto) ([]*serviceSql.ServiceSqlDto, error) {
 	var serviceSqlDtos []*serviceSql.ServiceSqlDto

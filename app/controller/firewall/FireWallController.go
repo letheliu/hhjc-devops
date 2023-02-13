@@ -3,25 +3,23 @@ package firewall
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	firewallService "github.com/zihao-boy/zihao/business/service/firewallRule"
-	"github.com/zihao-boy/zihao/business/service/wafService"
+	firewallService "github.com/letheliu/hhjc-devops/business/service/firewallRule"
+	"github.com/letheliu/hhjc-devops/business/service/wafService"
 )
 
 type FirewallController struct {
-	wafService wafService.WafService
-	wafRouteService wafService.WafRouteService
-	wafAccessLogService wafService.WafAccessLogService
-	wafRuleGroupService wafService.WafRuleGroupService
-	wafRuleService wafService.WafRuleService
-	wafIpBlackWhiteService wafService.WafIpBlackWhiteService
-	wafAreaService wafService.WafAreaService
-	wafCCService wafService.WafCCService
-	wafAccurateService wafService.WafAccurateService
+	wafService               wafService.WafService
+	wafRouteService          wafService.WafRouteService
+	wafAccessLogService      wafService.WafAccessLogService
+	wafRuleGroupService      wafService.WafRuleGroupService
+	wafRuleService           wafService.WafRuleService
+	wafIpBlackWhiteService   wafService.WafIpBlackWhiteService
+	wafAreaService           wafService.WafAreaService
+	wafCCService             wafService.WafCCService
+	wafAccurateService       wafService.WafAccurateService
 	firewallRuleGroupService firewallService.FirewallRuleGroupService
-	firewallRuleService firewallService.FirewallRuleService
+	firewallRuleService      firewallService.FirewallRuleService
 	hostFirewallGroupService firewallService.HostFirewallGroupService
-
-
 }
 
 func FirewallControllerRouter(party iris.Party) {
@@ -38,12 +36,9 @@ func FirewallControllerRouter(party iris.Party) {
 
 	adinMenu.Post("/deleteWaf", hero.Handler(aus.deleteWaf))
 
-
-
 	adinMenu.Post("/startWaf", hero.Handler(aus.startWaf))
 
 	adinMenu.Post("/stopWaf", hero.Handler(aus.stopWaf))
-
 
 	adinMenu.Post("/refreshWafConfig", hero.Handler(aus.refreshWafConfig))
 
@@ -70,8 +65,6 @@ func FirewallControllerRouter(party iris.Party) {
 	adinMenu.Get("/getWafAccessLogTop5", hero.Handler(aus.getWafAccessLogTop5))
 
 	adinMenu.Get("/getWafAccessLogIntercept", hero.Handler(aus.getWafAccessLogIntercept))
-
-
 
 	adinMenu.Get("/getWafRuleGroup", hero.Handler(aus.getWafRuleGroup))
 
@@ -122,7 +115,6 @@ func FirewallControllerRouter(party iris.Party) {
 
 	adinMenu.Post("/deleteWafAccurate", hero.Handler(aus.deleteWafAccurate))
 
-
 	//query platform data
 	adinMenu.Get("/getFirewallRuleGroup", hero.Handler(aus.getFirewallRuleGroup))
 
@@ -131,7 +123,6 @@ func FirewallControllerRouter(party iris.Party) {
 	adinMenu.Post("/updateFirewallRuleGroup", hero.Handler(aus.updateFirewallRuleGroup))
 
 	adinMenu.Post("/deleteFirewallRuleGroup", hero.Handler(aus.deleteFirewallRuleGroup))
-
 
 	//query platform data
 	adinMenu.Get("/getFirewallRule", hero.Handler(aus.getFirewallRule))
@@ -149,10 +140,10 @@ func FirewallControllerRouter(party iris.Party) {
 
 	adinMenu.Get("/getFirewallRulesByHost", hero.Handler(aus.getFirewallRulesByHost))
 
-
 }
 
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWaf(ctx iris.Context) {
@@ -161,7 +152,8 @@ func (aus *FirewallController) getWaf(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveWaf(ctx iris.Context) {
@@ -170,7 +162,8 @@ func (aus *FirewallController) saveWaf(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update waf
 */
 func (aus *FirewallController) updateWaf(ctx iris.Context) {
@@ -179,7 +172,8 @@ func (aus *FirewallController) updateWaf(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) deleteWaf(ctx iris.Context) {
@@ -188,7 +182,8 @@ func (aus *FirewallController) deleteWaf(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) startWaf(ctx iris.Context) {
@@ -197,7 +192,8 @@ func (aus *FirewallController) startWaf(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) stopWaf(ctx iris.Context) {
@@ -206,8 +202,8 @@ func (aus *FirewallController) stopWaf(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) refreshWafConfig(ctx iris.Context) {
@@ -216,11 +212,8 @@ func (aus *FirewallController) refreshWafConfig(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-
-
-
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWafRoute(ctx iris.Context) {
@@ -229,7 +222,8 @@ func (aus *FirewallController) getWafRoute(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveWafRoute(ctx iris.Context) {
@@ -238,7 +232,8 @@ func (aus *FirewallController) saveWafRoute(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update waf
 */
 func (aus *FirewallController) updateWafRoute(ctx iris.Context) {
@@ -247,7 +242,8 @@ func (aus *FirewallController) updateWafRoute(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) deleteWafRoute(ctx iris.Context) {
@@ -256,8 +252,8 @@ func (aus *FirewallController) deleteWafRoute(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWafAccessLog(ctx iris.Context) {
@@ -266,7 +262,8 @@ func (aus *FirewallController) getWafAccessLog(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWafAccessLogMap(ctx iris.Context) {
@@ -275,7 +272,8 @@ func (aus *FirewallController) getWafAccessLogMap(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWafAccessLogTop5(ctx iris.Context) {
@@ -284,7 +282,8 @@ func (aus *FirewallController) getWafAccessLogTop5(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWafAccessLogIntercept(ctx iris.Context) {
@@ -293,8 +292,8 @@ func (aus *FirewallController) getWafAccessLogIntercept(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveWafAccessLog(ctx iris.Context) {
@@ -303,11 +302,12 @@ func (aus *FirewallController) saveWafAccessLog(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-func (aus *FirewallController) loadIps(ctx iris.Context)  {
+func (aus *FirewallController) loadIps(ctx iris.Context) {
 	aus.wafAccessLogService.LoadIps(ctx)
 }
 
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWafRuleGroup(ctx iris.Context) {
@@ -316,7 +316,8 @@ func (aus *FirewallController) getWafRuleGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveWafRuleGroup(ctx iris.Context) {
@@ -325,7 +326,8 @@ func (aus *FirewallController) saveWafRuleGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update waf
 */
 func (aus *FirewallController) updateWafRuleGroup(ctx iris.Context) {
@@ -334,8 +336,8 @@ func (aus *FirewallController) updateWafRuleGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) startWafRuleGroup(ctx iris.Context) {
@@ -344,8 +346,8 @@ func (aus *FirewallController) startWafRuleGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) deleteWafRuleGroup(ctx iris.Context) {
@@ -354,8 +356,8 @@ func (aus *FirewallController) deleteWafRuleGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWafRule(ctx iris.Context) {
@@ -364,7 +366,8 @@ func (aus *FirewallController) getWafRule(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveWafRule(ctx iris.Context) {
@@ -373,7 +376,8 @@ func (aus *FirewallController) saveWafRule(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update waf
 */
 func (aus *FirewallController) updateWafRule(ctx iris.Context) {
@@ -382,7 +386,8 @@ func (aus *FirewallController) updateWafRule(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) deleteWafRule(ctx iris.Context) {
@@ -391,8 +396,8 @@ func (aus *FirewallController) deleteWafRule(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWafIpBlackWhite(ctx iris.Context) {
@@ -401,7 +406,8 @@ func (aus *FirewallController) getWafIpBlackWhite(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveWafIpBlackWhite(ctx iris.Context) {
@@ -410,7 +416,8 @@ func (aus *FirewallController) saveWafIpBlackWhite(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update waf
 */
 func (aus *FirewallController) updateWafIpBlackWhite(ctx iris.Context) {
@@ -419,7 +426,8 @@ func (aus *FirewallController) updateWafIpBlackWhite(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) deleteWafIpBlackWhite(ctx iris.Context) {
@@ -428,8 +436,8 @@ func (aus *FirewallController) deleteWafIpBlackWhite(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWafArea(ctx iris.Context) {
@@ -438,7 +446,8 @@ func (aus *FirewallController) getWafArea(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveWafArea(ctx iris.Context) {
@@ -447,7 +456,8 @@ func (aus *FirewallController) saveWafArea(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update waf
 */
 func (aus *FirewallController) updateWafArea(ctx iris.Context) {
@@ -456,7 +466,8 @@ func (aus *FirewallController) updateWafArea(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) deleteWafArea(ctx iris.Context) {
@@ -465,8 +476,8 @@ func (aus *FirewallController) deleteWafArea(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWafCC(ctx iris.Context) {
@@ -475,7 +486,8 @@ func (aus *FirewallController) getWafCC(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveWafCC(ctx iris.Context) {
@@ -484,7 +496,8 @@ func (aus *FirewallController) saveWafCC(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update waf
 */
 func (aus *FirewallController) updateWafCC(ctx iris.Context) {
@@ -493,7 +506,8 @@ func (aus *FirewallController) updateWafCC(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) deleteWafCC(ctx iris.Context) {
@@ -502,8 +516,8 @@ func (aus *FirewallController) deleteWafCC(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getWafAccurate(ctx iris.Context) {
@@ -512,7 +526,8 @@ func (aus *FirewallController) getWafAccurate(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveWafAccurate(ctx iris.Context) {
@@ -521,7 +536,8 @@ func (aus *FirewallController) saveWafAccurate(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update waf
 */
 func (aus *FirewallController) updateWafAccurate(ctx iris.Context) {
@@ -530,7 +546,8 @@ func (aus *FirewallController) updateWafAccurate(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) deleteWafAccurate(ctx iris.Context) {
@@ -539,9 +556,8 @@ func (aus *FirewallController) deleteWafAccurate(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getFirewallRuleGroup(ctx iris.Context) {
@@ -550,7 +566,8 @@ func (aus *FirewallController) getFirewallRuleGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveFirewallRuleGroup(ctx iris.Context) {
@@ -559,7 +576,8 @@ func (aus *FirewallController) saveFirewallRuleGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update waf
 */
 func (aus *FirewallController) updateFirewallRuleGroup(ctx iris.Context) {
@@ -568,7 +586,8 @@ func (aus *FirewallController) updateFirewallRuleGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) deleteFirewallRuleGroup(ctx iris.Context) {
@@ -577,8 +596,8 @@ func (aus *FirewallController) deleteFirewallRuleGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getFirewallRule(ctx iris.Context) {
@@ -587,7 +606,8 @@ func (aus *FirewallController) getFirewallRule(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveFirewallRule(ctx iris.Context) {
@@ -596,8 +616,8 @@ func (aus *FirewallController) saveFirewallRule(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 update waf
 */
 func (aus *FirewallController) updateFirewallRule(ctx iris.Context) {
@@ -606,7 +626,8 @@ func (aus *FirewallController) updateFirewallRule(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) deleteFirewallRule(ctx iris.Context) {
@@ -615,8 +636,8 @@ func (aus *FirewallController) deleteFirewallRule(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getHostFirewallGroup(ctx iris.Context) {
@@ -625,7 +646,8 @@ func (aus *FirewallController) getHostFirewallGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save waf
 */
 func (aus *FirewallController) saveHostFirewallGroup(ctx iris.Context) {
@@ -634,8 +656,8 @@ func (aus *FirewallController) saveHostFirewallGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 delete waf
 */
 func (aus *FirewallController) deleteHostFirewallGroup(ctx iris.Context) {
@@ -644,7 +666,8 @@ func (aus *FirewallController) deleteHostFirewallGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 query waf
 */
 func (aus *FirewallController) getFirewallRulesByHost(ctx iris.Context) {

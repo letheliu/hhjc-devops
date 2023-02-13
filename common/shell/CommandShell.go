@@ -5,16 +5,16 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/kataras/iris/v12/context"
-	hostDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/business/dao/firewallRuleDao"
-	"github.com/zihao-boy/zihao/common/httpReq"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/dns"
-	"github.com/zihao-boy/zihao/entity/dto/firewall"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	hostDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/business/dao/firewallRuleDao"
+	"github.com/letheliu/hhjc-devops/common/httpReq"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/dns"
+	"github.com/letheliu/hhjc-devops/entity/dto/firewall"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"io"
 	"io/ioutil"
 	"mime/multipart"
@@ -24,7 +24,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/zihao-boy/zihao/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
 	"golang.org/x/crypto/ssh"
 )
 
@@ -324,7 +324,7 @@ func ExecStartWaf(waf waf.SlaveWafDataDto) (result.ResultDto, error) {
 	// query hostInfo
 
 	var (
-		hostDao hostDao.HostDao
+		hostDao   hostDao.HostDao
 		resultDto result.ResultDto
 	)
 	data := make(map[string]interface{})
@@ -351,19 +351,18 @@ func ExecStartWaf(waf waf.SlaveWafDataDto) (result.ResultDto, error) {
 		}
 		json.Unmarshal([]byte(resp), &resultDto)
 
-		if resultDto.Code != result.CODE_SUCCESS{
+		if resultDto.Code != result.CODE_SUCCESS {
 			return resultDto, nil
 		}
 	}
 	return resultDto, nil
 }
 
-
 func ExecStopWaf(waf waf.SlaveWafDataDto) (result.ResultDto, error) {
 	// query hostInfo
 
 	var (
-		hostDao hostDao.HostDao
+		hostDao   hostDao.HostDao
 		resultDto result.ResultDto
 	)
 	data := make(map[string]interface{})
@@ -390,7 +389,7 @@ func ExecStopWaf(waf waf.SlaveWafDataDto) (result.ResultDto, error) {
 		}
 		json.Unmarshal([]byte(resp), &resultDto)
 
-		if resultDto.Code != result.CODE_SUCCESS{
+		if resultDto.Code != result.CODE_SUCCESS {
 			return resultDto, nil
 		}
 	}
@@ -401,7 +400,7 @@ func ExecRefreshWafConfig(waf waf.SlaveWafDataDto) (result.ResultDto, error) {
 	// query hostInfo
 
 	var (
-		hostDao hostDao.HostDao
+		hostDao   hostDao.HostDao
 		resultDto result.ResultDto
 	)
 	data := make(map[string]interface{})
@@ -428,22 +427,18 @@ func ExecRefreshWafConfig(waf waf.SlaveWafDataDto) (result.ResultDto, error) {
 		}
 		json.Unmarshal([]byte(resp), &resultDto)
 
-		if resultDto.Code != result.CODE_SUCCESS{
+		if resultDto.Code != result.CODE_SUCCESS {
 			return resultDto, nil
 		}
 	}
 	return resultDto, nil
 }
 
-
-
-
-
 func ExecStartInnerNet(innerNet innerNet.SlaveInnerNetDataDto) (result.ResultDto, error) {
 	// query hostInfo
 
 	var (
-		hostDao hostDao.HostDao
+		hostDao   hostDao.HostDao
 		resultDto result.ResultDto
 	)
 	data := make(map[string]interface{})
@@ -470,19 +465,18 @@ func ExecStartInnerNet(innerNet innerNet.SlaveInnerNetDataDto) (result.ResultDto
 		}
 		json.Unmarshal([]byte(resp), &resultDto)
 
-		if resultDto.Code != result.CODE_SUCCESS{
+		if resultDto.Code != result.CODE_SUCCESS {
 			return resultDto, nil
 		}
 	}
 	return resultDto, nil
 }
 
-
 func ExecStopInnerNet(innerNet innerNet.SlaveInnerNetDataDto) (result.ResultDto, error) {
 	// query hostInfo
 
 	var (
-		hostDao hostDao.HostDao
+		hostDao   hostDao.HostDao
 		resultDto result.ResultDto
 	)
 	data := make(map[string]interface{})
@@ -509,7 +503,7 @@ func ExecStopInnerNet(innerNet innerNet.SlaveInnerNetDataDto) (result.ResultDto,
 		}
 		json.Unmarshal([]byte(resp), &resultDto)
 
-		if resultDto.Code != result.CODE_SUCCESS{
+		if resultDto.Code != result.CODE_SUCCESS {
 			return resultDto, nil
 		}
 	}
@@ -520,7 +514,7 @@ func ExecRefreshInnerNetConfig(innerNet innerNet.SlaveInnerNetDataDto) (result.R
 	// query hostInfo
 
 	var (
-		hostDao hostDao.HostDao
+		hostDao   hostDao.HostDao
 		resultDto result.ResultDto
 	)
 	data := make(map[string]interface{})
@@ -547,20 +541,18 @@ func ExecRefreshInnerNetConfig(innerNet innerNet.SlaveInnerNetDataDto) (result.R
 		}
 		json.Unmarshal([]byte(resp), &resultDto)
 
-		if resultDto.Code != result.CODE_SUCCESS{
+		if resultDto.Code != result.CODE_SUCCESS {
 			return resultDto, nil
 		}
 	}
 	return resultDto, nil
 }
 
-
-
 func ExecStartDns(dnsData dns.DnsDataDto) (result.ResultDto, error) {
 	// query hostInfo
 
 	var (
-		hostDao hostDao.HostDao
+		hostDao   hostDao.HostDao
 		resultDto result.ResultDto
 	)
 	data := make(map[string]interface{})
@@ -587,19 +579,18 @@ func ExecStartDns(dnsData dns.DnsDataDto) (result.ResultDto, error) {
 		}
 		json.Unmarshal([]byte(resp), &resultDto)
 
-		if resultDto.Code != result.CODE_SUCCESS{
+		if resultDto.Code != result.CODE_SUCCESS {
 			return resultDto, nil
 		}
 	}
 	return resultDto, nil
 }
 
-
 func ExecStopDns(dnsData dns.DnsDataDto) (result.ResultDto, error) {
 	// query hostInfo
 
 	var (
-		hostDao hostDao.HostDao
+		hostDao   hostDao.HostDao
 		resultDto result.ResultDto
 	)
 	data := make(map[string]interface{})
@@ -626,7 +617,7 @@ func ExecStopDns(dnsData dns.DnsDataDto) (result.ResultDto, error) {
 		}
 		json.Unmarshal([]byte(resp), &resultDto)
 
-		if resultDto.Code != result.CODE_SUCCESS{
+		if resultDto.Code != result.CODE_SUCCESS {
 			return resultDto, nil
 		}
 	}
@@ -637,7 +628,7 @@ func ExecRefreshDnsConfig(dnsData dns.DnsDataDto) (result.ResultDto, error) {
 	// query hostInfo
 
 	var (
-		hostDao hostDao.HostDao
+		hostDao   hostDao.HostDao
 		resultDto result.ResultDto
 	)
 	data := make(map[string]interface{})
@@ -664,43 +655,38 @@ func ExecRefreshDnsConfig(dnsData dns.DnsDataDto) (result.ResultDto, error) {
 		}
 		json.Unmarshal([]byte(resp), &resultDto)
 
-		if resultDto.Code != result.CODE_SUCCESS{
+		if resultDto.Code != result.CODE_SUCCESS {
 			return resultDto, nil
 		}
 	}
 	return resultDto, nil
 }
 
-
-
 func ExecFirewallRule() (result.ResultDto, error) {
 	// query hostInfo
 
 	var (
-		hostDao hostDao.HostDao
-		resultDto result.ResultDto
+		hostDao         hostDao.HostDao
+		resultDto       result.ResultDto
 		firewallRuleDao firewallRuleDao.FirewallRuleDao
-
 	)
 
 	hostDto := host.HostDto{
-		State:host.State_N,
+		State: host.State_N,
 	}
-	hostDtos,_ := hostDao.GetHosts(hostDto)
+	hostDtos, _ := hostDao.GetHosts(hostDto)
 
-	if hostDtos == nil || len(hostDtos)<1{
-		return result.Success(),nil
+	if hostDtos == nil || len(hostDtos) < 1 {
+		return result.Success(), nil
 	}
-
-
 
 	for _, host := range hostDtos {
 
 		// query rule
-		hostFirewallGroupDto :=firewall.HostFirewallGroupDto{
+		hostFirewallGroupDto := firewall.HostFirewallGroupDto{
 			HostId: host.HostId,
 		}
-		firewallRuleDtos,_ :=firewallRuleDao.GetFirewallRulesByHost(hostFirewallGroupDto)
+		firewallRuleDtos, _ := firewallRuleDao.GetFirewallRulesByHost(hostFirewallGroupDto)
 
 		//if firewallRuleDtos == nil || len(firewallRuleDtos) < 1{
 		//	continue
@@ -716,13 +702,13 @@ func ExecFirewallRule() (result.ResultDto, error) {
 		}
 		ip += (":" + strconv.FormatInt(int64(config.Slave), 10))
 
-		resp, err := httpReq.SendRequest("http://"+ip+"/app/slave/refreshFirewallRule", firewallRuleDtos, nil,"POST")
+		resp, err := httpReq.SendRequest("http://"+ip+"/app/slave/refreshFirewallRule", firewallRuleDtos, nil, "POST")
 		if err != nil {
 			continue
 		}
 		json.Unmarshal([]byte(resp), &resultDto)
 
-		if resultDto.Code != result.CODE_SUCCESS{
+		if resultDto.Code != result.CODE_SUCCESS {
 			continue
 		}
 	}

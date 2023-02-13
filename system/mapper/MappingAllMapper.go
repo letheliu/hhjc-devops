@@ -1,19 +1,18 @@
 package mapper
 
 import (
-	"github.com/zihao-boy/zihao/common/db/mysql"
-	"github.com/zihao-boy/zihao/common/db/sqlite"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/mapping"
+	"github.com/letheliu/hhjc-devops/common/db/mysql"
+	"github.com/letheliu/hhjc-devops/common/db/sqlite"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/mapping"
 )
 
 type MappingAllMapper struct {
 }
 
-/**
+/*
+*
 查询用户
-
-
 */
 func (*MappingAllMapper) GetMappings(mappingDto mapping.MappingDto) ([]*mapping.MappingDto, error) {
 	var mappingDtos []*mapping.MappingDto

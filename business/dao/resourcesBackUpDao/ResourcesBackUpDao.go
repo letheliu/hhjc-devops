@@ -1,10 +1,10 @@
 package resourcesBackUpDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/resources"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/resources"
 	"gorm.io/gorm"
 )
 
@@ -113,7 +113,8 @@ VALUES(#Id#,#Name#,#ExecTime#,#TypeCd#,#SrcId#,#SrcObject#,#TargetId#,#TenantId#
 type ResourcesBackUpDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*ResourcesBackUpDao) GetResourcesBackUpCount(resourcesBackUpDto resources.ResourcesBackUpDto) (int64, error) {
@@ -129,7 +130,8 @@ func (*ResourcesBackUpDao) GetResourcesBackUpCount(resourcesBackUpDto resources.
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*ResourcesBackUpDao) GetResourcesBackUps(resourcesBackUpDto resources.ResourcesBackUpDto) ([]*resources.ResourcesBackUpDto, error) {
@@ -141,21 +143,24 @@ func (*ResourcesBackUpDao) GetResourcesBackUps(resourcesBackUpDto resources.Reso
 	return resourcesBackUpDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*ResourcesBackUpDao) SaveResourcesBackUp(resourcesBackUpDto resources.ResourcesBackUpDto) error {
 	return sqlTemplate.Insert(insert_resourcesBackUp, objectConvert.Struct2Map(resourcesBackUpDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*ResourcesBackUpDao) UpdateResourcesBackUp(resourcesBackUpDto resources.ResourcesBackUpDto) error {
 	return sqlTemplate.Update(update_resourcesBackUp, objectConvert.Struct2Map(resourcesBackUpDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*ResourcesBackUpDao) DeleteResourcesBackUp(resourcesBackUpDto resources.ResourcesBackUpDto) error {

@@ -2,8 +2,8 @@ package ruleAdapt
 
 import (
 	"errors"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"net/http"
 	"strings"
 )

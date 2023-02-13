@@ -1,10 +1,10 @@
 package logTraceDbDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/log"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/log"
 	"gorm.io/gorm"
 )
 
@@ -80,7 +80,8 @@ VALUES(#Id#,#SpanId#,#DbSql#,#Param#,#Duration#)
 type LogTraceDbDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*LogTraceDbDao) GetLogTraceDbCount(logTraceDbDto log.LogTraceDbDto) (int64, error) {
@@ -96,7 +97,8 @@ func (*LogTraceDbDao) GetLogTraceDbCount(logTraceDbDto log.LogTraceDbDto) (int64
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*LogTraceDbDao) GetLogTraceDbs(logTraceDbDto log.LogTraceDbDto) ([]*log.LogTraceDbDto, error) {
@@ -108,21 +110,24 @@ func (*LogTraceDbDao) GetLogTraceDbs(logTraceDbDto log.LogTraceDbDto) ([]*log.Lo
 	return logTraceDbDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*LogTraceDbDao) SaveLogTraceDb(logTraceDbDto log.LogTraceDbDto) error {
 	return sqlTemplate.Insert(insert_logTraceDb, objectConvert.Struct2Map(logTraceDbDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*LogTraceDbDao) UpdateLogTraceDb(logTraceDbDto log.LogTraceDbDto) error {
 	return sqlTemplate.Update(update_logTraceDb, objectConvert.Struct2Map(logTraceDbDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*LogTraceDbDao) DeleteLogTraceDb(logTraceDbDto log.LogTraceDbDto) error {

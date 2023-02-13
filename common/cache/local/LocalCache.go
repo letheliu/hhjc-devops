@@ -2,10 +2,10 @@ package local
 
 import (
 	"fmt"
+	"github.com/patrickmn/go-cache"
 	"time"
 
-	"github.com/patrickmn/go-cache"
-	"github.com/zihao-boy/zihao/config"
+	"github.com/letheliu/hhjc-devops/config"
 )
 
 var G_Local *Local

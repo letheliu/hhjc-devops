@@ -1,7 +1,7 @@
 package firewall
 
 import (
-	"github.com/zihao-boy/zihao/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto"
 	"time"
 )
 

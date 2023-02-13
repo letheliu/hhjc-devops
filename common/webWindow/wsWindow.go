@@ -5,11 +5,11 @@ import (
 	"context"
 	"fmt"
 	"github.com/kataras/iris/v12/websocket"
-	"github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/common/cache/factory"
-	"github.com/zihao-boy/zihao/common/webWindow/guac"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/common/cache/factory"
+	"github.com/letheliu/hhjc-devops/common/webWindow/guac"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
 	"golang.org/x/sync/errgroup"
 	"strings"
 )
@@ -56,7 +56,7 @@ func WebSocketConn(req Request, connId string, nsConn *websocket.Conn) {
 	}
 	channel, err := windowConnect(loginInfo)
 	if err != nil {
-		fmt.Println("连接错误",err)
+		fmt.Println("连接错误", err)
 		return
 	}
 	channels[connId] = channel
@@ -83,7 +83,7 @@ func WebSocketHandler(data []byte, connId string, nsConn *websocket.NSConn) {
 
 func windowConnect(arg ReqArg) (s *guac.SimpleTunnel, err error) {
 	uid := ""
-	fmt.Println("参数：",arg.GuacadAddr, arg.AssetProtocol, arg.AssetHost, arg.AssetPort, arg.AssetUser, arg.AssetPassword, uid, arg.ScreenWidth, arg.ScreenHeight, arg.ScreenDpi)
+	fmt.Println("参数：", arg.GuacadAddr, arg.AssetProtocol, arg.AssetHost, arg.AssetPort, arg.AssetUser, arg.AssetPassword, uid, arg.ScreenWidth, arg.ScreenHeight, arg.ScreenDpi)
 	pipeTunnel, err := guac.NewGuacamoleTunnel(arg.GuacadAddr, arg.AssetProtocol, arg.AssetHost, arg.AssetPort, arg.AssetUser, arg.AssetPassword, uid, arg.ScreenWidth, arg.ScreenHeight, arg.ScreenDpi)
 	if err != nil {
 		return nil, err
@@ -112,7 +112,7 @@ func ioCopy(nsConn *websocket.Conn, tunnl *guac.SimpleTunnel) {
 			fmt.Println("读取数据")
 
 			if err != nil {
-				fmt.Println("读取数据失败",err.Error())
+				fmt.Println("读取数据失败", err.Error())
 				return err
 			}
 
@@ -122,7 +122,7 @@ func ioCopy(nsConn *websocket.Conn, tunnl *guac.SimpleTunnel) {
 			}
 
 			if _, err = buf.Write(ins); err != nil {
-				fmt.Println("写数据失败",err.Error())
+				fmt.Println("写数据失败", err.Error())
 
 				return err
 			}
@@ -140,7 +140,7 @@ func ioCopy(nsConn *websocket.Conn, tunnl *guac.SimpleTunnel) {
 
 	})
 	if err := eg.Wait(); err != nil {
-		fmt.Println("session-err",err.Error())
+		fmt.Println("session-err", err.Error())
 	}
 
 }

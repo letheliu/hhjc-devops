@@ -2,16 +2,16 @@ package wafService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/wafDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/business/dao/wafDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"strconv"
 )
 
 type WafIpBlackWhiteService struct {
 	wafDao             wafDao.WafIpBlackWhiteDao
-	wafRuleDao wafDao.WafRuleDao
+	wafRuleDao         wafDao.WafRuleDao
 	wafHostnameCertDao wafDao.WafHostnameCertDao
 }
 
@@ -19,7 +19,7 @@ type WafIpBlackWhiteService struct {
 // all db by this user
 func (wafService *WafIpBlackWhiteService) GetWafIpBlackWhiteAll(WafIpBlackWhiteDto waf.WafIpBlackWhiteDto) ([]*waf.WafIpBlackWhiteDto, error) {
 	var (
-		err          error
+		err                 error
 		WafIpBlackWhiteDtos []*waf.WafIpBlackWhiteDto
 	)
 
@@ -32,7 +32,8 @@ func (wafService *WafIpBlackWhiteService) GetWafIpBlackWhiteAll(WafIpBlackWhiteD
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (wafService *WafIpBlackWhiteService) GetWafIpBlackWhites(ctx iris.Context) result.ResultDto {
@@ -76,13 +77,12 @@ func (wafService *WafIpBlackWhiteService) GetWafIpBlackWhites(ctx iris.Context) 
 		return result.Error(err.Error())
 	}
 
-
-
 	return result.SuccessData(wafDtos, total, row)
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (wafService *WafIpBlackWhiteService) SaveWafIpBlackWhites(ctx iris.Context) result.ResultDto {
@@ -101,14 +101,14 @@ func (wafService *WafIpBlackWhiteService) SaveWafIpBlackWhites(ctx iris.Context)
 		return result.Error(err.Error())
 	}
 	wafRuleDto := waf.WafRuleDto{
-		RuleId:seq.Generator(),
-		GroupId:wafDto.GroupId,
-		RuleName:wafDto.Ip,
-		Scope:wafDto.Scope,
-		ObjId:wafDto.Id,
-		ObjType:waf.Waf_obj_type_ip,
-		Seq:wafDto.Seq,
-		State:wafDto.State,
+		RuleId:   seq.Generator(),
+		GroupId:  wafDto.GroupId,
+		RuleName: wafDto.Ip,
+		Scope:    wafDto.Scope,
+		ObjId:    wafDto.Id,
+		ObjType:  waf.Waf_obj_type_ip,
+		Seq:      wafDto.Seq,
+		State:    wafDto.State,
 	}
 	err = wafService.wafRuleDao.SaveWafRule(wafRuleDto)
 	if err != nil {
@@ -118,7 +118,8 @@ func (wafService *WafIpBlackWhiteService) SaveWafIpBlackWhites(ctx iris.Context)
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (wafService *WafIpBlackWhiteService) UpdateWafIpBlackWhites(ctx iris.Context) result.ResultDto {
@@ -139,22 +140,22 @@ func (wafService *WafIpBlackWhiteService) UpdateWafIpBlackWhites(ctx iris.Contex
 		return result.Error(err.Error())
 	}
 	qWafRuleDto := waf.WafRuleDto{
-		ObjId:wafDto.Id,
-		ObjType:waf.Waf_obj_type_ip,
+		ObjId:   wafDto.Id,
+		ObjType: waf.Waf_obj_type_ip,
 	}
-	qWafRuleDtos , _ := wafService.wafRuleDao.GetWafRules(qWafRuleDto)
+	qWafRuleDtos, _ := wafService.wafRuleDao.GetWafRules(qWafRuleDto)
 
-	if qWafRuleDtos == nil ||  len(qWafRuleDtos) <1{
+	if qWafRuleDtos == nil || len(qWafRuleDtos) < 1 {
 		return result.Success()
 	}
 
 	wafRuleDto := waf.WafRuleDto{
-		RuleId:qWafRuleDtos[0].RuleId,
-		GroupId:wafDto.GroupId,
-		RuleName:wafDto.Ip,
-		Scope:wafDto.Scope,
-		Seq:wafDto.Seq,
-		State:wafDto.State,
+		RuleId:   qWafRuleDtos[0].RuleId,
+		GroupId:  wafDto.GroupId,
+		RuleName: wafDto.Ip,
+		Scope:    wafDto.Scope,
+		Seq:      wafDto.Seq,
+		State:    wafDto.State,
 	}
 	err = wafService.wafRuleDao.UpdateWafRule(wafRuleDto)
 	if err != nil {
@@ -165,7 +166,8 @@ func (wafService *WafIpBlackWhiteService) UpdateWafIpBlackWhites(ctx iris.Contex
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (wafService *WafIpBlackWhiteService) DeleteWafIpBlackWhites(ctx iris.Context) result.ResultDto {
@@ -182,17 +184,17 @@ func (wafService *WafIpBlackWhiteService) DeleteWafIpBlackWhites(ctx iris.Contex
 		return result.Error(err.Error())
 	}
 	qWafRuleDto := waf.WafRuleDto{
-		ObjId:wafDto.Id,
-		ObjType:waf.Waf_obj_type_ip,
+		ObjId:   wafDto.Id,
+		ObjType: waf.Waf_obj_type_ip,
 	}
-	qWafRuleDtos , _ := wafService.wafRuleDao.GetWafRules(qWafRuleDto)
+	qWafRuleDtos, _ := wafService.wafRuleDao.GetWafRules(qWafRuleDto)
 
-	if qWafRuleDtos == nil ||  len(qWafRuleDtos) <1{
+	if qWafRuleDtos == nil || len(qWafRuleDtos) < 1 {
 		return result.Success()
 	}
 
 	wafRuleDto := waf.WafRuleDto{
-		RuleId:qWafRuleDtos[0].RuleId,
+		RuleId: qWafRuleDtos[0].RuleId,
 	}
 
 	err = wafService.wafRuleDao.DeleteWafRule(wafRuleDto)

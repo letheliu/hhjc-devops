@@ -1,11 +1,11 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/assets/mapper/hostMapper"
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/assets/mapper/hostMapper"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
 	"gorm.io/gorm"
 )
 
@@ -40,10 +40,10 @@ $if Row != 0 then
 limit #Page#,#Row# 
 $endif
 `
-	save_host      string = "hostDao.SaveHost"
-	update_host    string = "hostDao.UpdateHost"
-	delete_host    string = "hostDao.DeleteHost"
-	getHostCpuMemDistTotal string =`
+	save_host              string = "hostDao.SaveHost"
+	update_host            string = "hostDao.UpdateHost"
+	delete_host            string = "hostDao.DeleteHost"
+	getHostCpuMemDistTotal string = `
 	select sum(cpu) cpu,sum(mem) mem,sum(disk) disk 
 		from host
 		where status_cd = '0'
@@ -54,7 +54,8 @@ $endif
 type HostDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*HostDao) GetHostGroupCount(hostGropDto host.HostGroupDto) (int64, error) {
@@ -70,7 +71,8 @@ func (*HostDao) GetHostGroupCount(hostGropDto host.HostGroupDto) (int64, error) 
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*HostDao) GetHostGroups(hostGropDto host.HostGroupDto) ([]*host.HostGroupDto, error) {
@@ -85,28 +87,32 @@ func (*HostDao) GetHostGroups(hostGropDto host.HostGroupDto) ([]*host.HostGroupD
 	return hostGroupDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*HostDao) SaveHostGroup(hostGroupDto host.HostGroupDto) error {
 	return sqlTemplate.Insert(insert_service_sql, objectConvert.Struct2Map(hostGroupDto), true)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*HostDao) UpdateHostGroup(hostGroupDto host.HostGroupDto) error {
 	return sqlTemplate.Update(update_service_sql, objectConvert.Struct2Map(hostGroupDto), true)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*HostDao) DeleteHostGroup(hostGroupDto host.HostGroupDto) error {
 	return sqlTemplate.Delete(delete_service_sql, objectConvert.Struct2Map(hostGroupDto), true)
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*HostDao) GetHostCount(hostDto host.HostDto) (int64, error) {
@@ -122,7 +128,8 @@ func (*HostDao) GetHostCount(hostDto host.HostDto) (int64, error) {
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*HostDao) GetHosts(hostDto host.HostDto) ([]*host.HostDto, error) {
@@ -138,28 +145,31 @@ func (*HostDao) GetHosts(hostDto host.HostDto) ([]*host.HostDto, error) {
 	return hostDtos, err
 }
 
-/**
+/*
+*
 保存主机
 */
 func (*HostDao) SaveHost(hostDto host.HostDto) error {
 	return sqlTemplate.Insert(save_host, objectConvert.Struct2Map(hostDto), true)
 }
 
-/**
+/*
+*
 修改主机
 */
 func (*HostDao) UpdateHost(hostDto host.HostDto) error {
 	return sqlTemplate.Update(update_host, objectConvert.Struct2Map(hostDto), true)
 }
 
-/**
+/*
+*
 删除主机
 */
 func (*HostDao) DeleteHost(hostDto host.HostDto) error {
 	return sqlTemplate.Delete(delete_host, objectConvert.Struct2Map(hostDto), true)
 }
 
-func (d *HostDao) GetHostCpuMemDistTotal(hostDto host.HostDto) ( host.HostDto,  error) {
+func (d *HostDao) GetHostCpuMemDistTotal(hostDto host.HostDto) (host.HostDto, error) {
 	var err error
 	sqlTemplate.SelectOne(getHostCpuMemDistTotal, objectConvert.Struct2Map(hostDto), func(db *gorm.DB) {
 		err = db.Scan(&hostDto).Error

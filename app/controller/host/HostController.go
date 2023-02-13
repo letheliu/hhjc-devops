@@ -3,7 +3,7 @@ package host
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/assets/service"
+	"github.com/letheliu/hhjc-devops/assets/service"
 )
 
 type HostController struct {
@@ -53,9 +53,7 @@ func HostControllerRouter(party iris.Party) {
 
 	adinMenu.Post("/renameFile", hero.Handler(aus.renameFile))
 
-
 	adinMenu.Get("/listFileContext", hero.Handler(aus.listFileContext))
-
 
 	adinMenu.Post("/editFile", hero.Handler(aus.editFile))
 
@@ -63,10 +61,10 @@ func HostControllerRouter(party iris.Party) {
 
 	adinMenu.Get("/downloadFile", hero.Handler(aus.downloadFile))
 
-
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *HostController) getHostGroup(ctx iris.Context) {
@@ -75,7 +73,8 @@ func (aus *HostController) getHostGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *HostController) saveHostGroup(ctx iris.Context) {
@@ -84,7 +83,8 @@ func (aus *HostController) saveHostGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *HostController) updateHostGroup(ctx iris.Context) {
@@ -93,7 +93,8 @@ func (aus *HostController) updateHostGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *HostController) deleteHostGroup(ctx iris.Context) {
@@ -102,7 +103,8 @@ func (aus *HostController) deleteHostGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *HostController) getHosts(ctx iris.Context) {
@@ -111,7 +113,8 @@ func (aus *HostController) getHosts(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *HostController) saveHost(ctx iris.Context) {
@@ -120,7 +123,8 @@ func (aus *HostController) saveHost(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *HostController) updateHost(ctx iris.Context) {
@@ -129,7 +133,8 @@ func (aus *HostController) updateHost(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *HostController) deleteHost(ctx iris.Context) {
@@ -138,7 +143,8 @@ func (aus *HostController) deleteHost(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *HostController) getHostToken(ctx iris.Context) {
@@ -147,7 +153,8 @@ func (aus *HostController) getHostToken(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *HostController) getContainers(ctx iris.Context) {
@@ -156,7 +163,8 @@ func (aus *HostController) getContainers(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询主机资源
 */
 func (aus *HostController) getHostResource(ctx iris.Context) {
@@ -165,7 +173,8 @@ func (aus *HostController) getHostResource(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询主机监听端口
 */
 func (aus *HostController) getHostPort(ctx iris.Context) {
@@ -174,7 +183,8 @@ func (aus *HostController) getHostPort(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询主机监听端口
 */
 func (aus *HostController) getHostDisk(ctx iris.Context) {
@@ -183,95 +193,106 @@ func (aus *HostController) getHostDisk(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 控制主机
-**/
+*
+*/
 func (aus *HostController) controlHost(ctx iris.Context) {
 	reslut := aus.hostService.ControlHost(ctx)
 
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 控制主机
-**/
+*
+*/
 func (aus *HostController) slaveHealth(ctx iris.Context) {
 	reslut := aus.hostService.SlaveHealth(ctx)
 
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询文件
-**/
+*
+*/
 func (aus *HostController) listFiles(ctx iris.Context) {
 	reslut := aus.hostService.ListFiles(ctx)
 
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询文件
-**/
+*
+*/
 func (aus *HostController) removeFile(ctx iris.Context) {
 	reslut := aus.hostService.RemoveFile(ctx)
 
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 查询文件
-**/
+*
+*/
 func (aus *HostController) newFile(ctx iris.Context) {
 	reslut := aus.hostService.NewFile(ctx)
 
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询文件
-**/
+*
+*/
 func (aus *HostController) renameFile(ctx iris.Context) {
 	reslut := aus.hostService.RenameFile(ctx)
 
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 查询文件
-**/
+*
+*/
 func (aus *HostController) listFileContext(ctx iris.Context) {
 	reslut := aus.hostService.ListFileContext(ctx)
 
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 查询文件
-**/
+*
+*/
 func (aus *HostController) editFile(ctx iris.Context) {
 	reslut := aus.hostService.EditFile(ctx)
 
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询文件
-**/
+*
+*/
 func (aus *HostController) uploadFile(ctx iris.Context) {
 	reslut := aus.hostService.UploadFile(ctx)
 
 	ctx.JSON(reslut)
 }
 
-//下载文件
+// 下载文件
 func (aus *HostController) downloadFile(ctx iris.Context) {
 	aus.hostService.DownloadFile(ctx)
 }
-
-
-
-

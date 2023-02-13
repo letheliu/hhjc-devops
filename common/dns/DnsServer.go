@@ -3,7 +3,7 @@ package dns
 import (
 	"errors"
 	"fmt"
-	dnsMap2 "github.com/zihao-boy/zihao/entity/dto/dns"
+	dnsMap2 "github.com/letheliu/hhjc-devops/entity/dto/dns"
 	"golang.org/x/net/dns/dnsmessage"
 	"log"
 	"net"
@@ -90,7 +90,7 @@ func (s *DnsServer) Query(p Packet) {
 	val, err := s.GetDnsMap(reqNameStr)
 
 	if err == nil {
-		p.message.Response=true
+		p.message.Response = true
 		p.message.Answers = append(p.message.Answers, *val)
 		go sendPacket(s.conn, p.message, p.addr)
 	} else {
@@ -105,36 +105,37 @@ func (s *DnsServer) Query(p Packet) {
 func (s *DnsServer) GetDnsMap(hostName string) (*dnsmessage.Resource, error) {
 	dnsMapDto := dnsMap[hostName]
 
-	if dnsMapDto != nil{
-		resource,err := toResource(hostName,*dnsMapDto)
-		return &resource,err
+	if dnsMapDto != nil {
+		resource, err := toResource(hostName, *dnsMapDto)
+		return &resource, err
 	}
 
 	// add like
 	for k, v := range dnsMap {
-		if !strings.HasPrefix(k,"*."){
+		if !strings.HasPrefix(k, "*.") {
 			continue
 		}
-		kPos := strings.Index(k,".")
+		kPos := strings.Index(k, ".")
 		k = k[kPos+1:]
-		if strings.HasSuffix(hostName,k){
-			resource,err := toResource(hostName,*v)
-			return &resource,err
+		if strings.HasSuffix(hostName, k) {
+			resource, err := toResource(hostName, *v)
+			return &resource, err
 		}
 	}
 	return nil, errors.New("不存在")
 }
 
-/**
+/*
+*
 refresh config
- */
+*/
 func FreshDnsConfig(dnsDataDto dnsMap2.DnsDataDto) {
 	dnsIp = dnsDataDto.Dns.DnsIp
-	if dnsDataDto.Maps == nil || len(dnsDataDto.Maps)<1{
-		return ;
+	if dnsDataDto.Maps == nil || len(dnsDataDto.Maps) < 1 {
+		return
 	}
 	dnsMap = map[string]*dnsMap2.DnsMapDto{}
-	for _,tmpDnsMap := range dnsDataDto.Maps{
+	for _, tmpDnsMap := range dnsDataDto.Maps {
 		dnsMap[tmpDnsMap.Host+"."] = tmpDnsMap
 	}
 }

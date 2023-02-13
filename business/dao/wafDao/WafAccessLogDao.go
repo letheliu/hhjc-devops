@@ -1,10 +1,10 @@
 package wafDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"gorm.io/gorm"
 )
 
@@ -107,7 +107,6 @@ order by t.create_time desc
 limit 5
 	`
 
-
 	insert_wafAccessLog string = `
 	insert into waf_access_log(request_id, waf_ip, host_id,x_real_ip,scheme,response_code,method,http_host,upstream_addr,url,request_length,response_length,state,message)
 VALUES(#RequestId#,#WafIp#,#HostId#,#XRealIp#,#Scheme#,#ResponseCode#,#Method#,#HttpHost#,#UpstreamAddr#,#Url#,#RequestLength#,#ResponseLength#,#State#,#Message#)
@@ -140,7 +139,8 @@ VALUES(#RequestId#,#WafIp#,#HostId#,#XRealIp#,#Scheme#,#ResponseCode#,#Method#,#
 type WafAccessLogDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafAccessLogDao) GetWafAccessLogCount(wafAccessLogDto waf.WafAccessLogDto) (int64, error) {
@@ -156,7 +156,8 @@ func (*WafAccessLogDao) GetWafAccessLogCount(wafAccessLogDto waf.WafAccessLogDto
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafAccessLogDao) GetWafAccessLogs(wafAccessLogDto waf.WafAccessLogDto) ([]*waf.WafAccessLogDto, error) {
@@ -168,7 +169,8 @@ func (*WafAccessLogDao) GetWafAccessLogs(wafAccessLogDto waf.WafAccessLogDto) ([
 	return wafAccessLogDtos, nil
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafAccessLogDao) GetWafAccessLogMap(wafAccessLogDto waf.WafAccessLogDto) ([]*waf.WafAccessLogMapDto, error) {
@@ -180,7 +182,8 @@ func (*WafAccessLogDao) GetWafAccessLogMap(wafAccessLogDto waf.WafAccessLogDto) 
 	return wafAccessLogDtos, nil
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafAccessLogDao) GetWafAccessLogTop5(wafAccessLogDto waf.WafAccessLogDto) ([]*waf.WafAccessLogMapDto, error) {
@@ -192,8 +195,8 @@ func (*WafAccessLogDao) GetWafAccessLogTop5(wafAccessLogDto waf.WafAccessLogDto)
 	return wafAccessLogDtos, nil
 }
 
-
-/**
+/*
+*
 查询用户
 */
 func (*WafAccessLogDao) GetWafAccessLogIntercept(wafAccessLogDto waf.WafAccessLogDto) ([]*waf.WafAccessLogDto, error) {
@@ -205,21 +208,24 @@ func (*WafAccessLogDao) GetWafAccessLogIntercept(wafAccessLogDto waf.WafAccessLo
 	return wafAccessLogDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*WafAccessLogDao) SaveWafAccessLog(wafAccessLogDto waf.WafAccessLogDto) error {
 	return sqlTemplate.Insert(insert_wafAccessLog, objectConvert.Struct2Map(wafAccessLogDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*WafAccessLogDao) UpdateWafAccessLog(wafAccessLogDto waf.WafAccessLogDto) error {
 	return sqlTemplate.Update(update_wafAccessLog, objectConvert.Struct2Map(wafAccessLogDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*WafAccessLogDao) DeleteWafAccessLog(wafAccessLogDto waf.WafAccessLogDto) error {

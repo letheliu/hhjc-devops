@@ -3,8 +3,8 @@ package kafka
 import (
 	"fmt"
 	"github.com/Shopify/sarama"
+	config2 "github.com/letheliu/hhjc-devops/config"
 	"github.com/pkg/errors"
-	config2 "github.com/zihao-boy/zihao/config"
 )
 
 type KafkaProducer struct {

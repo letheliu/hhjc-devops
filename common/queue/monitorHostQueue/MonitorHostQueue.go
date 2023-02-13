@@ -3,14 +3,15 @@ package monitorHostQueue
 import (
 	"sync"
 
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
-	"github.com/zihao-boy/zihao/monitor/service"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/monitor/service"
 )
 
 var lock sync.Mutex
 var que chan monitor.MonitorHostDto
 
-/**
+/*
+*
 初始化
 */
 func initQueue() {

@@ -1,11 +1,10 @@
 package logTraceAnnotationsService
 
 import (
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/logTraceAnnotationsDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/log"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/business/dao/logTraceAnnotationsDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/log"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 )
 
@@ -17,7 +16,7 @@ type LogTraceAnnotationsService struct {
 // all db by this user
 func (logTraceAnnotationsService *LogTraceAnnotationsService) GetLogTraceAnnotationsAll(LogTraceAnnotationsDto log.LogTraceAnnotationsDto) ([]*log.LogTraceAnnotationsDto, error) {
 	var (
-		err        error
+		err                     error
 		LogTraceAnnotationsDtos []*log.LogTraceAnnotationsDto
 	)
 
@@ -35,10 +34,10 @@ func (logTraceAnnotationsService *LogTraceAnnotationsService) GetLogTraceAnnotat
 */
 func (logTraceAnnotationsService *LogTraceAnnotationsService) GetLogTraceAnnotationss(ctx iris.Context) result.ResultDto {
 	var (
-		err        error
-		page       int64
-		row        int64
-		total      int64
+		err                     error
+		page                    int64
+		row                     int64
+		total                   int64
 		logTraceAnnotationsDto  = log.LogTraceAnnotationsDto{}
 		logTraceAnnotationsDtos []*log.LogTraceAnnotationsDto
 	)
@@ -83,7 +82,7 @@ func (logTraceAnnotationsService *LogTraceAnnotationsService) GetLogTraceAnnotat
 */
 func (logTraceAnnotationsService *LogTraceAnnotationsService) SaveLogTraceAnnotationss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err                    error
 		logTraceAnnotationsDto log.LogTraceAnnotationsDto
 	)
 	if err = ctx.ReadJSON(&logTraceAnnotationsDto); err != nil {
@@ -106,7 +105,7 @@ func (logTraceAnnotationsService *LogTraceAnnotationsService) SaveLogTraceAnnota
 */
 func (logTraceAnnotationsService *LogTraceAnnotationsService) UpdateLogTraceAnnotationss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err                    error
 		logTraceAnnotationsDto log.LogTraceAnnotationsDto
 	)
 	if err = ctx.ReadJSON(&logTraceAnnotationsDto); err != nil {
@@ -131,7 +130,7 @@ func (logTraceAnnotationsService *LogTraceAnnotationsService) UpdateLogTraceAnno
 */
 func (logTraceAnnotationsService *LogTraceAnnotationsService) DeleteLogTraceAnnotationss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err                    error
 		logTraceAnnotationsDto log.LogTraceAnnotationsDto
 	)
 	if err = ctx.ReadJSON(&logTraceAnnotationsDto); err != nil {

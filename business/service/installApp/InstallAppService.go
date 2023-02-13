@@ -2,12 +2,11 @@ package installAppService
 
 import (
 	"encoding/json"
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/installAppDao"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/installApp"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/business/dao/installAppDao"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/installApp"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 )
 
@@ -19,7 +18,7 @@ type InstallAppService struct {
 // all db by this user
 func (installAppService *InstallAppService) GetInstallAppAll(InstallAppDto installApp.InstallAppDto) ([]*installApp.InstallAppDto, error) {
 	var (
-		err        error
+		err            error
 		InstallAppDtos []*installApp.InstallAppDto
 	)
 
@@ -37,10 +36,10 @@ func (installAppService *InstallAppService) GetInstallAppAll(InstallAppDto insta
 */
 func (installAppService *InstallAppService) GetInstallApps(ctx iris.Context) result.ResultDto {
 	var (
-		err        error
-		page       int64
-		row        int64
-		total      int64
+		err            error
+		page           int64
+		row            int64
+		total          int64
 		installAppDto  = installApp.InstallAppDto{}
 		installAppDtos []*installApp.InstallAppDto
 	)
@@ -85,13 +84,13 @@ func (installAppService *InstallAppService) GetInstallApps(ctx iris.Context) res
 */
 func (installAppService *InstallAppService) SaveInstallApps(param string) result.ResultDto {
 	var (
-		err       error
+		err           error
 		installAppDto installApp.InstallAppDto
 	)
 	json.Unmarshal([]byte(param), &installAppDto)
 
 	//object convert
-	objectConvert.Struct2Struct(installAppDto,installAppDto)
+	objectConvert.Struct2Struct(installAppDto, installAppDto)
 
 	installAppDto.AppId = seq.Generator()
 	//InstallAppDto.Path = filepath.Join(curDest, fileHeader.Filename)
@@ -110,7 +109,7 @@ func (installAppService *InstallAppService) SaveInstallApps(param string) result
 */
 func (installAppService *InstallAppService) UpdateInstallApps(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err           error
 		installAppDto installApp.InstallAppDto
 	)
 	if err = ctx.ReadJSON(&installAppDto); err != nil {
@@ -131,7 +130,7 @@ func (installAppService *InstallAppService) UpdateInstallApps(ctx iris.Context) 
 */
 func (installAppService *InstallAppService) DeleteInstallApps(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err           error
 		installAppDto installApp.InstallAppDto
 	)
 	if err = ctx.ReadJSON(&installAppDto); err != nil {

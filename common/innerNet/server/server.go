@@ -1,26 +1,27 @@
 package server
 
 import (
-	encrypt2 "github.com/zihao-boy/zihao/common/encrypt"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
+	encrypt2 "github.com/letheliu/hhjc-devops/common/encrypt"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
 )
+
 // start server
 
 var (
-	loginManager  *LoginManager
+	loginManager *LoginManager
 
 	tcpServer *TcpServer
 )
 
 func StartServer(innerNetDataDto innerNet.SlaveInnerNetDataDto) (err error) {
 
-	if innerNetDataDto.Users != nil && len(innerNetDataDto.Users)>0{
-		for _,user:= range innerNetDataDto.Users{
-			user.Token = encrypt2.Md5(user.Username+user.Password)
+	if innerNetDataDto.Users != nil && len(innerNetDataDto.Users) > 0 {
+		for _, user := range innerNetDataDto.Users {
+			user.Token = encrypt2.Md5(user.Username + user.Password)
 		}
 	}
-	for _,privilege:= range innerNetDataDto.Privileges{
-		privilege.Token = encrypt2.Md5(privilege.SrcUserName+privilege.SrcPassword)
+	for _, privilege := range innerNetDataDto.Privileges {
+		privilege.Token = encrypt2.Md5(privilege.SrcUserName + privilege.SrcPassword)
 	}
 	UserPrivileges = innerNetDataDto.Privileges
 
@@ -42,10 +43,10 @@ func StartServer(innerNetDataDto innerNet.SlaveInnerNetDataDto) (err error) {
 }
 
 func StopServer() error {
-	if loginManager == nil{
+	if loginManager == nil {
 		return nil
 	}
-	if tcpServer == nil{
+	if tcpServer == nil {
 		return nil
 	}
 	loginManager.Stop()
@@ -54,16 +55,16 @@ func StopServer() error {
 }
 
 func InitInnerNetConfig(innerNetDataDto innerNet.SlaveInnerNetDataDto) error {
-	if innerNetDataDto.Users != nil && len(innerNetDataDto.Users)>0{
-		for _,user:= range innerNetDataDto.Users{
-			user.Token = encrypt2.Md5(user.Username+user.Password)
+	if innerNetDataDto.Users != nil && len(innerNetDataDto.Users) > 0 {
+		for _, user := range innerNetDataDto.Users {
+			user.Token = encrypt2.Md5(user.Username + user.Password)
 		}
 	}
 	for _, user := range innerNetDataDto.Users {
 		loginManager.Tokens[user.Token] = *user
 	}
-	for _,privilege:= range innerNetDataDto.Privileges{
-		privilege.Token = encrypt2.Md5(privilege.SrcUserName+privilege.SrcPassword)
+	for _, privilege := range innerNetDataDto.Privileges {
+		privilege.Token = encrypt2.Md5(privilege.SrcUserName + privilege.SrcPassword)
 	}
 	UserPrivileges = innerNetDataDto.Privileges
 	return nil

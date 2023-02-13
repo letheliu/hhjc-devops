@@ -1,10 +1,9 @@
 package main
 
 import (
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/app/router"
-	"github.com/zihao-boy/zihao/common/task"
-	"github.com/zihao-boy/zihao/config"
+	"github.com/letheliu/hhjc-devops/app/router"
+	"github.com/letheliu/hhjc-devops/common/task"
+	"github.com/letheliu/hhjc-devops/config"
 )
 
 func main() {
@@ -18,8 +17,8 @@ func main() {
 	app := iris.New()
 	router.HubSlave(app)
 	app.Get("/", func(ctx iris.Context) {
-		ctx.HTML("<h1>欢迎访问梓豪平台slave</h1>")
-		app.Logger().Info("欢迎访问梓豪平台slave")
+		ctx.HTML("<h1>欢迎访问华恒DevOps平台slave</h1>")
+		app.Logger().Info("欢迎访问华恒DevOps平台slave")
 	})
 	app.Run(iris.Addr(":7001"))
 

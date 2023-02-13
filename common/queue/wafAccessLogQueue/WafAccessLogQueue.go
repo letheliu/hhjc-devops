@@ -2,8 +2,8 @@ package wafAccessLogQueue
 
 import (
 	"fmt"
-	"github.com/zihao-boy/zihao/business/dao/wafDao"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/business/dao/wafDao"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"sync"
 	"time"
 )
@@ -13,7 +13,8 @@ var que chan waf.WafAccessLogDto
 
 const default_access_log_count = 10000
 
-/**
+/*
+*
 初始化
 */
 func initQueue() {
@@ -56,9 +57,7 @@ func readData(que chan waf.WafAccessLogDto) {
 
 func dealData(wafDto waf.WafAccessLogDto) {
 	var wafDao wafDao.WafAccessLogDao
-	tmpWafAccessLog := waf.WafAccessLogDto{
-
-	}
+	tmpWafAccessLog := waf.WafAccessLogDto{}
 	count, _ := wafDao.GetWafAccessLogCount(tmpWafAccessLog)
 
 	if count > default_access_log_count {

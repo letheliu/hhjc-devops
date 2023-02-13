@@ -3,15 +3,12 @@ package dns
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/business/service/dnsService"
+	"github.com/letheliu/hhjc-devops/business/service/dnsService"
 )
 
 type DnsController struct {
-	dnsService dnsService.DnsService
+	dnsService     dnsService.DnsService
 	dnsUserService dnsService.DnsMapService
-
-
-
 }
 
 func DnsControllerRouter(party iris.Party) {
@@ -28,12 +25,9 @@ func DnsControllerRouter(party iris.Party) {
 
 	adinMenu.Post("/deleteDns", hero.Handler(aus.deleteDns))
 
-
-
 	adinMenu.Post("/startDns", hero.Handler(aus.startDns))
 
 	adinMenu.Post("/stopDns", hero.Handler(aus.stopDns))
-
 
 	adinMenu.Post("/refreshDnsConfig", hero.Handler(aus.refreshDnsConfig))
 
@@ -47,7 +41,8 @@ func DnsControllerRouter(party iris.Party) {
 	adinMenu.Post("/deleteDnsMap", hero.Handler(aus.deleteDnsMap))
 }
 
-/**
+/*
+*
 query dns
 */
 func (aus *DnsController) getDns(ctx iris.Context) {
@@ -56,7 +51,8 @@ func (aus *DnsController) getDns(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save dns
 */
 func (aus *DnsController) saveDns(ctx iris.Context) {
@@ -65,7 +61,8 @@ func (aus *DnsController) saveDns(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update dns
 */
 func (aus *DnsController) updateDns(ctx iris.Context) {
@@ -74,7 +71,8 @@ func (aus *DnsController) updateDns(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete dns
 */
 func (aus *DnsController) deleteDns(ctx iris.Context) {
@@ -83,7 +81,8 @@ func (aus *DnsController) deleteDns(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete dns
 */
 func (aus *DnsController) startDns(ctx iris.Context) {
@@ -92,7 +91,8 @@ func (aus *DnsController) startDns(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete dns
 */
 func (aus *DnsController) stopDns(ctx iris.Context) {
@@ -101,8 +101,8 @@ func (aus *DnsController) stopDns(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 delete dns
 */
 func (aus *DnsController) refreshDnsConfig(ctx iris.Context) {
@@ -111,11 +111,8 @@ func (aus *DnsController) refreshDnsConfig(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-
-
-
-/**
+/*
+*
 query dns
 */
 func (aus *DnsController) getDnsMap(ctx iris.Context) {
@@ -124,7 +121,8 @@ func (aus *DnsController) getDnsMap(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save dns
 */
 func (aus *DnsController) saveDnsMap(ctx iris.Context) {
@@ -133,7 +131,8 @@ func (aus *DnsController) saveDnsMap(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update dns
 */
 func (aus *DnsController) updateDnsMap(ctx iris.Context) {
@@ -142,7 +141,8 @@ func (aus *DnsController) updateDnsMap(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete dns
 */
 func (aus *DnsController) deleteDnsMap(ctx iris.Context) {

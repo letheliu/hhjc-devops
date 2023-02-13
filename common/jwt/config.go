@@ -3,7 +3,7 @@ package jwt
 import (
 	"github.com/dgrijalva/jwt-go"
 	"github.com/kataras/iris/v12/context"
-	"github.com/zihao-boy/zihao/common/constants"
+	"github.com/letheliu/hhjc-devops/common/constants"
 )
 
 const (

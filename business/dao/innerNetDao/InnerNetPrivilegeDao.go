@@ -1,10 +1,10 @@
 package innerNetDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
 	"gorm.io/gorm"
 )
 
@@ -79,7 +79,8 @@ VALUES(#PId#,#SrcUserId#,#TargetUserId#,#TargetPort#)
 type InnerNetPrivilegeDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*InnerNetPrivilegeDao) GetInnerNetPrivilegeCount(innerNetPrivilegeDto innerNet.InnerNetPrivilegeDto) (int64, error) {
@@ -95,7 +96,8 @@ func (*InnerNetPrivilegeDao) GetInnerNetPrivilegeCount(innerNetPrivilegeDto inne
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*InnerNetPrivilegeDao) GetInnerNetPrivileges(innerNetPrivilegeDto innerNet.InnerNetPrivilegeDto) ([]*innerNet.InnerNetPrivilegeDto, error) {
@@ -107,21 +109,24 @@ func (*InnerNetPrivilegeDao) GetInnerNetPrivileges(innerNetPrivilegeDto innerNet
 	return innerNetPrivilegeDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*InnerNetPrivilegeDao) SaveInnerNetPrivilege(innerNetPrivilegeDto innerNet.InnerNetPrivilegeDto) error {
 	return sqlTemplate.Insert(insert_innerNetPrivilege, objectConvert.Struct2Map(innerNetPrivilegeDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*InnerNetPrivilegeDao) UpdateInnerNetPrivilege(innerNetPrivilegeDto innerNet.InnerNetPrivilegeDto) error {
 	return sqlTemplate.Update(update_innerNetPrivilege, objectConvert.Struct2Map(innerNetPrivilegeDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*InnerNetPrivilegeDao) DeleteInnerNetPrivilege(innerNetPrivilegeDto innerNet.InnerNetPrivilegeDto) error {

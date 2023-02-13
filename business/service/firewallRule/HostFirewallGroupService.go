@@ -2,23 +2,23 @@ package firewallService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/firewallRuleDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/entity/dto/firewall"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/business/dao/firewallRuleDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/entity/dto/firewall"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 )
 
 type HostFirewallGroupService struct {
-	firewallDao             firewallRuleDao.HostFirewallGroupDao
+	firewallDao firewallRuleDao.HostFirewallGroupDao
 }
 
 // get db link
 // all db by this user
 func (firewallService *HostFirewallGroupService) GetHostFirewallGroupAll(HostFirewallGroupDto firewall.HostFirewallGroupDto) ([]*firewall.HostFirewallGroupDto, error) {
 	var (
-		err          error
+		err                   error
 		HostFirewallGroupDtos []*firewall.HostFirewallGroupDto
 	)
 
@@ -31,15 +31,16 @@ func (firewallService *HostFirewallGroupService) GetHostFirewallGroupAll(HostFir
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (firewallService *HostFirewallGroupService) GetHostFirewallGroups(ctx iris.Context) result.ResultDto {
 	var (
-		err     error
-		page    int64
-		row     int64
-		total   int64
+		err          error
+		page         int64
+		row          int64
+		total        int64
 		firewallDto  = firewall.HostFirewallGroupDto{}
 		firewallDtos []*firewall.HostFirewallGroupDto
 	)
@@ -77,18 +78,17 @@ func (firewallService *HostFirewallGroupService) GetHostFirewallGroups(ctx iris.
 		return result.Error(err.Error())
 	}
 
-
-
 	return result.SuccessData(firewallDtos, total, row)
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (firewallService *HostFirewallGroupService) SaveHostFirewallGroups(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		firewallDto firewall.HostFirewallGroupDto
 	)
 	if err = ctx.ReadJSON(&firewallDto); err != nil {
@@ -108,12 +108,13 @@ func (firewallService *HostFirewallGroupService) SaveHostFirewallGroups(ctx iris
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (firewallService *HostFirewallGroupService) UpdateHostFirewallGroups(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		firewallDto firewall.HostFirewallGroupDto
 	)
 	if err = ctx.ReadJSON(&firewallDto); err != nil {
@@ -135,12 +136,13 @@ func (firewallService *HostFirewallGroupService) UpdateHostFirewallGroups(ctx ir
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (firewallService *HostFirewallGroupService) DeleteHostFirewallGroups(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		firewallDto firewall.HostFirewallGroupDto
 	)
 	if err = ctx.ReadJSON(&firewallDto); err != nil {
@@ -155,5 +157,3 @@ func (firewallService *HostFirewallGroupService) DeleteHostFirewallGroups(ctx ir
 	return result.SuccessData(firewallDto)
 
 }
-
-

@@ -1,8 +1,9 @@
 package host
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
-/**
+/*
+*
 主机组实体
 */
 type HostGroupDto struct {

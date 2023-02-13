@@ -1,10 +1,10 @@
 package dnsDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/dns"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/dns"
 	"gorm.io/gorm"
 )
 
@@ -84,7 +84,8 @@ VALUES(#DnsId#,#DnsPort#,#DnsIp#,#State#)
 type DnsDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*DnsDao) GetDnsCount(dnsDto dns.DnsDto) (int64, error) {
@@ -100,7 +101,8 @@ func (*DnsDao) GetDnsCount(dnsDto dns.DnsDto) (int64, error) {
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*DnsDao) GetDnss(dnsDto dns.DnsDto) ([]*dns.DnsDto, error) {
@@ -112,21 +114,24 @@ func (*DnsDao) GetDnss(dnsDto dns.DnsDto) ([]*dns.DnsDto, error) {
 	return dnsDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*DnsDao) SaveDns(dnsDto dns.DnsDto) error {
 	return sqlTemplate.Insert(insert_dns, objectConvert.Struct2Map(dnsDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*DnsDao) UpdateDns(dnsDto dns.DnsDto) error {
 	return sqlTemplate.Update(update_dns, objectConvert.Struct2Map(dnsDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*DnsDao) DeleteDns(dnsDto dns.DnsDto) error {

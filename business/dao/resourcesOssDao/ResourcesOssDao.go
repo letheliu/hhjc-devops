@@ -1,10 +1,10 @@
 package resourcesOssDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/resources"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/resources"
 	"gorm.io/gorm"
 )
 
@@ -93,7 +93,8 @@ VALUES(#OssId#,#Name#,#OssType#,#Bucket#,#AccessKeySecret#,#AccessKeyId#,#Path#,
 type ResourcesOssDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*ResourcesOssDao) GetResourcesOssCount(resourcesOssDto resources.ResourcesOssDto) (int64, error) {
@@ -109,7 +110,8 @@ func (*ResourcesOssDao) GetResourcesOssCount(resourcesOssDto resources.Resources
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*ResourcesOssDao) GetResourcesOsss(resourcesOssDto resources.ResourcesOssDto) ([]*resources.ResourcesOssDto, error) {
@@ -121,21 +123,24 @@ func (*ResourcesOssDao) GetResourcesOsss(resourcesOssDto resources.ResourcesOssD
 	return resourcesOssDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*ResourcesOssDao) SaveResourcesOss(resourcesOssDto resources.ResourcesOssDto) error {
 	return sqlTemplate.Insert(insert_resourcesOss, objectConvert.Struct2Map(resourcesOssDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*ResourcesOssDao) UpdateResourcesOss(resourcesOssDto resources.ResourcesOssDto) error {
 	return sqlTemplate.Update(update_resourcesOss, objectConvert.Struct2Map(resourcesOssDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*ResourcesOssDao) DeleteResourcesOss(resourcesOssDto resources.ResourcesOssDto) error {

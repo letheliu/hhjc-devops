@@ -1,7 +1,7 @@
 package client
 
 import (
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
 	"time"
 )
 
@@ -9,18 +9,18 @@ func StartClient(innerNetClientDto *innerNet.InnerNetClientDto) error {
 	var tcpClient *TcpClient
 	var err error
 	if tcpClient, err = NewTcpClient(innerNetClientDto); err != nil {
-		return err;
+		return err
 	}
 	err = tcpClient.Start()
 
-	if err != nil{
+	if err != nil {
 		return err
 	}
 
 	go func() {
-		for{
+		for {
 			time.Sleep(60 * time.Second)
-			if tcpClient.HeartbeatTime.After(time.Now()){
+			if tcpClient.HeartbeatTime.After(time.Now()) {
 				continue
 			}
 			tcpClient.Recover()

@@ -2,27 +2,27 @@ package workflow
 
 import (
 	"github.com/kataras/iris/v12"
-	hostDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/business/dao/workflowDao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	"github.com/zihao-boy/zihao/entity/dto/workflow"
+	hostDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/business/dao/workflowDao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/entity/dto/workflow"
 	"strconv"
 )
 
 type WorkflowService struct {
 	workflowDao workflowDao.WorkflowDao
-	hostDao         hostDao.HostDao
+	hostDao     hostDao.HostDao
 }
 
 // get db link
 // all db by this user
 func (resourcesOssService *WorkflowService) GetWorkflowAll(WorkflowDto workflow.WorkflowDto) ([]*workflow.WorkflowDto, error) {
 	var (
-		err              error
+		err          error
 		WorkflowDtos []*workflow.WorkflowDto
 	)
 
@@ -35,7 +35,8 @@ func (resourcesOssService *WorkflowService) GetWorkflowAll(WorkflowDto workflow.
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (resourcesOssService *WorkflowService) GetWorkflows(ctx iris.Context) result.ResultDto {
@@ -86,7 +87,8 @@ func (resourcesOssService *WorkflowService) GetWorkflows(ctx iris.Context) resul
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (resourcesOssService *WorkflowService) SaveWorkflows(ctx iris.Context) result.ResultDto {
@@ -113,7 +115,8 @@ func (resourcesOssService *WorkflowService) SaveWorkflows(ctx iris.Context) resu
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (resourcesOssService *WorkflowService) UpdateWorkflows(ctx iris.Context) result.ResultDto {
@@ -135,7 +138,8 @@ func (resourcesOssService *WorkflowService) UpdateWorkflows(ctx iris.Context) re
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (resourcesOssService *WorkflowService) DeleteWorkflows(ctx iris.Context) result.ResultDto {

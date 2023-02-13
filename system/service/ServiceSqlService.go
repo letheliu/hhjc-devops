@@ -1,20 +1,21 @@
 package service
 
 import (
+	"github.com/kataras/iris/v12"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/encrypt"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/serviceSql"
-	"github.com/zihao-boy/zihao/system/dao"
+	"github.com/letheliu/hhjc-devops/common/encrypt"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/serviceSql"
+	"github.com/letheliu/hhjc-devops/system/dao"
 )
 
 type ServiceSqlService struct {
 	serviceSqlDao dao.ServiceSqlDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (serviceSqlService *ServiceSqlService) GetServiceSqls(ctx iris.Context) result.ResultDto {
@@ -67,7 +68,8 @@ func (serviceSqlService *ServiceSqlService) GetServiceSqls(ctx iris.Context) res
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (serviceSqlService *ServiceSqlService) SaveServiceSqls(ctx iris.Context) result.ResultDto {
@@ -90,7 +92,8 @@ func (serviceSqlService *ServiceSqlService) SaveServiceSqls(ctx iris.Context) re
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (serviceSqlService *ServiceSqlService) UpdateServiceSqls(ctx iris.Context) result.ResultDto {
@@ -114,7 +117,8 @@ func (serviceSqlService *ServiceSqlService) UpdateServiceSqls(ctx iris.Context) 
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (serviceSqlService *ServiceSqlService) DeleteServiceSqls(ctx iris.Context) result.ResultDto {

@@ -1,10 +1,10 @@
 package logTraceAnnotationsDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/log"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/log"
 	"gorm.io/gorm"
 )
 
@@ -84,7 +84,8 @@ VALUES(#Id#,#SpanId#,#ServiceName#,#Ip#,#Port#,#Value#,#Timestamp#)
 type LogTraceAnnotationsDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*LogTraceAnnotationsDao) GetLogTraceAnnotationsCount(logTraceAnnotationsDto log.LogTraceAnnotationsDto) (int64, error) {
@@ -100,7 +101,8 @@ func (*LogTraceAnnotationsDao) GetLogTraceAnnotationsCount(logTraceAnnotationsDt
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*LogTraceAnnotationsDao) GetLogTraceAnnotationss(logTraceAnnotationsDto log.LogTraceAnnotationsDto) ([]*log.LogTraceAnnotationsDto, error) {
@@ -112,21 +114,24 @@ func (*LogTraceAnnotationsDao) GetLogTraceAnnotationss(logTraceAnnotationsDto lo
 	return logTraceAnnotationsDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*LogTraceAnnotationsDao) SaveLogTraceAnnotations(logTraceAnnotationsDto log.LogTraceAnnotationsDto) error {
 	return sqlTemplate.Insert(insert_logTraceAnnotations, objectConvert.Struct2Map(logTraceAnnotationsDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*LogTraceAnnotationsDao) UpdateLogTraceAnnotations(logTraceAnnotationsDto log.LogTraceAnnotationsDto) error {
 	return sqlTemplate.Update(update_logTraceAnnotations, objectConvert.Struct2Map(logTraceAnnotationsDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*LogTraceAnnotationsDao) DeleteLogTraceAnnotations(logTraceAnnotationsDto log.LogTraceAnnotationsDto) error {

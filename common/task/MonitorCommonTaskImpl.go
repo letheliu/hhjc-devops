@@ -1,8 +1,8 @@
 package task
 
 import (
-	"github.com/zihao-boy/zihao/entity/dto/host"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
 	"golang.org/x/crypto/ssh"
 )
 

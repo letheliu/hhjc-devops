@@ -3,15 +3,15 @@ package service
 import (
 	"fmt"
 	"github.com/kataras/iris/v12"
+	appDao "github.com/letheliu/hhjc-devops/appService/dao"
+	hostDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
+	"github.com/letheliu/hhjc-devops/entity/dto/home"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
 	"github.com/shopspring/decimal"
-	appDao "github.com/zihao-boy/zihao/appService/dao"
-	hostDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
-	"github.com/zihao-boy/zihao/entity/dto/home"
-	"github.com/zihao-boy/zihao/entity/dto/host"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
 	"strconv"
 )
 
@@ -20,7 +20,7 @@ type HomeService struct {
 	appDaoImpl  appDao.AppServiceDao
 }
 
-//get platform data
+// get platform data
 func (homeService *HomeService) PlatformData(ctx iris.Context) interface{} {
 	var user *user.UserDto = ctx.Values().Get(constants.UINFO).(*user.UserDto)
 
@@ -61,8 +61,8 @@ func (homeService *HomeService) PlatformData(ctx iris.Context) interface{} {
 	platfromDataDto := home.PlatformDataDto{
 		HostCount:   hostCount,
 		CpuCount:    hostDto.Cpu,
-		MemCount:    fmt.Sprintf("%.2f",memValue),
-		DiskCount:   fmt.Sprintf("%.2f",diskValue),
+		MemCount:    fmt.Sprintf("%.2f", memValue),
+		DiskCount:   fmt.Sprintf("%.2f", diskValue),
 		AppCount:    appCount,
 		DockerCount: dockerCount,
 	}

@@ -4,16 +4,17 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
-	"github.com/zihao-boy/zihao/common/httpReq"
-	"github.com/zihao-boy/zihao/common/ip"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/httpReq"
+	"github.com/letheliu/hhjc-devops/common/ip"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"net"
 	"net/http"
 	"os"
 )
 
 var wafServer WafServer
+
 // waf server
 // author wuxw
 type WafServer struct {
@@ -73,7 +74,7 @@ func (waf *WafServer) StopWaf() (err error) {
 	if wafServer.httpListener != nil {
 		err = wafServer.httpListener.Close()
 	}
-	if   wafServer.httpListeners != nil{
+	if wafServer.httpListeners != nil {
 		err = wafServer.httpListeners.Close()
 	}
 	return err
@@ -81,11 +82,11 @@ func (waf *WafServer) StopWaf() (err error) {
 
 func (waf *WafServer) startHttpServer(httpPort string, ctxGateMux http.Handler) {
 	var err error
-	wafServer.httpListener, err= net.Listen("tcp", ":"+httpPort)
+	wafServer.httpListener, err = net.Listen("tcp", ":"+httpPort)
 	if err != nil {
 		msg := "Port " + httpPort + " is occupied."
 		fmt.Println(msg, err)
-		return ;
+		return
 	}
 	fmt.Println("Listen HTTP ", httpPort)
 	// err = http.Serve(listen, ctxGateMux)
@@ -118,10 +119,10 @@ func (waf *WafServer) startHttpsServer(httpsPort string, ctxGateMux http.Handler
 			tls.TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,
 			tls.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,
 			tls.TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,
-//			tls.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,
+			//			tls.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,
 			tls.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,
 			tls.TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,
-//			tls.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,
+			//			tls.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,
 		},
 	}
 
@@ -148,7 +149,7 @@ func (waf *WafServer) initIps() {
 	}
 	url := "http://" + mastIp + "/app/firewall/loadIps"
 	data := map[string]interface{}{}
-	resp, err := httpReq.SendRequest(url, data, nil,"GET")
+	resp, err := httpReq.SendRequest(url, data, nil, "GET")
 	if err != nil {
 		fmt.Println(err)
 		return

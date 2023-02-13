@@ -1,10 +1,10 @@
 package workflowDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/workflow"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/workflow"
 	"gorm.io/gorm"
 )
 
@@ -87,7 +87,8 @@ VALUES(#WorkflowId#,#Name#,#Yaml#,#State#,#TenantId#,#JobTime#)
 type WorkflowDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WorkflowDao) GetWorkflowCount(workflowDto workflow.WorkflowDto) (int64, error) {
@@ -103,7 +104,8 @@ func (*WorkflowDao) GetWorkflowCount(workflowDto workflow.WorkflowDto) (int64, e
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WorkflowDao) GetWorkflows(workflowDto workflow.WorkflowDto) ([]*workflow.WorkflowDto, error) {
@@ -115,21 +117,24 @@ func (*WorkflowDao) GetWorkflows(workflowDto workflow.WorkflowDto) ([]*workflow.
 	return workflowDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*WorkflowDao) SaveWorkflow(workflowDto workflow.WorkflowDto) error {
 	return sqlTemplate.Insert(insert_workflow, objectConvert.Struct2Map(workflowDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*WorkflowDao) UpdateWorkflow(workflowDto workflow.WorkflowDto) error {
 	return sqlTemplate.Update(update_workflow, objectConvert.Struct2Map(workflowDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*WorkflowDao) DeleteWorkflow(workflowDto workflow.WorkflowDto) error {

@@ -1,11 +1,11 @@
 package utils
 
 import (
-	"github.com/zihao-boy/zihao/common/cache/local"
-	"github.com/zihao-boy/zihao/common/cache/redis"
-	"github.com/zihao-boy/zihao/common/encrypt"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/serviceSql"
+	"github.com/letheliu/hhjc-devops/common/cache/local"
+	"github.com/letheliu/hhjc-devops/common/cache/redis"
+	"github.com/letheliu/hhjc-devops/common/encrypt"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/serviceSql"
 )
 
 const (

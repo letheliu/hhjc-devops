@@ -2,17 +2,18 @@ package service
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/monitor/dao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/monitor/dao"
 )
 
 type MonitorTaskAttrService struct {
 	monitorTaskAttrDao dao.MonitorTaskAttrDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (monitorTaskAttrService *MonitorTaskAttrService) GetMonitorTaskAttrAll(monitorTaskAttrDto monitor.MonitorTaskAttrDto) ([]*monitor.MonitorTaskAttrDto, error) {
@@ -30,7 +31,8 @@ func (monitorTaskAttrService *MonitorTaskAttrService) GetMonitorTaskAttrAll(moni
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (monitorTaskAttrService *MonitorTaskAttrService) GetMonitorTaskAttrs(ctx iris.Context) result.ResultDto {
@@ -52,7 +54,8 @@ func (monitorTaskAttrService *MonitorTaskAttrService) GetMonitorTaskAttrs(ctx ir
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (monitorTaskAttrService *MonitorTaskAttrService) SaveMonitorTaskAttrs(ctx iris.Context) result.ResultDto {
@@ -75,7 +78,8 @@ func (monitorTaskAttrService *MonitorTaskAttrService) SaveMonitorTaskAttrs(ctx i
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (monitorTaskAttrService *MonitorTaskAttrService) UpdateMonitorTaskAttrs(ctx iris.Context) result.ResultDto {
@@ -97,7 +101,8 @@ func (monitorTaskAttrService *MonitorTaskAttrService) UpdateMonitorTaskAttrs(ctx
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (monitorTaskAttrService *MonitorTaskAttrService) DeleteMonitorTaskAttrs(ctx iris.Context) result.ResultDto {

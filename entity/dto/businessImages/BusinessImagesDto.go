@@ -1,6 +1,6 @@
 package businessImages
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
 const (
 	IMAGES_TYPE_REMOTE = "1" //远程
@@ -23,20 +23,20 @@ type BusinessImagesDto struct {
 	StatusCd     string `json:"statusCd" sql:"-"`
 	TenantId     string `json:"tenantId" sql:"-"`
 	Username     string `json:"username" sql:"-"`
-	PublisherId    string `json:"publisherId" sql:"-"`
+	PublisherId  string `json:"publisherId" sql:"-"`
 	BusinessImagesExtDto
 }
 
 // images ext
 type BusinessImagesExtDto struct {
 	dto.PageDto
-	Id       string `json:"id" sql:"-"`
-	ImagesId string `json:"imagesId" sql:"-"`
-	AppId    string `json:"appId" sql:"-"`
-	AppName    string `json:"appName" sql:"-"`
+	Id             string `json:"id" sql:"-"`
+	ImagesId       string `json:"imagesId" sql:"-"`
+	AppId          string `json:"appId" sql:"-"`
+	AppName        string `json:"appName" sql:"-"`
 	ExtImagesId    string `json:"extImagesId" sql:"-"`
-	ExtPublisherId    string `json:"extPublisherId" sql:"-"`
-	CreateTime   string `json:"createTime" sql:"-"`
-	StatusCd     string `json:"statusCd" sql:"-"`
-	TenantId     string `json:"tenantId" sql:"-"`
+	ExtPublisherId string `json:"extPublisherId" sql:"-"`
+	CreateTime     string `json:"createTime" sql:"-"`
+	StatusCd       string `json:"statusCd" sql:"-"`
+	TenantId       string `json:"tenantId" sql:"-"`
 }

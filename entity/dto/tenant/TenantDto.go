@@ -1,8 +1,9 @@
 package tenant
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
-/**
+/*
+*
 租户实体类
 */
 type TenantDto struct {

@@ -6,7 +6,7 @@ import (
 
 	"github.com/go-redis/redis"
 	"github.com/kataras/golog"
-	"github.com/zihao-boy/zihao/config"
+	"github.com/letheliu/hhjc-devops/config"
 )
 
 var G_Redis *Redis

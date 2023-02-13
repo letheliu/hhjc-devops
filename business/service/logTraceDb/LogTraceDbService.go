@@ -1,11 +1,10 @@
 package logTraceDbService
 
 import (
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/logTraceDbDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/log"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/business/dao/logTraceDbDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/log"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 )
 
@@ -17,7 +16,7 @@ type LogTraceDbService struct {
 // all db by this user
 func (logTraceDbService *LogTraceDbService) GetLogTraceDbAll(LogTraceDbDto log.LogTraceDbDto) ([]*log.LogTraceDbDto, error) {
 	var (
-		err        error
+		err            error
 		LogTraceDbDtos []*log.LogTraceDbDto
 	)
 
@@ -35,10 +34,10 @@ func (logTraceDbService *LogTraceDbService) GetLogTraceDbAll(LogTraceDbDto log.L
 */
 func (logTraceDbService *LogTraceDbService) GetLogTraceDbs(ctx iris.Context) result.ResultDto {
 	var (
-		err        error
-		page       int64
-		row        int64
-		total      int64
+		err            error
+		page           int64
+		row            int64
+		total          int64
 		logTraceDbDto  = log.LogTraceDbDto{}
 		logTraceDbDtos []*log.LogTraceDbDto
 	)
@@ -83,7 +82,7 @@ func (logTraceDbService *LogTraceDbService) GetLogTraceDbs(ctx iris.Context) res
 */
 func (logTraceDbService *LogTraceDbService) SaveLogTraceDbs(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err           error
 		logTraceDbDto log.LogTraceDbDto
 	)
 	if err = ctx.ReadJSON(&logTraceDbDto); err != nil {
@@ -106,7 +105,7 @@ func (logTraceDbService *LogTraceDbService) SaveLogTraceDbs(ctx iris.Context) re
 */
 func (logTraceDbService *LogTraceDbService) UpdateLogTraceDbs(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err           error
 		logTraceDbDto log.LogTraceDbDto
 	)
 	if err = ctx.ReadJSON(&logTraceDbDto); err != nil {
@@ -131,7 +130,7 @@ func (logTraceDbService *LogTraceDbService) UpdateLogTraceDbs(ctx iris.Context) 
 */
 func (logTraceDbService *LogTraceDbService) DeleteLogTraceDbs(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err           error
 		logTraceDbDto log.LogTraceDbDto
 	)
 	if err = ctx.ReadJSON(&logTraceDbDto); err != nil {

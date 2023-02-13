@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
 	"gorm.io/gorm"
 )
 
@@ -105,7 +105,8 @@ VALUES (#MhgId#, #Name#, #MonCron#, #MonDate#, #NoticeType#, #Remark#, #TenantId
 type MonitorHostGroupDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*MonitorHostGroupDao) GetMonitorHostGroupCount(monitorHostGroupDto monitor.MonitorHostGroupDto) (int64, error) {
@@ -121,7 +122,8 @@ func (*MonitorHostGroupDao) GetMonitorHostGroupCount(monitorHostGroupDto monitor
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*MonitorHostGroupDao) GetMonitorHostGroups(monitorHostGroupDto monitor.MonitorHostGroupDto) ([]*monitor.MonitorHostGroupDto, error) {
@@ -133,21 +135,24 @@ func (*MonitorHostGroupDao) GetMonitorHostGroups(monitorHostGroupDto monitor.Mon
 	return monitorHostGroupDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*MonitorHostGroupDao) SaveMonitorHostGroup(monitorHostGroupDto monitor.MonitorHostGroupDto) error {
 	return sqlTemplate.Insert(insert_monitorHostGroup, objectConvert.Struct2Map(monitorHostGroupDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*MonitorHostGroupDao) UpdateMonitorHostGroup(monitorHostGroupDto monitor.MonitorHostGroupDto) error {
 	return sqlTemplate.Update(update_monitorHostGroup, objectConvert.Struct2Map(monitorHostGroupDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*MonitorHostGroupDao) DeleteMonitorHostGroup(monitorHostGroupDto monitor.MonitorHostGroupDto) error {

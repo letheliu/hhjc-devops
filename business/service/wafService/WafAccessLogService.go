@@ -3,13 +3,13 @@ package wafService
 import (
 	"fmt"
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/wafDao"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/ip"
-	"github.com/zihao-boy/zihao/common/queue/wafAccessLogQueue"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/business/dao/wafDao"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/ip"
+	"github.com/letheliu/hhjc-devops/common/queue/wafAccessLogQueue"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"io"
 	"os"
 	"strconv"
@@ -26,7 +26,7 @@ type WafAccessLogService struct {
 // all db by this user
 func (wafService *WafAccessLogService) GetWafAccessLogAll(WafAccessLogDto waf.WafAccessLogDto) ([]*waf.WafAccessLogDto, error) {
 	var (
-		err        error
+		err              error
 		WafAccessLogDtos []*waf.WafAccessLogDto
 	)
 
@@ -39,15 +39,16 @@ func (wafService *WafAccessLogService) GetWafAccessLogAll(WafAccessLogDto waf.Wa
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (wafService *WafAccessLogService) GetWafAccessLogs(ctx iris.Context) result.ResultDto {
 	var (
-		err        error
-		page       int64
-		row        int64
-		total      int64
+		err     error
+		page    int64
+		row     int64
+		total   int64
 		wafDto  = waf.WafAccessLogDto{}
 		wafDtos []*waf.WafAccessLogDto
 	)
@@ -89,12 +90,13 @@ func (wafService *WafAccessLogService) GetWafAccessLogs(ctx iris.Context) result
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (wafService *WafAccessLogService) GetWafAccessLogMap(ctx iris.Context) result.ResultDto {
 	var (
-		err        error
+		err     error
 		wafDto  = waf.WafAccessLogDto{}
 		wafDtos []*waf.WafAccessLogMapDto
 	)
@@ -113,7 +115,7 @@ func (wafService *WafAccessLogService) GetWafAccessLogMap(ctx iris.Context) resu
 
 func (wafService *WafAccessLogService) GetWafAccessLogTop5(ctx iris.Context) result.ResultDto {
 	var (
-		err        error
+		err     error
 		wafDto  = waf.WafAccessLogDto{}
 		wafDtos []*waf.WafAccessLogMapDto
 	)
@@ -130,11 +132,10 @@ func (wafService *WafAccessLogService) GetWafAccessLogTop5(ctx iris.Context) res
 
 }
 
-
 func (wafService *WafAccessLogService) GetWafAccessLogIntercept(ctx iris.Context) result.ResultDto {
 	var (
-		err        error
-		wafDto  = waf.WafAccessLogDto{}
+		err    error
+		wafDto = waf.WafAccessLogDto{}
 
 		wafDtos []*waf.WafAccessLogDto
 	)
@@ -151,14 +152,13 @@ func (wafService *WafAccessLogService) GetWafAccessLogIntercept(ctx iris.Context
 
 }
 
-
-
-/**
+/*
+*
 保存 系统信息
 */
 func (wafService *WafAccessLogService) SaveWafAccessLogs(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err    error
 		wafDto waf.WafAccessLogDto
 	)
 	if err = ctx.ReadJSON(&wafDto); err != nil {
@@ -171,12 +171,13 @@ func (wafService *WafAccessLogService) SaveWafAccessLogs(ctx iris.Context) resul
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (wafService *WafAccessLogService) UpdateWafAccessLogs(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err    error
 		wafDto waf.WafAccessLogDto
 	)
 	if err = ctx.ReadJSON(&wafDto); err != nil {
@@ -196,12 +197,13 @@ func (wafService *WafAccessLogService) UpdateWafAccessLogs(ctx iris.Context) res
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (wafService *WafAccessLogService) DeleteWafAccessLogs(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err    error
 		wafDto waf.WafAccessLogDto
 	)
 	if err = ctx.ReadJSON(&wafDto); err != nil {
@@ -220,7 +222,7 @@ func (wafService *WafAccessLogService) DeleteWafAccessLogs(ctx iris.Context) res
 // load ips
 func (wafService *WafAccessLogService) LoadIps(ctx iris.Context) {
 	var (
-		err     error
+		err error
 	)
 
 	file, err := os.Open(config.G_AppConfig.IpData)

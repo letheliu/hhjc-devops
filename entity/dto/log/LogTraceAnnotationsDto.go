@@ -1,6 +1,6 @@
 package log
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
 // trace dto
 type LogTraceAnnotationsDto struct {
@@ -11,7 +11,7 @@ type LogTraceAnnotationsDto struct {
 	Ip          string `json:"ipv4"`
 	Port        string `json:"port"`
 	Value       string `json:"value"`
-	Timestamp  int64 `json:"timestamp"`
+	Timestamp   int64  `json:"timestamp"`
 	CreateTime  string `json:"createTime" sql:"-"`
 	StatusCd    string `json:"statusCd" sql:"-"`
 }
@@ -27,7 +27,7 @@ type LogTraceAnnotationsDataDto struct {
 	Id         string      `json:"id"`
 	SpanId     string      `json:"spanId" sql:"-"`
 	Value      string      `json:"value"`
-	Timestamp  int64 `json:"timestamp"`
+	Timestamp  int64       `json:"timestamp"`
 	CreateTime string      `json:"createTime" sql:"-"`
 	StatusCd   string      `json:"statusCd" sql:"-"`
 	Endpoint   EndpointDto `json:"endpoint"`

@@ -2,12 +2,12 @@ package dnsService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/dnsDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/entity/dto/dns"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/business/dao/dnsDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/entity/dto/dns"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 	"strings"
 )
@@ -34,7 +34,8 @@ func (dnsService *DnsService) GetDnsAll(DnsDto dns.DnsDto) ([]*dns.DnsDto, error
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (dnsService *DnsService) GetDnss(ctx iris.Context) result.ResultDto {
@@ -91,7 +92,8 @@ func (dnsService *DnsService) GetDnss(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (dnsService *DnsService) SaveDnss(ctx iris.Context) result.ResultDto {
@@ -114,7 +116,8 @@ func (dnsService *DnsService) SaveDnss(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (dnsService *DnsService) UpdateDnss(ctx iris.Context) result.ResultDto {
@@ -158,7 +161,8 @@ func (dnsService *DnsService) UpdateDnss(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (dnsService *DnsService) DeleteDnss(ctx iris.Context) result.ResultDto {
@@ -298,14 +302,12 @@ func (dnsService *DnsService) getDnsConfig(dnsDto dns.DnsDto) dns.DnsDataDto {
 	dnsDto.DnsHosts = dnsHostsDtos
 
 	// start dns
-	tmpDnsMapDto := dns.DnsMapDto{
-
-	}
+	tmpDnsMapDto := dns.DnsMapDto{}
 	maps, _ := dnsMapDao.GetDnsMaps(tmpDnsMapDto)
 
 	return dns.DnsDataDto{
-		Dns: dnsDto,
-		Maps:  maps,
+		Dns:  dnsDto,
+		Maps: maps,
 	}
 
 }

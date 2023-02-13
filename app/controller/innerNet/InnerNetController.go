@@ -3,14 +3,14 @@ package innerNet
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/business/service/innerNetService"
+	"github.com/letheliu/hhjc-devops/business/service/innerNetService"
 )
 
 type InnerNetController struct {
-	innerNetService innerNetService.InnerNetService
-	innerNetUserService innerNetService.InnerNetUserService
+	innerNetService          innerNetService.InnerNetService
+	innerNetUserService      innerNetService.InnerNetUserService
 	innerNetPrivilegeService innerNetService.InnerNetPrivilegeService
-	innerNetLogService innerNetService.InnerNetLogService
+	innerNetLogService       innerNetService.InnerNetLogService
 }
 
 func InnerNetControllerRouter(party iris.Party) {
@@ -27,12 +27,9 @@ func InnerNetControllerRouter(party iris.Party) {
 
 	adinMenu.Post("/deleteInnerNet", hero.Handler(aus.deleteInnerNet))
 
-
-
 	adinMenu.Post("/startInnerNet", hero.Handler(aus.startInnerNet))
 
 	adinMenu.Post("/stopInnerNet", hero.Handler(aus.stopInnerNet))
-
 
 	adinMenu.Post("/refreshInnerNetConfig", hero.Handler(aus.refreshInnerNetConfig))
 
@@ -59,10 +56,10 @@ func InnerNetControllerRouter(party iris.Party) {
 
 	adinMenu.Post("/saveInnerNetLog", hero.Handler(aus.saveInnerNetLog))
 
-
 }
 
-/**
+/*
+*
 query innerNet
 */
 func (aus *InnerNetController) getInnerNet(ctx iris.Context) {
@@ -71,7 +68,8 @@ func (aus *InnerNetController) getInnerNet(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save innerNet
 */
 func (aus *InnerNetController) saveInnerNet(ctx iris.Context) {
@@ -80,7 +78,8 @@ func (aus *InnerNetController) saveInnerNet(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update innerNet
 */
 func (aus *InnerNetController) updateInnerNet(ctx iris.Context) {
@@ -89,7 +88,8 @@ func (aus *InnerNetController) updateInnerNet(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete innerNet
 */
 func (aus *InnerNetController) deleteInnerNet(ctx iris.Context) {
@@ -98,7 +98,8 @@ func (aus *InnerNetController) deleteInnerNet(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete innerNet
 */
 func (aus *InnerNetController) startInnerNet(ctx iris.Context) {
@@ -107,7 +108,8 @@ func (aus *InnerNetController) startInnerNet(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete innerNet
 */
 func (aus *InnerNetController) stopInnerNet(ctx iris.Context) {
@@ -116,8 +118,8 @@ func (aus *InnerNetController) stopInnerNet(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 delete innerNet
 */
 func (aus *InnerNetController) refreshInnerNetConfig(ctx iris.Context) {
@@ -126,11 +128,8 @@ func (aus *InnerNetController) refreshInnerNetConfig(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-
-
-
-/**
+/*
+*
 query innerNet
 */
 func (aus *InnerNetController) getInnerNetUser(ctx iris.Context) {
@@ -139,7 +138,8 @@ func (aus *InnerNetController) getInnerNetUser(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save innerNet
 */
 func (aus *InnerNetController) saveInnerNetUser(ctx iris.Context) {
@@ -148,7 +148,8 @@ func (aus *InnerNetController) saveInnerNetUser(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update innerNet
 */
 func (aus *InnerNetController) updateInnerNetUser(ctx iris.Context) {
@@ -157,7 +158,8 @@ func (aus *InnerNetController) updateInnerNetUser(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete innerNet
 */
 func (aus *InnerNetController) deleteInnerNetUser(ctx iris.Context) {
@@ -166,8 +168,8 @@ func (aus *InnerNetController) deleteInnerNetUser(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 query innerNet
 */
 func (aus *InnerNetController) getInnerNetPrivilege(ctx iris.Context) {
@@ -176,7 +178,8 @@ func (aus *InnerNetController) getInnerNetPrivilege(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save innerNet
 */
 func (aus *InnerNetController) saveInnerNetPrivilege(ctx iris.Context) {
@@ -185,7 +188,8 @@ func (aus *InnerNetController) saveInnerNetPrivilege(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 update innerNet
 */
 func (aus *InnerNetController) updateInnerNetPrivilege(ctx iris.Context) {
@@ -194,7 +198,8 @@ func (aus *InnerNetController) updateInnerNetPrivilege(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 delete innerNet
 */
 func (aus *InnerNetController) deleteInnerNetPrivilege(ctx iris.Context) {
@@ -203,7 +208,8 @@ func (aus *InnerNetController) deleteInnerNetPrivilege(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 query innerNet
 */
 func (aus *InnerNetController) getInnerNetLog(ctx iris.Context) {
@@ -212,7 +218,8 @@ func (aus *InnerNetController) getInnerNetLog(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 save innerNet
 */
 func (aus *InnerNetController) saveInnerNetLog(ctx iris.Context) {
@@ -220,4 +227,3 @@ func (aus *InnerNetController) saveInnerNetLog(ctx iris.Context) {
 
 	ctx.JSON(reslut)
 }
-

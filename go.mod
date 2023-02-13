@@ -1,4 +1,4 @@
-module github.com/zihao-boy/zihao
+module github.com/letheliu/hhjc-devops
 
 go 1.17
 

@@ -5,23 +5,23 @@ import (
 	"errors"
 	"fmt"
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/dns"
-	"github.com/zihao-boy/zihao/common/innerNet/server"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/common/utils"
-	wafServer "github.com/zihao-boy/zihao/common/waf"
-	"github.com/zihao-boy/zihao/common/zips"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
-	dnsMap2 "github.com/zihao-boy/zihao/entity/dto/dns"
-	"github.com/zihao-boy/zihao/entity/dto/firewall"
-	"github.com/zihao-boy/zihao/entity/dto/host"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
-	"github.com/zihao-boy/zihao/entity/dto/ls"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/system"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/dns"
+	"github.com/letheliu/hhjc-devops/common/innerNet/server"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	wafServer "github.com/letheliu/hhjc-devops/common/waf"
+	"github.com/letheliu/hhjc-devops/common/zips"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
+	dnsMap2 "github.com/letheliu/hhjc-devops/entity/dto/dns"
+	"github.com/letheliu/hhjc-devops/entity/dto/firewall"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/entity/dto/ls"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/system"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"io"
 	"io/ioutil"
 	"os"
@@ -33,7 +33,7 @@ import (
 )
 
 const (
-	SYSTEM_NAME string = "梓豪平台"
+	SYSTEM_NAME string = "华恒DevOps平台"
 	VERSION     string = "v1.0"
 )
 const maxSize = 1000 * iris.MB // 第二种方法
@@ -41,7 +41,8 @@ const maxSize = 1000 * iris.MB // 第二种方法
 type SystemInfoService struct {
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (*SystemInfoService) Info(context iris.Context) system.SystemDto {
@@ -354,7 +355,7 @@ func (s *SystemInfoService) EditFile(ctx iris.Context) (interface{}, interface{}
 		return result.Error(err.Error()), nil
 	}
 	writer := bufio.NewWriter(f)
-	_, err = writer.Write([]byte (hostDto.FileContext))
+	_, err = writer.Write([]byte(hostDto.FileContext))
 	if err != nil {
 		return result.Error(err.Error()), nil
 	}
@@ -672,7 +673,7 @@ func (s *SystemInfoService) RefreshFirewallRule(ctx iris.Context) (result.Result
 			} else {
 				shellStr += "DROP"
 			}
-		}else{
+		} else {
 			shellStr = "/sbin/iptables -A OUTPUT -p " + rule.Protocol + " -d " + rule.SrcObj + " --dport " + rule.DstObj + " -j "
 			if rule.AllowLimit == "allow" {
 				shellStr += "ACCEPT"

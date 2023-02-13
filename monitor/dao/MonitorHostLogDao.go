@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
 	"gorm.io/gorm"
 )
 
@@ -52,7 +52,8 @@ const (
 type MonitorHostLogDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*MonitorHostLogDao) GetMonitorHostLogCount(monitorHostLogDto monitor.MonitorHostLogDto) (int64, error) {
@@ -68,7 +69,8 @@ func (*MonitorHostLogDao) GetMonitorHostLogCount(monitorHostLogDto monitor.Monit
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*MonitorHostLogDao) GetMonitorHostLogs(monitorHostLogDto monitor.MonitorHostLogDto) ([]*monitor.MonitorHostLogDto, error) {
@@ -80,21 +82,24 @@ func (*MonitorHostLogDao) GetMonitorHostLogs(monitorHostLogDto monitor.MonitorHo
 	return monitorHostLogDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*MonitorHostLogDao) SaveMonitorHostLog(monitorHostLogDto monitor.MonitorHostLogDto) error {
 	return sqlTemplate.Insert(insert_monitorHostLog, objectConvert.Struct2Map(monitorHostLogDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*MonitorHostLogDao) UpdateMonitorHostLog(monitorHostLogDto monitor.MonitorHostLogDto) error {
 	return sqlTemplate.Update(update_monitorHostLog, objectConvert.Struct2Map(monitorHostLogDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*MonitorHostLogDao) DeleteMonitorHostLog(monitorHostLogDto monitor.MonitorHostLogDto) error {

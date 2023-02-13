@@ -1,20 +1,21 @@
 package service
 
 import (
+	"github.com/kataras/iris/v12"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/cache/factory"
-	"github.com/zihao-boy/zihao/entity/dto/mapping"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/system/dao"
+	"github.com/letheliu/hhjc-devops/common/cache/factory"
+	"github.com/letheliu/hhjc-devops/entity/dto/mapping"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/system/dao"
 )
 
 type MappingService struct {
 	mappingDao dao.MappingDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (mappingService *MappingService) GetMappings(ctx iris.Context) result.ResultDto {
@@ -62,7 +63,8 @@ func (mappingService *MappingService) GetMappings(ctx iris.Context) result.Resul
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (mappingService *MappingService) GetDicts(ctx iris.Context) result.ResultDto {
@@ -82,7 +84,8 @@ func (mappingService *MappingService) GetDicts(ctx iris.Context) result.ResultDt
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (mappingService *MappingService) SaveMappings(ctx iris.Context) result.ResultDto {
@@ -106,7 +109,8 @@ func (mappingService *MappingService) SaveMappings(ctx iris.Context) result.Resu
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (mappingService *MappingService) UpdateMappings(ctx iris.Context) result.ResultDto {
@@ -129,7 +133,8 @@ func (mappingService *MappingService) UpdateMappings(ctx iris.Context) result.Re
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (mappingService *MappingService) DeleteMappings(ctx iris.Context) result.ResultDto {

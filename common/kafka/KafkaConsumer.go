@@ -2,10 +2,10 @@ package kafka
 
 import (
 	"github.com/Shopify/sarama"
-	"github.com/bsm/sarama-cluster"
+	cluster "github.com/bsm/sarama-cluster"
 	"github.com/golang/glog"
+	config2 "github.com/letheliu/hhjc-devops/config"
 	"github.com/pkg/errors"
-	config2 "github.com/zihao-boy/zihao/config"
 	"strings"
 )
 
@@ -14,7 +14,7 @@ type KafkaConsumer struct {
 }
 
 func (self *KafkaConsumer) Init() error {
-	brokersServers := []string{config2.G_AppConfig.Own.KafkaIp+":"+config2.G_AppConfig.Own.KafkaPort}
+	brokersServers := []string{config2.G_AppConfig.Own.KafkaIp + ":" + config2.G_AppConfig.Own.KafkaPort}
 	config := cluster.NewConfig()
 	//配置是否接受错误信息
 	config.Consumer.Return.Errors = true
@@ -34,7 +34,7 @@ func (self *KafkaConsumer) Init() error {
 	return nil
 }
 
-//注意该方法是非阻塞的，如果调用了该方法，并且没有其他的阻塞方法，记得手动阻塞他
+// 注意该方法是非阻塞的，如果调用了该方法，并且没有其他的阻塞方法，记得手动阻塞他
 func (self *KafkaConsumer) StartKafkaListen(listenMsg func(*sarama.ConsumerMessage)) error {
 	if self.consumer == nil {
 		return errors.New("还没初始化消费者对象")

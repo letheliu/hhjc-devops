@@ -2,18 +2,17 @@ package waf
 
 import (
 	"fmt"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/httpReq"
-	"github.com/zihao-boy/zihao/common/ip"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/httpReq"
+	"github.com/letheliu/hhjc-devops/common/ip"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"net/http"
 	"strconv"
 )
 
 func saveAccessLog(wafAccessLogDto waf.WafAccessLogDto) {
-
 
 	mastIp, isExist := config.Prop.Property("mastIp")
 	if !isExist {
@@ -21,7 +20,7 @@ func saveAccessLog(wafAccessLogDto waf.WafAccessLogDto) {
 	}
 	url := "http://" + mastIp + "/app/firewall/saveWafAccessLog"
 
-	resp, err := httpReq.SendRequest(url, wafAccessLogDto, nil,"POST")
+	resp, err := httpReq.SendRequest(url, wafAccessLogDto, nil, "POST")
 	if err != nil {
 		fmt.Print(err.Error(), url, wafAccessLogDto)
 	}
@@ -49,7 +48,7 @@ func analysisRequest(r *http.Request) waf.WafAccessLogDto {
 		ResponseLength: "0",
 		State:          waf.State_default,
 		Message:        "正常访问",
-		CreateTime: date.GetNowTime(),
+		CreateTime:     date.GetNowTime(),
 	}
 	return accessLog
 }
@@ -59,5 +58,3 @@ func refreshAccessLogByRoute(accessLog *waf.WafAccessLogDto, tRoute *waf.WafRout
 	accessLog.Url = tRoute.Scheme + "://" + accessLog.Url
 	accessLog.Scheme = tRoute.Scheme
 }
-
-

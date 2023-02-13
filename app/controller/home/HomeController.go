@@ -3,7 +3,7 @@ package home
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/home/service"
+	"github.com/letheliu/hhjc-devops/home/service"
 )
 
 type HomeController struct {
@@ -19,7 +19,7 @@ func HomeControllerRouter(party iris.Party) {
 	adinUser.Get("/platformData", hero.Handler(aus.platformData))
 }
 
-//query platform data
+// query platform data
 // 2021-12-20
 func (aus *HomeController) platformData(ctx iris.Context) {
 	resultDto := aus.homeService.PlatformData(ctx)

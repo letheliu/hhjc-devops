@@ -4,7 +4,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
 	"github.com/kataras/golog"
-	"github.com/zihao-boy/zihao/config"
+	"github.com/letheliu/hhjc-devops/config"
 	"xorm.io/core"
 )
 

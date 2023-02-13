@@ -4,14 +4,12 @@ import (
 	"github.com/iris-contrib/middleware/cors"
 	"github.com/kataras/iris/v12"
 	rcover "github.com/kataras/iris/v12/middleware/recover"
-	"github.com/zihao-boy/zihao/app/controller/slave"
+	"github.com/letheliu/hhjc-devops/app/controller/slave"
 )
 
 // 所有的路由
 func HubSlave(app *iris.Application) {
-
 	party := preSettringSlave(app)
-
 	//系统信息
 	slave.SlaveControllerRouter(party)
 }

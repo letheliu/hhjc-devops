@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/appVersionJob"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/appVersionJob"
 	"gorm.io/gorm"
 )
 
@@ -171,7 +171,8 @@ $if JobId != '' then
 type AppVersionJobDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppVersionJobDao) GetAppVersionJobCount(appVersionJobDto appVersionJob.AppVersionJobDto) (int64, error) {
@@ -187,7 +188,8 @@ func (*AppVersionJobDao) GetAppVersionJobCount(appVersionJobDto appVersionJob.Ap
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppVersionJobDao) GetAppVersionJobs(appVersionJobDto appVersionJob.AppVersionJobDto) ([]*appVersionJob.AppVersionJobDto, error) {
@@ -199,21 +201,24 @@ func (*AppVersionJobDao) GetAppVersionJobs(appVersionJobDto appVersionJob.AppVer
 	return appVersionJobDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*AppVersionJobDao) SaveAppVersionJob(appVersionJobDto appVersionJob.AppVersionJobDto) error {
 	return sqlTemplate.Insert(insert_appVersionJob, objectConvert.Struct2Map(appVersionJobDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*AppVersionJobDao) UpdateAppVersionJob(appVersionJobDto appVersionJob.AppVersionJobDto) error {
 	return sqlTemplate.Update(update_appVersionJob, objectConvert.Struct2Map(appVersionJobDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*AppVersionJobDao) DeleteAppVersionJob(appVersionJobDto appVersionJob.AppVersionJobDto) error {

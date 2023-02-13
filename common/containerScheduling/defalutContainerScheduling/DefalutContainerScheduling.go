@@ -2,21 +2,21 @@ package defalutContainerScheduling
 
 import (
 	"encoding/json"
-	"github.com/zihao-boy/zihao/appService/dao"
-	"github.com/zihao-boy/zihao/common/httpReq"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
-	"github.com/zihao-boy/zihao/entity/dto/host"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/appService/dao"
+	"github.com/letheliu/hhjc-devops/common/httpReq"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 	"strings"
 	"time"
 )
 
-//default  scheduling
+// default  scheduling
 // base on mem
-//add by wuxw 2021-12-07
+// add by wuxw 2021-12-07
 func Scheduling(hosts []*host.HostDto, appServiceDto *appService.AppServiceDto) (result.ResultDto, error) {
 
 	var (
@@ -60,7 +60,7 @@ func Scheduling(hosts []*host.HostDto, appServiceDto *appService.AppServiceDto) 
 	return resultDto, err
 }
 
-//目前根据 内存最低 来时实现
+// 目前根据 内存最低 来时实现
 func getOptimalHost(hosts []*host.HostDto) (*host.HostDto, error) {
 	if len(hosts) == 1 {
 		return hosts[0], nil
@@ -115,9 +115,9 @@ func doStartContainer(host *host.HostDto, appServiceDto *appService.AppServiceDt
 	return resultDto, nil
 }
 
-//default  stop
+// default  stop
 // base on mem
-//add by wuxw 2021-12-07
+// add by wuxw 2021-12-07
 func StopContainer(containerDto *appService.AppServiceContainerDto, appServiceDto *appService.AppServiceDto) (result.ResultDto, error) {
 
 	var (

@@ -3,24 +3,22 @@ package workflow
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/business/service/workflow"
+	"github.com/letheliu/hhjc-devops/business/service/workflow"
 )
 
 type WorkflowController struct {
 	workflowService workflow.WorkflowService
 
-	workflowStepService workflow.WorkflowStepService
+	workflowStepService      workflow.WorkflowStepService
 	workflowStepParamService workflow.WorkflowStepParamService
-
 }
 
 func WorkflowControllerRouter(party iris.Party) {
 	var (
 		adinUser = party.Party("/workflow")
 		aus      = WorkflowController{workflowStepService: workflow.WorkflowStepService{},
-			workflowStepParamService:workflow.WorkflowStepParamService{},
-			workflowService:workflow.WorkflowService{},
-
+			workflowStepParamService: workflow.WorkflowStepParamService{},
+			workflowService:          workflow.WorkflowService{},
 		}
 	)
 
@@ -35,7 +33,6 @@ func WorkflowControllerRouter(party iris.Party) {
 
 	//保存sql
 	adinUser.Post("/deleteWorkflow", hero.Handler(aus.deleteWorkflow))
-
 
 	//查询sql
 	adinUser.Get("/getWorkflowSteps", hero.Handler(aus.getWorkflowSteps))
@@ -63,14 +60,13 @@ func WorkflowControllerRouter(party iris.Party) {
 
 }
 
-
-
 func (aus *WorkflowController) getWorkflows(ctx iris.Context) {
 	relustDto := aus.workflowService.GetWorkflows(ctx)
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *WorkflowController) saveWorkflow(ctx iris.Context) {
@@ -78,7 +74,8 @@ func (aus *WorkflowController) saveWorkflow(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *WorkflowController) updateWorkflow(ctx iris.Context) {
@@ -86,7 +83,8 @@ func (aus *WorkflowController) updateWorkflow(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *WorkflowController) deleteWorkflow(ctx iris.Context) {
@@ -94,13 +92,13 @@ func (aus *WorkflowController) deleteWorkflow(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-
 func (aus *WorkflowController) getWorkflowSteps(ctx iris.Context) {
 	relustDto := aus.workflowStepService.GetWorkflowSteps(ctx)
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *WorkflowController) saveWorkflowStep(ctx iris.Context) {
@@ -108,7 +106,8 @@ func (aus *WorkflowController) saveWorkflowStep(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *WorkflowController) updateWorkflowStep(ctx iris.Context) {
@@ -116,7 +115,8 @@ func (aus *WorkflowController) updateWorkflowStep(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *WorkflowController) deleteWorkflowStep(ctx iris.Context) {
@@ -124,13 +124,13 @@ func (aus *WorkflowController) deleteWorkflowStep(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-
 func (aus *WorkflowController) getWorkflowStepParams(ctx iris.Context) {
 	relustDto := aus.workflowStepParamService.GetWorkflowStepParams(ctx)
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *WorkflowController) saveWorkflowStepParam(ctx iris.Context) {
@@ -138,7 +138,8 @@ func (aus *WorkflowController) saveWorkflowStepParam(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *WorkflowController) updateWorkflowStepParam(ctx iris.Context) {
@@ -146,7 +147,8 @@ func (aus *WorkflowController) updateWorkflowStepParam(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *WorkflowController) deleteWorkflowStepParam(ctx iris.Context) {

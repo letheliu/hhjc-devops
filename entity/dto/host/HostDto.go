@@ -1,8 +1,8 @@
 package host
 
 import (
-	"github.com/zihao-boy/zihao/common/docker"
-	"github.com/zihao-boy/zihao/entity/dto"
+	"github.com/letheliu/hhjc-devops/common/docker"
+	"github.com/letheliu/hhjc-devops/entity/dto"
 )
 
 const (
@@ -13,7 +13,8 @@ const (
 	MASTER_HOST_ID = "5f3761ed-008a-475b-ad37-8cc35c88402c"
 )
 
-/**
+/*
+*
 主机 实体
 */
 type HostDto struct {
@@ -42,6 +43,6 @@ type HostDto struct {
 	NewFileName   string `json:"newFileName"`
 	FileContext   string `json:"fileContext"`
 	Shell         string `json:"shell"`
-	OsName string `json:"osName" sql:"-"`
+	OsName        string `json:"osName" sql:"-"`
 	Containers    []docker.Container
 }

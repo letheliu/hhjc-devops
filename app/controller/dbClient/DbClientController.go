@@ -3,7 +3,7 @@ package dbClient
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/business/service/dbLinkService"
+	"github.com/letheliu/hhjc-devops/business/service/dbLinkService"
 )
 
 type DbClientController struct {
@@ -29,10 +29,11 @@ func DbClientControllerRouter(party iris.Party) {
 	adinMenu.Post("/execSql", hero.Handler(aus.execSql))
 
 	//execute sql file
-	adinMenu.Post("/exportSqlFile",hero.Handler(aus.exportSqlFile))
+	adinMenu.Post("/exportSqlFile", hero.Handler(aus.exportSqlFile))
 }
 
-/**
+/*
+*
 查询 业务包
 */
 func (aus *DbClientController) getDbLink(ctx iris.Context) {
@@ -40,7 +41,8 @@ func (aus *DbClientController) getDbLink(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 业务包
 */
 func (aus *DbClientController) saveDbLink(ctx iris.Context) {
@@ -49,7 +51,8 @@ func (aus *DbClientController) saveDbLink(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 业务包
 */
 func (aus *DbClientController) updateDbLink(ctx iris.Context) {
@@ -58,7 +61,8 @@ func (aus *DbClientController) updateDbLink(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 业务包
 */
 func (aus *DbClientController) deleteDbLink(ctx iris.Context) {
@@ -67,7 +71,8 @@ func (aus *DbClientController) deleteDbLink(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 业务包
 */
 func (aus *DbClientController) execSql(ctx iris.Context) {
@@ -76,8 +81,9 @@ func (aus *DbClientController) execSql(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
- export sql file
+/*
+*
+export sql file
 */
 func (aus *DbClientController) exportSqlFile(ctx iris.Context) {
 	reslut := aus.dbLinkService.ExportSqlFile(ctx)

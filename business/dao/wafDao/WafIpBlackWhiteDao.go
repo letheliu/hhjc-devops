@@ -1,10 +1,10 @@
 package wafDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"gorm.io/gorm"
 )
 
@@ -77,7 +77,8 @@ VALUES(#Id#,#TypeCd#,#Ip#)
 type WafIpBlackWhiteDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafIpBlackWhiteDao) GetWafIpBlackWhiteCount(wafIpBlackWhiteDto waf.WafIpBlackWhiteDto) (int64, error) {
@@ -93,7 +94,8 @@ func (*WafIpBlackWhiteDao) GetWafIpBlackWhiteCount(wafIpBlackWhiteDto waf.WafIpB
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafIpBlackWhiteDao) GetWafIpBlackWhites(wafIpBlackWhiteDto waf.WafIpBlackWhiteDto) ([]*waf.WafIpBlackWhiteDto, error) {
@@ -105,21 +107,24 @@ func (*WafIpBlackWhiteDao) GetWafIpBlackWhites(wafIpBlackWhiteDto waf.WafIpBlack
 	return wafIpBlackWhiteDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*WafIpBlackWhiteDao) SaveWafIpBlackWhite(wafIpBlackWhiteDto waf.WafIpBlackWhiteDto) error {
 	return sqlTemplate.Insert(insert_wafIpBlackWhite, objectConvert.Struct2Map(wafIpBlackWhiteDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*WafIpBlackWhiteDao) UpdateWafIpBlackWhite(wafIpBlackWhiteDto waf.WafIpBlackWhiteDto) error {
 	return sqlTemplate.Update(update_wafIpBlackWhite, objectConvert.Struct2Map(wafIpBlackWhiteDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*WafIpBlackWhiteDao) DeleteWafIpBlackWhite(wafIpBlackWhiteDto waf.WafIpBlackWhiteDto) error {

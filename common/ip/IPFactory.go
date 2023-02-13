@@ -3,8 +3,8 @@ package ip
 import (
 	"errors"
 	"fmt"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"io/ioutil"
 	"net"
 	"net/http"

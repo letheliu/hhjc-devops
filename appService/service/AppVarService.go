@@ -1,22 +1,23 @@
 package service
 
 import (
+	"github.com/kataras/iris/v12"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/appService/dao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/appVar"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/appService/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/appVar"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
 )
 
 type AppVarService struct {
 	appVarDao dao.AppVarDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (appVarService *AppVarService) GetAppVarAll(appVarDto appVar.AppVarDto) ([]*appVar.AppVarDto, error) {
@@ -34,7 +35,8 @@ func (appVarService *AppVarService) GetAppVarAll(appVarDto appVar.AppVarDto) ([]
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (appVarService *AppVarService) GetAppVars(ctx iris.Context) result.ResultDto {
@@ -85,7 +87,8 @@ func (appVarService *AppVarService) GetAppVars(ctx iris.Context) result.ResultDt
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (appVarService *AppVarService) SaveAppVars(ctx iris.Context) result.ResultDto {
@@ -110,7 +113,8 @@ func (appVarService *AppVarService) SaveAppVars(ctx iris.Context) result.ResultD
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (appVarService *AppVarService) UpdateAppVars(ctx iris.Context) result.ResultDto {
@@ -132,7 +136,8 @@ func (appVarService *AppVarService) UpdateAppVars(ctx iris.Context) result.Resul
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (appVarService *AppVarService) DeleteAppVars(ctx iris.Context) result.ResultDto {

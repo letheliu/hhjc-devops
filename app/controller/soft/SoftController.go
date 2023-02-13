@@ -3,16 +3,16 @@ package soft
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/business/service/appPublisherService"
-	"github.com/zihao-boy/zihao/softService/service"
+	"github.com/letheliu/hhjc-devops/business/service/appPublisherService"
+	"github.com/letheliu/hhjc-devops/softService/service"
 )
 
 type SoftController struct {
-	businessPackageService service.BusinessPackageService
-	businessDockerService service.BusinessDockerfileService
-	businessImagesService service.BusinessImagesService
+	businessPackageService   service.BusinessPackageService
+	businessDockerService    service.BusinessDockerfileService
+	businessImagesService    service.BusinessImagesService
 	businessImagesVerService service.BusinessImagesVerService
-	appPublisherService appPublisherService.AppPublisherService
+	appPublisherService      appPublisherService.AppPublisherService
 }
 
 func SoftControllerRouter(party iris.Party) {
@@ -20,8 +20,8 @@ func SoftControllerRouter(party iris.Party) {
 		adinMenu = party.Party("/soft")
 		aus      = SoftController{
 			businessPackageService: service.BusinessPackageService{},
-			businessDockerService: service.BusinessDockerfileService{},
-			businessImagesService: service.BusinessImagesService{},
+			businessDockerService:  service.BusinessDockerfileService{},
+			businessImagesService:  service.BusinessImagesService{},
 		}
 	)
 	adinMenu.Get("/getBusinessPackages", hero.Handler(aus.GetBusinessPackages))
@@ -61,18 +61,13 @@ func SoftControllerRouter(party iris.Party) {
 
 	adinMenu.Post("/uninstallImages", hero.Handler(aus.uninstallImages))
 
-
 	adinMenu.Get("/getBusinessImagesVer", hero.Handler(aus.GetBusinessImagesVer))
 
-
 	adinMenu.Get("/getRemoteBusinessImagesVer", hero.Handler(aus.getRemoteBusinessImagesVer))
-
 
 	adinMenu.Post("/saveBusinessImagesVer", hero.Handler(aus.SaveBusinessImagesVer))
 
 	adinMenu.Post("/saveRemoteBusinessImagesVer", hero.Handler(aus.saveRemoteBusinessImagesVer))
-
-
 
 	adinMenu.Post("/updateBusinessImagesVer", hero.Handler(aus.UpdateBusinessImagesVer))
 
@@ -84,7 +79,6 @@ func SoftControllerRouter(party iris.Party) {
 
 	adinMenu.Post("/editBusinessPackageContext", hero.Handler(aus.editBusinessPackageContext))
 
-
 	adinMenu.Get("/getAppPublisher", hero.Handler(aus.GetAppPublisher))
 
 	adinMenu.Post("/saveAppPublisher", hero.Handler(aus.SaveAppPublisher))
@@ -93,14 +87,14 @@ func SoftControllerRouter(party iris.Party) {
 
 	adinMenu.Post("/deleteAppPublisher", hero.Handler(aus.DeleteAppPublisher))
 
-
 	adinMenu.Post("/applyPublishApp", hero.Handler(aus.applyPublishApp))
 
 	adinMenu.Post("/offlineApplyApp", hero.Handler(aus.offlineApplyApp))
 
 }
 
-/**
+/*
+*
 查询 业务包
 */
 func (aus *SoftController) GetBusinessPackages(ctx iris.Context) {
@@ -109,7 +103,8 @@ func (aus *SoftController) GetBusinessPackages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 业务包
 */
 func (aus *SoftController) SaveBusinessPackages(ctx iris.Context) {
@@ -118,7 +113,8 @@ func (aus *SoftController) SaveBusinessPackages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 业务包
 */
 func (aus *SoftController) UpdateBusinessPackages(ctx iris.Context) {
@@ -127,7 +123,8 @@ func (aus *SoftController) UpdateBusinessPackages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 业务包
 */
 func (aus *SoftController) DeleteBusinessPackages(ctx iris.Context) {
@@ -136,8 +133,8 @@ func (aus *SoftController) DeleteBusinessPackages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 查询 dockerfile
 */
 func (aus *SoftController) GetBusinessDockerfile(ctx iris.Context) {
@@ -146,7 +143,8 @@ func (aus *SoftController) GetBusinessDockerfile(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 业务包
 */
 func (aus *SoftController) SaveBusinessDockerfile(ctx iris.Context) {
@@ -155,7 +153,8 @@ func (aus *SoftController) SaveBusinessDockerfile(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 业务包
 */
 func (aus *SoftController) saveBusinessDockerfileCommon(ctx iris.Context) {
@@ -164,8 +163,8 @@ func (aus *SoftController) saveBusinessDockerfileCommon(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 修改 业务包
 */
 func (aus *SoftController) UpdateBusinessDockerfile(ctx iris.Context) {
@@ -174,7 +173,8 @@ func (aus *SoftController) UpdateBusinessDockerfile(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 业务包
 */
 func (aus *SoftController) DeleteBusinessDockerfiles(ctx iris.Context) {
@@ -183,8 +183,8 @@ func (aus *SoftController) DeleteBusinessDockerfiles(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 查询 dockerfile
 */
 func (aus *SoftController) GetBusinessImages(ctx iris.Context) {
@@ -193,7 +193,8 @@ func (aus *SoftController) GetBusinessImages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 业务包
 */
 func (aus *SoftController) SaveBusinessImages(ctx iris.Context) {
@@ -202,7 +203,8 @@ func (aus *SoftController) SaveBusinessImages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 业务包
 */
 func (aus *SoftController) UpdateBusinessImages(ctx iris.Context) {
@@ -211,7 +213,8 @@ func (aus *SoftController) UpdateBusinessImages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 业务包
 */
 func (aus *SoftController) DeleteBusinessImages(ctx iris.Context) {
@@ -220,7 +223,8 @@ func (aus *SoftController) DeleteBusinessImages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 custom generator docker images
 base on dockerfile
 */
@@ -230,7 +234,8 @@ func (aus *SoftController) GeneratorImages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询远程镜像
 */
 func (aus *SoftController) getImagesPool(ctx iris.Context) {
@@ -239,7 +244,8 @@ func (aus *SoftController) getImagesPool(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询远程镜像
 */
 func (aus *SoftController) getMyAppPool(ctx iris.Context) {
@@ -248,8 +254,8 @@ func (aus *SoftController) getMyAppPool(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 查询远程镜像
 */
 func (aus *SoftController) installImages(ctx iris.Context) {
@@ -264,7 +270,8 @@ func (aus *SoftController) uninstallImages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 dockerfile
 */
 func (aus *SoftController) GetBusinessImagesVer(ctx iris.Context) {
@@ -273,9 +280,9 @@ func (aus *SoftController) GetBusinessImagesVer(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
- get remote images version
-
+/*
+*
+get remote images version
 */
 func (aus *SoftController) getRemoteBusinessImagesVer(ctx iris.Context) {
 	reslut := aus.businessImagesVerService.GetRemoteBusinessImagesVer(ctx)
@@ -283,9 +290,8 @@ func (aus *SoftController) getRemoteBusinessImagesVer(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-
-/**
+/*
+*
 添加 业务包
 */
 func (aus *SoftController) SaveBusinessImagesVer(ctx iris.Context) {
@@ -294,7 +300,8 @@ func (aus *SoftController) SaveBusinessImagesVer(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 业务包
 */
 func (aus *SoftController) saveRemoteBusinessImagesVer(ctx iris.Context) {
@@ -303,8 +310,8 @@ func (aus *SoftController) saveRemoteBusinessImagesVer(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 修改 业务包
 */
 func (aus *SoftController) UpdateBusinessImagesVer(ctx iris.Context) {
@@ -313,7 +320,8 @@ func (aus *SoftController) UpdateBusinessImagesVer(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 业务包
 */
 func (aus *SoftController) DeleteBusinessImagesVer(ctx iris.Context) {
@@ -329,26 +337,30 @@ func (aus *SoftController) upload(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询文件
-**/
+*
+*/
 func (aus *SoftController) listBusinessPackageContext(ctx iris.Context) {
 	reslut := aus.businessPackageService.ListBusinessPackageContext(ctx)
 
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询文件
-**/
+*
+*/
 func (aus *SoftController) editBusinessPackageContext(ctx iris.Context) {
 	reslut := aus.businessPackageService.EditBusinessPackageContext(ctx)
 
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 查询 dockerfile
 */
 func (aus *SoftController) GetAppPublisher(ctx iris.Context) {
@@ -357,7 +369,8 @@ func (aus *SoftController) GetAppPublisher(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 业务包
 */
 func (aus *SoftController) SaveAppPublisher(ctx iris.Context) {
@@ -366,7 +379,8 @@ func (aus *SoftController) SaveAppPublisher(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 业务包
 */
 func (aus *SoftController) UpdateAppPublisher(ctx iris.Context) {
@@ -375,7 +389,8 @@ func (aus *SoftController) UpdateAppPublisher(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 业务包
 */
 func (aus *SoftController) DeleteAppPublisher(ctx iris.Context) {
@@ -384,7 +399,8 @@ func (aus *SoftController) DeleteAppPublisher(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 业务包
 */
 func (aus *SoftController) applyPublishApp(ctx iris.Context) {
@@ -393,7 +409,8 @@ func (aus *SoftController) applyPublishApp(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 offline app
 */
 func (aus *SoftController) offlineApplyApp(ctx iris.Context) {
@@ -401,9 +418,3 @@ func (aus *SoftController) offlineApplyApp(ctx iris.Context) {
 
 	ctx.JSON(reslut)
 }
-
-
-
-
-
-

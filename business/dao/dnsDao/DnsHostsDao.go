@@ -1,10 +1,10 @@
 package dnsDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/dns"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/dns"
 	"gorm.io/gorm"
 )
 
@@ -72,7 +72,8 @@ VALUES(#DnsHostId#,#DnsId#,#HostId#)
 type DnsHostsDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*DnsHostsDao) GetDnsHostsCount(dnsHostsDto dns.DnsHostsDto) (int64, error) {
@@ -88,7 +89,8 @@ func (*DnsHostsDao) GetDnsHostsCount(dnsHostsDto dns.DnsHostsDto) (int64, error)
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*DnsHostsDao) GetDnsHostss(dnsHostsDto dns.DnsHostsDto) ([]*dns.DnsHostsDto, error) {
@@ -100,21 +102,24 @@ func (*DnsHostsDao) GetDnsHostss(dnsHostsDto dns.DnsHostsDto) ([]*dns.DnsHostsDt
 	return dnsHostsDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*DnsHostsDao) SaveDnsHosts(dnsHostsDto dns.DnsHostsDto) error {
 	return sqlTemplate.Insert(insert_dnsHosts, objectConvert.Struct2Map(dnsHostsDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*DnsHostsDao) UpdateDnsHosts(dnsHostsDto dns.DnsHostsDto) error {
 	return sqlTemplate.Update(update_dnsHosts, objectConvert.Struct2Map(dnsHostsDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*DnsHostsDao) DeleteDnsHosts(dnsHostsDto dns.DnsHostsDto) error {

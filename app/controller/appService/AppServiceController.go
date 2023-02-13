@@ -3,7 +3,7 @@ package appService
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/appService/service"
+	"github.com/letheliu/hhjc-devops/appService/service"
 )
 
 type AppServiceController struct {
@@ -23,8 +23,6 @@ func AppServiceControllerRouter(party iris.Party) {
 
 	adinMenu.Post("/updateAppService", hero.Handler(aus.updateAppService))
 	adinMenu.Post("/upgradeAppService", hero.Handler(aus.upgradeAppService))
-
-
 
 	adinMenu.Post("/deleteAppService", hero.Handler(aus.deleteAppService))
 
@@ -91,8 +89,6 @@ func AppServiceControllerRouter(party iris.Party) {
 	adinMenu.Post("/stopAppService", hero.Handler(aus.stopAppService))
 	adinMenu.Post("/restartAppServices", hero.Handler(aus.restartAppServices))
 
-
-
 	adinMenu.Post("/copyAppService", hero.Handler(aus.copyAppService))
 
 	//get faster deploy app service
@@ -111,7 +107,8 @@ func AppServiceControllerRouter(party iris.Party) {
 	adinMenu.Post("/importAppService", hero.Handler(aus.importAppService))
 }
 
-/**
+/*
+*
 get app service
 */
 func (aus *AppServiceController) getAppService(ctx iris.Context) {
@@ -120,7 +117,8 @@ func (aus *AppServiceController) getAppService(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppServiceController) saveAppService(ctx iris.Context) {
@@ -129,7 +127,8 @@ func (aus *AppServiceController) saveAppService(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppServiceController) updateAppService(ctx iris.Context) {
@@ -138,7 +137,8 @@ func (aus *AppServiceController) updateAppService(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppServiceController) upgradeAppService(ctx iris.Context) {
@@ -147,7 +147,8 @@ func (aus *AppServiceController) upgradeAppService(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppServiceController) copyAppService(ctx iris.Context) {
@@ -156,7 +157,8 @@ func (aus *AppServiceController) copyAppService(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppServiceController) deleteAppService(ctx iris.Context) {
@@ -165,7 +167,8 @@ func (aus *AppServiceController) deleteAppService(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppServiceController) getAppVarGroup(ctx iris.Context) {
@@ -174,7 +177,8 @@ func (aus *AppServiceController) getAppVarGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppServiceController) saveAppVarGroup(ctx iris.Context) {
@@ -183,7 +187,8 @@ func (aus *AppServiceController) saveAppVarGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppServiceController) updateAppVarGroup(ctx iris.Context) {
@@ -192,7 +197,8 @@ func (aus *AppServiceController) updateAppVarGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppServiceController) deleteAppVarGroup(ctx iris.Context) {
@@ -201,7 +207,8 @@ func (aus *AppServiceController) deleteAppVarGroup(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppServiceController) getAppVar(ctx iris.Context) {
@@ -210,7 +217,8 @@ func (aus *AppServiceController) getAppVar(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppServiceController) saveAppVar(ctx iris.Context) {
@@ -219,7 +227,8 @@ func (aus *AppServiceController) saveAppVar(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppServiceController) updateAppVar(ctx iris.Context) {
@@ -228,7 +237,8 @@ func (aus *AppServiceController) updateAppVar(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppServiceController) deleteAppVar(ctx iris.Context) {
@@ -237,7 +247,8 @@ func (aus *AppServiceController) deleteAppVar(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppServiceController) getAppServiceVar(ctx iris.Context) {
@@ -246,7 +257,8 @@ func (aus *AppServiceController) getAppServiceVar(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppServiceController) saveAppServiceVar(ctx iris.Context) {
@@ -255,7 +267,8 @@ func (aus *AppServiceController) saveAppServiceVar(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppServiceController) updateAppServiceVar(ctx iris.Context) {
@@ -264,7 +277,8 @@ func (aus *AppServiceController) updateAppServiceVar(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppServiceController) deleteAppServiceVar(ctx iris.Context) {
@@ -273,7 +287,8 @@ func (aus *AppServiceController) deleteAppServiceVar(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppServiceController) getAppServiceHosts(ctx iris.Context) {
@@ -282,7 +297,8 @@ func (aus *AppServiceController) getAppServiceHosts(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppServiceController) saveAppServiceHosts(ctx iris.Context) {
@@ -291,7 +307,8 @@ func (aus *AppServiceController) saveAppServiceHosts(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppServiceController) updateAppServiceHosts(ctx iris.Context) {
@@ -300,7 +317,8 @@ func (aus *AppServiceController) updateAppServiceHosts(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppServiceController) deleteAppServiceHosts(ctx iris.Context) {
@@ -309,7 +327,8 @@ func (aus *AppServiceController) deleteAppServiceHosts(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppServiceController) getAppServiceDir(ctx iris.Context) {
@@ -318,7 +337,8 @@ func (aus *AppServiceController) getAppServiceDir(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppServiceController) saveAppServiceDir(ctx iris.Context) {
@@ -327,7 +347,8 @@ func (aus *AppServiceController) saveAppServiceDir(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppServiceController) updateAppServiceDir(ctx iris.Context) {
@@ -336,7 +357,8 @@ func (aus *AppServiceController) updateAppServiceDir(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppServiceController) deleteAppServiceDir(ctx iris.Context) {
@@ -345,7 +367,8 @@ func (aus *AppServiceController) deleteAppServiceDir(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppServiceController) getAppServicePort(ctx iris.Context) {
@@ -354,7 +377,8 @@ func (aus *AppServiceController) getAppServicePort(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppServiceController) saveAppServicePort(ctx iris.Context) {
@@ -363,7 +387,8 @@ func (aus *AppServiceController) saveAppServicePort(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppServiceController) updateAppServicePort(ctx iris.Context) {
@@ -372,7 +397,8 @@ func (aus *AppServiceController) updateAppServicePort(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppServiceController) deleteAppServicePort(ctx iris.Context) {
@@ -381,7 +407,8 @@ func (aus *AppServiceController) deleteAppServicePort(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppServiceController) getAppServiceContainer(ctx iris.Context) {
@@ -390,7 +417,8 @@ func (aus *AppServiceController) getAppServiceContainer(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppServiceController) saveAppServiceContainer(ctx iris.Context) {
@@ -399,7 +427,8 @@ func (aus *AppServiceController) saveAppServiceContainer(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppServiceController) updateAppServiceContainer(ctx iris.Context) {
@@ -408,7 +437,8 @@ func (aus *AppServiceController) updateAppServiceContainer(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppServiceController) deleteAppServiceContainer(ctx iris.Context) {
@@ -417,7 +447,8 @@ func (aus *AppServiceController) deleteAppServiceContainer(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 开启容器
 */
 func (aus *AppServiceController) startAppService(ctx iris.Context) {
@@ -425,8 +456,10 @@ func (aus *AppServiceController) startAppService(ctx iris.Context) {
 
 	ctx.JSON(reslut)
 }
-/**
- restart apps
+
+/*
+*
+restart apps
 */
 func (aus *AppServiceController) restartAppServices(ctx iris.Context) {
 	reslut := aus.appServiceService.RestartAppServices(ctx)
@@ -434,8 +467,8 @@ func (aus *AppServiceController) restartAppServices(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 停止容器
 */
 func (aus *AppServiceController) stopAppService(ctx iris.Context) {
@@ -451,7 +484,8 @@ func (aus *AppServiceController) getFasterDeploy(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppServiceController) saveFasterDeploy(ctx iris.Context) {
@@ -460,7 +494,8 @@ func (aus *AppServiceController) saveFasterDeploy(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppServiceController) updateFasterDeploy(ctx iris.Context) {
@@ -469,7 +504,8 @@ func (aus *AppServiceController) updateFasterDeploy(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppServiceController) deleteFasterDeploy(ctx iris.Context) {
@@ -478,14 +514,16 @@ func (aus *AppServiceController) deleteFasterDeploy(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 export app service
 */
 func (aus *AppServiceController) exportAppService(ctx iris.Context) {
 	aus.appServiceService.ExportAppService(ctx)
 }
 
-/**
+/*
+*
 export app service
 */
 func (aus *AppServiceController) importAppService(ctx iris.Context) {

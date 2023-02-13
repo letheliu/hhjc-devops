@@ -4,31 +4,31 @@ import (
 	"bytes"
 	"encoding/json"
 	"github.com/kataras/iris/v12"
-	appDao "github.com/zihao-boy/zihao/appService/dao"
-	dao2 "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/business/dao/appPublisherDao"
-	"github.com/zihao-boy/zihao/business/dao/businessImagesExtDao"
-	installApp "github.com/zihao-boy/zihao/business/dao/installAppDao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/costTime"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/encrypt"
-	"github.com/zihao-boy/zihao/common/httpReq"
-	"github.com/zihao-boy/zihao/common/queue/dockerfileQueue"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
-	appPublisher "github.com/zihao-boy/zihao/entity/dto/appPublisherDto"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
-	"github.com/zihao-boy/zihao/entity/dto/businessDockerfile"
-	"github.com/zihao-boy/zihao/entity/dto/businessImages"
-	"github.com/zihao-boy/zihao/entity/dto/composeYaml"
-	"github.com/zihao-boy/zihao/entity/dto/host"
-	installApp2 "github.com/zihao-boy/zihao/entity/dto/installApp"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	"github.com/zihao-boy/zihao/softService/dao"
+	appDao "github.com/letheliu/hhjc-devops/appService/dao"
+	dao2 "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/business/dao/appPublisherDao"
+	"github.com/letheliu/hhjc-devops/business/dao/businessImagesExtDao"
+	installApp "github.com/letheliu/hhjc-devops/business/dao/installAppDao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/costTime"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/encrypt"
+	"github.com/letheliu/hhjc-devops/common/httpReq"
+	"github.com/letheliu/hhjc-devops/common/queue/dockerfileQueue"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
+	appPublisher "github.com/letheliu/hhjc-devops/entity/dto/appPublisherDto"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessDockerfile"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessImages"
+	"github.com/letheliu/hhjc-devops/entity/dto/composeYaml"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
+	installApp2 "github.com/letheliu/hhjc-devops/entity/dto/installApp"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/softService/dao"
 	"gopkg.in/yaml.v3"
 	"path/filepath"
 	"strconv"
@@ -49,7 +49,8 @@ type BusinessImagesService struct {
 	businessImagesExtDao businessImagesExtDao.BusinessImagesExtDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (businessImagesService *BusinessImagesService) GetBusinessImagesAll(businessImagesDto businessImages.BusinessImagesDto) ([]*businessImages.BusinessImagesDto, error) {
@@ -67,7 +68,8 @@ func (businessImagesService *BusinessImagesService) GetBusinessImagesAll(busines
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (businessImagesService *BusinessImagesService) GetBusinessImages(ctx iris.Context) result.ResultDto {
@@ -121,7 +123,8 @@ func (businessImagesService *BusinessImagesService) GetBusinessImages(ctx iris.C
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (businessImagesService *BusinessImagesService) SaveBusinessImages(ctx iris.Context) result.ResultDto {
@@ -141,7 +144,7 @@ func (businessImagesService *BusinessImagesService) SaveBusinessImages(ctx iris.
 
 	isFile := ctx.FormValue("isFile")
 	//add URL
-	if isFile == "N"{
+	if isFile == "N" {
 		typeUrl := ctx.FormValue("typeUrl")
 		businessImagesDto.TypeUrl = typeUrl
 		err = businessImagesService.businessImagesDao.SaveBusinessImages(businessImagesDto)
@@ -202,7 +205,8 @@ func (businessImagesService *BusinessImagesService) SaveBusinessImages(ctx iris.
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (businessImagesService *BusinessImagesService) UpdateBusinessImages(ctx iris.Context) result.ResultDto {
@@ -224,7 +228,8 @@ func (businessImagesService *BusinessImagesService) UpdateBusinessImages(ctx iri
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (businessImagesService *BusinessImagesService) DeleteBusinessImages(ctx iris.Context) result.ResultDto {
@@ -246,7 +251,8 @@ func (businessImagesService *BusinessImagesService) DeleteBusinessImages(ctx iri
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (businessImagesService *BusinessImagesService) GeneratorImages(ctx iris.Context) result.ResultDto {
@@ -288,7 +294,8 @@ func doGeneratorImage(businessDockerfileDto *businessDockerfile.BusinessDockerfi
 	dockerfileQueue.SendData(businessDockerfileDto)
 }
 
-/**
+/*
+*
 查询镜像 系统信息
 */
 func (businessImagesService *BusinessImagesService) GetImagesPool(ctx iris.Context) result.ResultDto {
@@ -348,7 +355,8 @@ func freshAppState(data *interface{}, installAppDtos []*installApp2.InstallAppDt
 	}
 }
 
-/**
+/*
+*
 查询镜像 系统信息
 */
 func (businessImagesService *BusinessImagesService) GetMyAppPool(ctx iris.Context) result.ResultDto {
@@ -407,7 +415,7 @@ func (businessImagesService *BusinessImagesService) GetMyAppPool(ctx iris.Contex
 
 }
 
-//安装镜像
+// 安装镜像
 func (businessImagesService *BusinessImagesService) InstallImages(ctx iris.Context) result.ResultDto {
 
 	var (
@@ -535,15 +543,14 @@ func (businessImagesService *BusinessImagesService) InstallImages(ctx iris.Conte
 
 }
 
-//install App
+// install App
 func (businessImagesService *BusinessImagesService) installApp(installAppPageDto installApp2.InstallAppPageDto,
 	compose string,
 	user *user.UserDto, appShell string) result.ResultDto {
 	var (
-		composeYamlDto = composeYaml.ComposeYamlZiHaoDto{
-		}
-		serviceName   string
-		appServiceDto appService.AppServiceDto
+		composeYamlDto = composeYaml.ComposeYamlZiHaoDto{}
+		serviceName    string
+		appServiceDto  appService.AppServiceDto
 	)
 	// if is empty
 	if utils.IsEmpty(compose) {
@@ -706,9 +713,9 @@ func (businessImagesService *BusinessImagesService) doImportAppService(appServic
 				AvId:     seq.Generator(),
 				AsId:     appServiceDto.AsId,
 				TenantId: appServiceDto.TenantId,
-				VarSpec:  strings.SplitN(env, ":",2)[0],
-				VarValue: strings.SplitN(env, ":",2)[1],
-				VarName:  strings.SplitN(env, ":",2)[0],
+				VarSpec:  strings.SplitN(env, ":", 2)[0],
+				VarValue: strings.SplitN(env, ":", 2)[1],
+				VarName:  strings.SplitN(env, ":", 2)[0],
 			}
 			businessImagesService.appServiceDao.SaveAppServiceVar(appServiceVar)
 		}
@@ -815,13 +822,12 @@ func (businessImagesService *BusinessImagesService) UninstallImages(ctx iris.Con
 
 }
 
-//install App
+// install App
 func (businessImagesService *BusinessImagesService) uninstallApp(installAppPageDto installApp2.InstallAppPageDto,
 	compose string,
 	user *user.UserDto) result.ResultDto {
 	var (
-		composeYamlDto = composeYaml.ComposeYamlZiHaoDto{
-		}
+		composeYamlDto       = composeYaml.ComposeYamlZiHaoDto{}
 		serviceName          string
 		appServiceDto        appService.AppServiceDto
 		deleteAppServiceDtos []*appService.AppServiceDto

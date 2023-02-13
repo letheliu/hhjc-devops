@@ -1,6 +1,6 @@
 package monitor
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
 type MonitorHostDto struct {
 	dto.PageDto

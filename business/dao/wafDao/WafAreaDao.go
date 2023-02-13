@@ -1,10 +1,10 @@
 package wafDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"gorm.io/gorm"
 )
 
@@ -77,7 +77,8 @@ VALUES(#Id#,#TypeCd#,#AreaName#)
 type WafAreaDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafAreaDao) GetWafAreaCount(wafAreaDto waf.WafAreaDto) (int64, error) {
@@ -93,7 +94,8 @@ func (*WafAreaDao) GetWafAreaCount(wafAreaDto waf.WafAreaDto) (int64, error) {
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafAreaDao) GetWafAreas(wafAreaDto waf.WafAreaDto) ([]*waf.WafAreaDto, error) {
@@ -105,21 +107,24 @@ func (*WafAreaDao) GetWafAreas(wafAreaDto waf.WafAreaDto) ([]*waf.WafAreaDto, er
 	return wafAreaDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*WafAreaDao) SaveWafArea(wafAreaDto waf.WafAreaDto) error {
 	return sqlTemplate.Insert(insert_wafArea, objectConvert.Struct2Map(wafAreaDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*WafAreaDao) UpdateWafArea(wafAreaDto waf.WafAreaDto) error {
 	return sqlTemplate.Update(update_wafArea, objectConvert.Struct2Map(wafAreaDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*WafAreaDao) DeleteWafArea(wafAreaDto waf.WafAreaDto) error {

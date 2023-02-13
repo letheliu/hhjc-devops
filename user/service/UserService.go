@@ -1,23 +1,23 @@
 package service
 
 import (
-
-
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/encrypt"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	"github.com/zihao-boy/zihao/entity/vo"
-	dao2 "github.com/zihao-boy/zihao/user/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/encrypt"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/entity/vo"
+	dao2 "github.com/letheliu/hhjc-devops/user/dao"
 )
 
 type UserService struct {
 	userDao dao2.UserDao
 }
 
-/**
-  用户登录处理
+/*
+*
+
+	用户登录处理
 */
 func (userService *UserService) Login(ctx iris.Context) (result.ResultDto, *user.UserDto) {
 	var (
@@ -33,15 +33,17 @@ func (userService *UserService) Login(ctx iris.Context) (result.ResultDto, *user
 
 	userDto, err = userService.userDao.GetUser(*userVo)
 	//fmt.Print("userDto", userDto)
-	if err != nil ||  len(userDto.UserId) < 1 {
+	if err != nil || len(userDto.UserId) < 1 {
 		return result.Error("用户名密码错误"), nil
 	}
 
 	return result.SuccessData(userDto), userDto
 }
 
-/**
-  用户登录处理
+/*
+*
+
+	用户登录处理
 */
 func (userService *UserService) ChangePwd(ctx iris.Context) result.ResultDto {
 	var userInfo *user.UserDto = ctx.Values().Get(constants.UINFO).(*user.UserDto)
@@ -70,8 +72,10 @@ func (userService *UserService) ChangePwd(ctx iris.Context) result.ResultDto {
 	return result.Success()
 }
 
-/**
-  用户登录处理
+/*
+*
+
+	用户登录处理
 */
 func (userService *UserService) GetUserInfo(ctx iris.Context) result.ResultDto {
 	var userInfo *user.UserDto = ctx.Values().Get(constants.UINFO).(*user.UserDto)

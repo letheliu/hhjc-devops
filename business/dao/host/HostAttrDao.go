@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
 	"gorm.io/gorm"
 )
 
@@ -75,7 +75,8 @@ values (#AttrId#,#HostId#,#Value#,#SpecCd#)
 type HostAttrDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*HostAttrDao) GetHostAttrCount(hostAttrDto host.HostAttrDto) (int64, error) {
@@ -91,7 +92,8 @@ func (*HostAttrDao) GetHostAttrCount(hostAttrDto host.HostAttrDto) (int64, error
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*HostAttrDao) GetHostAttrs(hostAttrDto host.HostAttrDto) ([]*host.HostAttrDto, error) {
@@ -103,21 +105,24 @@ func (*HostAttrDao) GetHostAttrs(hostAttrDto host.HostAttrDto) ([]*host.HostAttr
 	return hostAttrDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*HostAttrDao) SaveHostAttr(hostAttrDto host.HostAttrDto) error {
 	return sqlTemplate.Insert(insert_hostAttr, objectConvert.Struct2Map(hostAttrDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*HostAttrDao) UpdateHostAttr(hostAttrDto host.HostAttrDto) error {
 	return sqlTemplate.Update(update_hostAttr, objectConvert.Struct2Map(hostAttrDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*HostAttrDao) DeleteHostAttr(hostAttrDto host.HostAttrDto) error {

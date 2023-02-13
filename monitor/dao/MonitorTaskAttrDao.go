@@ -1,9 +1,9 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
 	"gorm.io/gorm"
 )
 
@@ -46,7 +46,8 @@ and t.status_cd = '0'
 type MonitorTaskAttrDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*MonitorTaskAttrDao) GetMonitorTaskAttrs(monitorTaskAttrDto monitor.MonitorTaskAttrDto) ([]*monitor.MonitorTaskAttrDto, error) {
@@ -58,21 +59,24 @@ func (*MonitorTaskAttrDao) GetMonitorTaskAttrs(monitorTaskAttrDto monitor.Monito
 	return monitorTaskAttrDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*MonitorTaskAttrDao) SaveMonitorTaskAttr(monitorTaskAttrDto monitor.MonitorTaskAttrDto) error {
 	return sqlTemplate.Insert(insert_monitorTaskAttr, objectConvert.Struct2Map(monitorTaskAttrDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*MonitorTaskAttrDao) UpdateMonitorTaskAttr(monitorTaskAttrDto monitor.MonitorTaskAttrDto) error {
 	return sqlTemplate.Update(update_monitorTaskAttr, objectConvert.Struct2Map(monitorTaskAttrDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*MonitorTaskAttrDao) DeleteMonitorTaskAttr(monitorTaskAttrDto monitor.MonitorTaskAttrDto) error {

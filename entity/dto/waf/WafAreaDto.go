@@ -1,11 +1,11 @@
 package waf
 
 import (
-	"github.com/zihao-boy/zihao/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto"
 	"time"
 )
 
-const(
+const (
 	Waf_area_type_W = "W"
 	Waf_area_type_B = "B"
 )
@@ -13,9 +13,9 @@ const(
 type WafAreaDto struct {
 	dto.PageDto
 	WafRuleDto
-	Id    string    `json:"id"  `
-	TypeCd    string    `json:"typeCd" sql:"-" `
-	AreaName  string    `json:"areaName"  sql:"-"`
+	Id         string    `json:"id"  `
+	TypeCd     string    `json:"typeCd" sql:"-" `
+	AreaName   string    `json:"areaName"  sql:"-"`
 	CreateTime time.Time `json:"createTime" sql:"-"`
 	StatusCd   string    `json:"statusCd" sql:"-"`
 }

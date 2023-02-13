@@ -1,10 +1,10 @@
 package resourcesDbDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/resources"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/resources"
 	"gorm.io/gorm"
 )
 
@@ -90,7 +90,8 @@ VALUES(#DbId#,#Name#,#Ip#,#Port#,#Username#,#Password#,#DbName#,#TenantId#)
 type ResourcesDbDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*ResourcesDbDao) GetResourcesDbCount(resourcesDbDto resources.ResourcesDbDto) (int64, error) {
@@ -106,7 +107,8 @@ func (*ResourcesDbDao) GetResourcesDbCount(resourcesDbDto resources.ResourcesDbD
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*ResourcesDbDao) GetResourcesDbs(resourcesDbDto resources.ResourcesDbDto) ([]*resources.ResourcesDbDto, error) {
@@ -118,21 +120,24 @@ func (*ResourcesDbDao) GetResourcesDbs(resourcesDbDto resources.ResourcesDbDto) 
 	return resourcesDbDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*ResourcesDbDao) SaveResourcesDb(resourcesDbDto resources.ResourcesDbDto) error {
 	return sqlTemplate.Insert(insert_resourcesDb, objectConvert.Struct2Map(resourcesDbDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*ResourcesDbDao) UpdateResourcesDb(resourcesDbDto resources.ResourcesDbDto) error {
 	return sqlTemplate.Update(update_resourcesDb, objectConvert.Struct2Map(resourcesDbDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*ResourcesDbDao) DeleteResourcesDb(resourcesDbDto resources.ResourcesDbDto) error {

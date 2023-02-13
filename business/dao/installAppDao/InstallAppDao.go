@@ -1,10 +1,10 @@
 package installAppDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/installApp"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/installApp"
 	"gorm.io/gorm"
 )
 
@@ -81,7 +81,8 @@ VALUES(#AppId#,#AppName#,#Version#,#ExtAppId#,#TenantId#,#CreateUserId#)
 type InstallAppDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*InstallAppDao) GetInstallAppCount(installAppDto installApp.InstallAppDto) (int64, error) {
@@ -97,7 +98,8 @@ func (*InstallAppDao) GetInstallAppCount(installAppDto installApp.InstallAppDto)
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*InstallAppDao) GetInstallApps(installAppDto installApp.InstallAppDto) ([]*installApp.InstallAppDto, error) {
@@ -109,21 +111,24 @@ func (*InstallAppDao) GetInstallApps(installAppDto installApp.InstallAppDto) ([]
 	return installAppDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*InstallAppDao) SaveInstallApp(installAppDto installApp.InstallAppDto) error {
 	return sqlTemplate.Insert(insert_installApp, objectConvert.Struct2Map(installAppDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*InstallAppDao) UpdateInstallApp(installAppDto installApp.InstallAppDto) error {
 	return sqlTemplate.Update(update_installApp, objectConvert.Struct2Map(installAppDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*InstallAppDao) DeleteInstallApp(installAppDto installApp.InstallAppDto) error {

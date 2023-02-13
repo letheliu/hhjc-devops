@@ -1,10 +1,10 @@
 package resourcesFtpDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/resources"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/resources"
 	"gorm.io/gorm"
 )
 
@@ -90,7 +90,8 @@ VALUES(#FtpId#,#Name#,#Ip#,#Port#,#Username#,#Passwd#,#Path#,#TenantId#)
 type ResourcesFtpDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*ResourcesFtpDao) GetResourcesFtpCount(resourcesFtpDto resources.ResourcesFtpDto) (int64, error) {
@@ -106,7 +107,8 @@ func (*ResourcesFtpDao) GetResourcesFtpCount(resourcesFtpDto resources.Resources
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*ResourcesFtpDao) GetResourcesFtps(resourcesFtpDto resources.ResourcesFtpDto) ([]*resources.ResourcesFtpDto, error) {
@@ -118,21 +120,24 @@ func (*ResourcesFtpDao) GetResourcesFtps(resourcesFtpDto resources.ResourcesFtpD
 	return resourcesFtpDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*ResourcesFtpDao) SaveResourcesFtp(resourcesFtpDto resources.ResourcesFtpDto) error {
 	return sqlTemplate.Insert(insert_resourcesFtp, objectConvert.Struct2Map(resourcesFtpDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*ResourcesFtpDao) UpdateResourcesFtp(resourcesFtpDto resources.ResourcesFtpDto) error {
 	return sqlTemplate.Update(update_resourcesFtp, objectConvert.Struct2Map(resourcesFtpDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*ResourcesFtpDao) DeleteResourcesFtp(resourcesFtpDto resources.ResourcesFtpDto) error {

@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/serviceSql"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/serviceSql"
 	"gorm.io/gorm"
 )
 
@@ -56,7 +56,8 @@ VALUES (#SqlCode#,#SqlText#,#Remark#)
 type ServiceSqlDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*ServiceSqlDao) GetServiceSqlCount(serviceSqlDto serviceSql.ServiceSqlDto) (int64, error) {
@@ -72,7 +73,8 @@ func (*ServiceSqlDao) GetServiceSqlCount(serviceSqlDto serviceSql.ServiceSqlDto)
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*ServiceSqlDao) GetServiceSqls(serviceSqlDto serviceSql.ServiceSqlDto) ([]*serviceSql.ServiceSqlDto, error) {
@@ -84,21 +86,24 @@ func (*ServiceSqlDao) GetServiceSqls(serviceSqlDto serviceSql.ServiceSqlDto) ([]
 	return serviceSqlDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*ServiceSqlDao) SaveServiceSql(serviceSqlDto serviceSql.ServiceSqlDto) error {
 	return sqlTemplate.Insert(insert_service_sql, objectConvert.Struct2Map(serviceSqlDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*ServiceSqlDao) UpdateServiceSql(serviceSqlDto serviceSql.ServiceSqlDto) error {
 	return sqlTemplate.Update(update_service_sql, objectConvert.Struct2Map(serviceSqlDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*ServiceSqlDao) DeleteServiceSql(serviceSqlDto serviceSql.ServiceSqlDto) error {

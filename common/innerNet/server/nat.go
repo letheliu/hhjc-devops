@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/zihao-boy/zihao/common/innerNet/header"
+	"github.com/letheliu/hhjc-devops/common/innerNet/header"
 )
 
 func Snat(data []byte, src string) {

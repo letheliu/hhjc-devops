@@ -1,25 +1,26 @@
 package service
 
 import (
+	"github.com/kataras/iris/v12"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/httpReq"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/tenant"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	"github.com/zihao-boy/zihao/monitor/dao"
-	"github.com/zihao-boy/zihao/user/service"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/httpReq"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/tenant"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/monitor/dao"
+	"github.com/letheliu/hhjc-devops/user/service"
 )
 
 type MonitorEventService struct {
 	monitorEventDao dao.MonitorEventDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (monitorEventService *MonitorEventService) GetMonitorEventAll(monitorEventDto monitor.MonitorEventDto) ([]*monitor.MonitorEventDto, error) {
@@ -37,7 +38,8 @@ func (monitorEventService *MonitorEventService) GetMonitorEventAll(monitorEventD
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (monitorEventService *MonitorEventService) GetMonitorEvents(ctx iris.Context) result.ResultDto {
@@ -91,7 +93,8 @@ func (monitorEventService *MonitorEventService) GetMonitorEvents(ctx iris.Contex
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (monitorEventService *MonitorEventService) SaveMonitorEvents(eventDto monitor.MonitorEventDto) error {
@@ -136,7 +139,7 @@ func sendToCompanyWechat(eventDto monitor.MonitorEventDto) (string, error) {
 	var url string = tenantSettingDtos[0].Value
 	// 1、构建需要的参数
 	context := map[string]string{
-		"content": "[梓豪平台告警]" + eventDto.Remark,
+		"content": "[华恒DevOps平台告警]" + eventDto.Remark,
 	}
 	data := map[string]interface{}{
 		"msgtype": "text",
@@ -164,7 +167,7 @@ func sendToDingDing(eventDto monitor.MonitorEventDto) (string, error) {
 	var url string = tenantSettingDtos[0].Value
 	// 1、构建需要的参数
 	context := map[string]string{
-		"content": "[梓豪平台告警]" + eventDto.Remark,
+		"content": "[华恒DevOps平台告警]" + eventDto.Remark,
 	}
 	data := map[string]interface{}{
 		"msgtype": "text",
@@ -174,7 +177,8 @@ func sendToDingDing(eventDto monitor.MonitorEventDto) (string, error) {
 	return string(resp), err
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (monitorEventService *MonitorEventService) UpdateMonitorEvents(ctx iris.Context) result.ResultDto {
@@ -196,7 +200,8 @@ func (monitorEventService *MonitorEventService) UpdateMonitorEvents(ctx iris.Con
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (monitorEventService *MonitorEventService) DeleteMonitorEvents(ctx iris.Context) result.ResultDto {

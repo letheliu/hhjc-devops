@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
 	"gorm.io/gorm"
 )
 
@@ -127,8 +127,6 @@ VALUES(#AsId#,#AsName#,#AsType#,#TenantId#,#AsDesc#,#State#,#AsCount#,#AsGroupId
 		and as_id = #AsId#
 		$endif
 	`
-
-
 
 	query_appServiceVar_count string = `
 		select count(1) total
@@ -288,7 +286,6 @@ VALUES(#AvId#,#AsId#,#TenantId#,#VarSpec#,#VarName#,#VarValue#)
 		$endif
 	`
 
-
 	//查询应用目录映射
 	query_appServiceDir_count string = `
 		select count(1) total
@@ -353,7 +350,6 @@ VALUES(#AvId#,#AsId#,#TenantId#,#VarSpec#,#VarName#,#VarValue#)
 		and dir_id = #DirId#
 		$endif
 	`
-
 
 	//查询应用目录映射
 	query_appServicePort_count string = `
@@ -545,7 +541,7 @@ left join business_package bp on t.package_id = bp.id and bp.status_cd = '0'
 					$endif
 	`
 
-	insert_fasterDeploy string =`
+	insert_fasterDeploy string = `
 	insert into faster_deploy(deploy_id,app_name,deploy_type,tenant_id,package_id,shell_package_id,as_group_id,as_deploy_type,as_deploy_id,open_port)
 	VALUES(#DeployId#,#AppName#,#DeployType#,#TenantId#,#PackageId#,#ShellPackageId#,#AsGroupId#,#AsDeployType#,#AsDeployId#,#OpenPort#)
 `
@@ -596,10 +592,10 @@ left join business_package bp on t.package_id = bp.id and bp.status_cd = '0'
 )
 
 type AppServiceDao struct {
-
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppServiceDao) GetAppServiceCount(appServiceDto appService.AppServiceDto) (int64, error) {
@@ -615,7 +611,8 @@ func (*AppServiceDao) GetAppServiceCount(appServiceDto appService.AppServiceDto)
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppServiceDao) GetAppServices(appServiceDto appService.AppServiceDto) ([]*appService.AppServiceDto, error) {
@@ -627,28 +624,32 @@ func (*AppServiceDao) GetAppServices(appServiceDto appService.AppServiceDto) ([]
 	return appServiceDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*AppServiceDao) SaveAppService(appServiceDto appService.AppServiceDto) error {
 	return sqlTemplate.Insert(insert_appService, objectConvert.Struct2Map(appServiceDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*AppServiceDao) UpdateAppService(appServiceDto appService.AppServiceDto) error {
 	return sqlTemplate.Update(update_appService, objectConvert.Struct2Map(appServiceDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*AppServiceDao) DeleteAppService(appServiceDto appService.AppServiceDto) error {
 	return sqlTemplate.Delete(delete_appService, objectConvert.Struct2Map(appServiceDto), false)
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppServiceDao) GetAppServiceVarCount(appServiceVarDto appService.AppServiceVarDto) (int64, error) {
@@ -664,7 +665,8 @@ func (*AppServiceDao) GetAppServiceVarCount(appServiceVarDto appService.AppServi
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppServiceDao) GetAppServiceVars(appServiceVarDto appService.AppServiceVarDto) ([]*appService.AppServiceVarDto, error) {
@@ -676,21 +678,24 @@ func (*AppServiceDao) GetAppServiceVars(appServiceVarDto appService.AppServiceVa
 	return appServiceVarDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*AppServiceDao) SaveAppServiceVar(appServiceVarDto appService.AppServiceVarDto) error {
 	return sqlTemplate.Insert(insert_appServiceVar, objectConvert.Struct2Map(appServiceVarDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*AppServiceDao) UpdateAppServiceVar(appServiceVarDto appService.AppServiceVarDto) error {
 	return sqlTemplate.Update(update_appServiceVar, objectConvert.Struct2Map(appServiceVarDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*AppServiceDao) DeleteAppServiceVar(appServiceVarDto appService.AppServiceVarDto) error {
@@ -747,7 +752,7 @@ func (d *AppServiceDao) GetAppServiceDirCount(dirDto appService.AppServiceDirDto
 	return pageDto.Total, err
 }
 
-//查询服务磁盘路径
+// 查询服务磁盘路径
 func (d *AppServiceDao) GetAppServiceDir(dirDto appService.AppServiceDirDto) ([]*appService.AppServiceDirDto, error) {
 	var appServiceDirDtos []*appService.AppServiceDirDto
 	sqlTemplate.SelectList(query_appServiceDir, objectConvert.Struct2Map(dirDto), func(db *gorm.DB) {
@@ -761,17 +766,17 @@ func (d *AppServiceDao) SaveAppServiceDir(dirDto appService.AppServiceDirDto) er
 	return sqlTemplate.Insert(insert_appServiceDir, objectConvert.Struct2Map(dirDto), false)
 }
 
-//修改服务映射目录
+// 修改服务映射目录
 func (d *AppServiceDao) UpdateAppServiceDir(dirDto appService.AppServiceDirDto) error {
 	return sqlTemplate.Update(update_appServiceDir, objectConvert.Struct2Map(dirDto), false)
 }
 
-//删除应用映射目录
+// 删除应用映射目录
 func (d *AppServiceDao) DeleteAppServiceDir(dirDto appService.AppServiceDirDto) error {
 	return sqlTemplate.Delete(delete_appServiceDir, objectConvert.Struct2Map(dirDto), false)
 }
 
-//查询端口
+// 查询端口
 func (d *AppServiceDao) GetAppServicePortCount(portDto appService.AppServicePortDto) (int64, error) {
 	var (
 		pageDto dto.PageDto
@@ -785,7 +790,7 @@ func (d *AppServiceDao) GetAppServicePortCount(portDto appService.AppServicePort
 	return pageDto.Total, err
 }
 
-//query app service port mapping
+// query app service port mapping
 func (d *AppServiceDao) GetAppServicePort(portDto appService.AppServicePortDto) ([]*appService.AppServicePortDto, error) {
 	var appServicePortDtos []*appService.AppServicePortDto
 	sqlTemplate.SelectList(query_appServicePort, objectConvert.Struct2Map(portDto), func(db *gorm.DB) {
@@ -863,7 +868,7 @@ func (d *AppServiceDao) GetFasterDeploys(deployDto appService.FasterDeployDto) (
 	return fasterDeployDtos, nil
 }
 
-//save faster deploy
+// save faster deploy
 func (d *AppServiceDao) SaveFasterDeploy(deployDto appService.FasterDeployDto) error {
 	return sqlTemplate.Insert(insert_fasterDeploy, objectConvert.Struct2Map(deployDto), false)
 }

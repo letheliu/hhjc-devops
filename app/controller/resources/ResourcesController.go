@@ -3,10 +3,10 @@ package resources
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/business/service/resourcesBackUpService"
-	"github.com/zihao-boy/zihao/business/service/resourcesDbService"
-	"github.com/zihao-boy/zihao/business/service/resourcesFtpService"
-	"github.com/zihao-boy/zihao/business/service/resourcesOssService"
+	"github.com/letheliu/hhjc-devops/business/service/resourcesBackUpService"
+	"github.com/letheliu/hhjc-devops/business/service/resourcesDbService"
+	"github.com/letheliu/hhjc-devops/business/service/resourcesFtpService"
+	"github.com/letheliu/hhjc-devops/business/service/resourcesOssService"
 )
 
 type ResourcesController struct {
@@ -82,7 +82,8 @@ func ResourcesControllerRouter(party iris.Party) {
 	adinMenu.Post("/renameFtpFile", hero.Handler(aus.renameFtpFile))
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *ResourcesController) getFtp(ctx iris.Context) {
@@ -90,7 +91,8 @@ func (aus *ResourcesController) getFtp(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *ResourcesController) saveFtp(ctx iris.Context) {
@@ -99,7 +101,8 @@ func (aus *ResourcesController) saveFtp(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *ResourcesController) updateFtp(ctx iris.Context) {
@@ -108,7 +111,8 @@ func (aus *ResourcesController) updateFtp(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *ResourcesController) deleteFtp(ctx iris.Context) {
@@ -117,8 +121,8 @@ func (aus *ResourcesController) deleteFtp(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 查询 主机组
 */
 func (aus *ResourcesController) listFtpFiles(ctx iris.Context) {
@@ -126,7 +130,8 @@ func (aus *ResourcesController) listFtpFiles(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *ResourcesController) removeFtpFile(ctx iris.Context) {
@@ -135,7 +140,8 @@ func (aus *ResourcesController) removeFtpFile(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *ResourcesController) uploadFtpFile(ctx iris.Context) {
@@ -144,7 +150,8 @@ func (aus *ResourcesController) uploadFtpFile(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *ResourcesController) downloadFtpFile(ctx iris.Context) {
@@ -152,7 +159,8 @@ func (aus *ResourcesController) downloadFtpFile(ctx iris.Context) {
 
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *ResourcesController) newFtpFile(ctx iris.Context) {
@@ -161,8 +169,8 @@ func (aus *ResourcesController) newFtpFile(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 修改 主机组
 */
 func (aus *ResourcesController) renameFtpFile(ctx iris.Context) {
@@ -171,8 +179,8 @@ func (aus *ResourcesController) renameFtpFile(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-
-/**
+/*
+*
 查询 主机组
 */
 func (aus *ResourcesController) getOss(ctx iris.Context) {
@@ -180,7 +188,8 @@ func (aus *ResourcesController) getOss(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *ResourcesController) saveOss(ctx iris.Context) {
@@ -189,7 +198,8 @@ func (aus *ResourcesController) saveOss(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *ResourcesController) updateOss(ctx iris.Context) {
@@ -198,7 +208,8 @@ func (aus *ResourcesController) updateOss(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *ResourcesController) deleteOss(ctx iris.Context) {
@@ -207,7 +218,8 @@ func (aus *ResourcesController) deleteOss(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *ResourcesController) listOssFiles(ctx iris.Context) {
@@ -215,7 +227,8 @@ func (aus *ResourcesController) listOssFiles(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *ResourcesController) removeOssFile(ctx iris.Context) {
@@ -224,7 +237,8 @@ func (aus *ResourcesController) removeOssFile(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *ResourcesController) uploadOssFile(ctx iris.Context) {
@@ -233,7 +247,8 @@ func (aus *ResourcesController) uploadOssFile(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *ResourcesController) downloadOssFile(ctx iris.Context) {
@@ -241,7 +256,8 @@ func (aus *ResourcesController) downloadOssFile(ctx iris.Context) {
 
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *ResourcesController) getDb(ctx iris.Context) {
@@ -249,7 +265,8 @@ func (aus *ResourcesController) getDb(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *ResourcesController) saveDb(ctx iris.Context) {
@@ -258,7 +275,8 @@ func (aus *ResourcesController) saveDb(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *ResourcesController) updateDb(ctx iris.Context) {
@@ -267,7 +285,8 @@ func (aus *ResourcesController) updateDb(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *ResourcesController) deleteDb(ctx iris.Context) {
@@ -276,7 +295,8 @@ func (aus *ResourcesController) deleteDb(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *ResourcesController) getBackUp(ctx iris.Context) {
@@ -284,7 +304,8 @@ func (aus *ResourcesController) getBackUp(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *ResourcesController) saveBackUp(ctx iris.Context) {
@@ -293,7 +314,8 @@ func (aus *ResourcesController) saveBackUp(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *ResourcesController) updateBackUp(ctx iris.Context) {
@@ -302,7 +324,8 @@ func (aus *ResourcesController) updateBackUp(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *ResourcesController) deleteBackUp(ctx iris.Context) {
@@ -311,7 +334,8 @@ func (aus *ResourcesController) deleteBackUp(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *ResourcesController) startBackUp(ctx iris.Context) {
@@ -320,7 +344,8 @@ func (aus *ResourcesController) startBackUp(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *ResourcesController) stopBackUp(ctx iris.Context) {

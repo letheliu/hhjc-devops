@@ -1,6 +1,6 @@
 package appVarGroup
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
 const (
 	Avg_Type_public string = "001"

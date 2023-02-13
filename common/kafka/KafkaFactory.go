@@ -3,8 +3,8 @@ package kafka
 import (
 	"fmt"
 	"github.com/Shopify/sarama"
-	logTraceService "github.com/zihao-boy/zihao/business/service/logTrace"
-	config2 "github.com/zihao-boy/zihao/config"
+	logTraceService "github.com/letheliu/hhjc-devops/business/service/logTrace"
+	config2 "github.com/letheliu/hhjc-devops/config"
 )
 
 const (
@@ -50,7 +50,7 @@ func saveLogTrace(message *sarama.ConsumerMessage) {
 
 }
 
-//send message
+// send message
 func SendMessage(topic string, data string) {
 	kafkaProducer.SendMessage(topic, []byte(data))
 }

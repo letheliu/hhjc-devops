@@ -1,6 +1,6 @@
 package resources
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
 const (
 	Back_up_state_STOP  string = "STOP"
@@ -14,23 +14,23 @@ const (
 	Back_up_Type_Cd_file string = "20002"
 )
 
-//ftp struct
+// ftp struct
 type ResourcesFtpDto struct {
 	dto.PageDto
 
-	FtpId      string `json:"ftpId" sql:"-"`
-	Name       string `json:"name" `
-	Ip         string `json:"ip" `
-	Port       string `json:"port" `
-	Username   string `json:"username" `
-	Passwd     string `json:"passwd" `
-	Path       string `json:"path" `
-	CreateTime string `json:"createTime" sql:"-"`
-	StatusCd   string `json:"statusCd" sql:"-"`
-	TenantId   string `json:"tenantId" sql:"-"`
-	CurPath string `json:"curPath"`
+	FtpId         string `json:"ftpId" sql:"-"`
+	Name          string `json:"name" `
+	Ip            string `json:"ip" `
+	Port          string `json:"port" `
+	Username      string `json:"username" `
+	Passwd        string `json:"passwd" `
+	Path          string `json:"path" `
+	CreateTime    string `json:"createTime" sql:"-"`
+	StatusCd      string `json:"statusCd" sql:"-"`
+	TenantId      string `json:"tenantId" sql:"-"`
+	CurPath       string `json:"curPath"`
 	FileGroupName string `json:"fileGroupName"`
-	NewName string `json:"newName"`
+	NewName       string `json:"newName"`
 }
 
 // oss struct
@@ -50,7 +50,7 @@ type ResourcesOssDto struct {
 	StatusCd        string `json:"statusCd" sql:"-"`
 	TenantId        string `json:"tenantId" sql:"-"`
 	CurPath         string `json:"curPath"`
-	FileGroupName string `json:"fileGroupName"`
+	FileGroupName   string `json:"fileGroupName"`
 }
 
 // oss struct

@@ -3,38 +3,37 @@ package service
 import (
 	"encoding/json"
 	"fmt"
-	dao3 "github.com/zihao-boy/zihao/business/dao/host"
-	"github.com/zihao-boy/zihao/common/queue/monitorHostQueue"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
-	dao2 "github.com/zihao-boy/zihao/monitor/dao"
+	"github.com/kataras/iris/v12"
+	dao3 "github.com/letheliu/hhjc-devops/business/dao/host"
+	"github.com/letheliu/hhjc-devops/common/queue/monitorHostQueue"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
+	dao2 "github.com/letheliu/hhjc-devops/monitor/dao"
 	"path"
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/kataras/iris/v12"
-	appServiceDao "github.com/zihao-boy/zihao/appService/dao"
-	"github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/common/cache/factory"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/entity/dto/container"
-	"github.com/zihao-boy/zihao/entity/dto/host"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
+	appServiceDao "github.com/letheliu/hhjc-devops/appService/dao"
+	"github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/common/cache/factory"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/entity/dto/container"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
 	"golang.org/x/crypto/ssh"
 )
 
 const maxSize = 1000 * iris.MB // 第二种方法
 
 type HostService struct {
-	hostDao dao.HostDao
+	hostDao       dao.HostDao
 	appServiceDao appServiceDao.AppServiceDao
-	hostAttrDao dao3.HostAttrDao
-
+	hostAttrDao   dao3.HostAttrDao
 }
 
 const (
@@ -42,7 +41,8 @@ const (
 	get_container string = "#!/bin/bash\n\ncontainer_id=`docker ps -a|awk '{if (NR>1){print $1}}'`\n\ncontainer_name=`docker ps -a|awk '{if (NR>1){print $(NF)}}'`\n\nimage=`docker ps -a|awk '{if (NR>1){print $2}}'`\n\nport=`docker ps -a|awk '{if (NR>1){print $(NF-1)}}'`\n\necho \"$container_id&&$container_name&&$image&&$port\""
 )
 
-/**
+/*
+*
 查询 系统信息
 */
 func (hostService *HostService) GetHostGroups(ctx iris.Context) result.ResultDto {
@@ -90,7 +90,8 @@ func (hostService *HostService) GetHostGroups(ctx iris.Context) result.ResultDto
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (hostService *HostService) SaveHostGroups(ctx iris.Context) result.ResultDto {
@@ -116,7 +117,8 @@ func (hostService *HostService) SaveHostGroups(ctx iris.Context) result.ResultDt
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (hostService *HostService) UpdateHostGroups(ctx iris.Context) result.ResultDto {
@@ -138,7 +140,8 @@ func (hostService *HostService) UpdateHostGroups(ctx iris.Context) result.Result
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (hostService *HostService) DeleteHostGroups(ctx iris.Context) result.ResultDto {
@@ -160,7 +163,8 @@ func (hostService *HostService) DeleteHostGroups(ctx iris.Context) result.Result
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (hostService *HostService) GetHosts(ctx iris.Context) result.ResultDto {
@@ -218,7 +222,8 @@ func (hostService *HostService) GetHosts(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (hostService *HostService) SaveHost(ctx iris.Context) result.ResultDto {
@@ -237,8 +242,8 @@ func (hostService *HostService) SaveHost(ctx iris.Context) result.ResultDto {
 	hostDto.State = "1001"
 	hostDto.HeartbeatTime = time.Now().Format("2006-01-02 15:04:05")
 	// default add 22 port
-	if strings.Index(hostDto.Ip,":") < 0{
-		hostDto.Ip = hostDto.Ip +":22"
+	if strings.Index(hostDto.Ip, ":") < 0 {
+		hostDto.Ip = hostDto.Ip + ":22"
 	}
 
 	err = hostService.hostDao.SaveHost(hostDto)
@@ -246,11 +251,11 @@ func (hostService *HostService) SaveHost(ctx iris.Context) result.ResultDto {
 		return result.Error(err.Error())
 	}
 
-	if !utils.IsEmpty(hostDto.OsName){
+	if !utils.IsEmpty(hostDto.OsName) {
 		hostAttrDto := host.HostAttrDto{
 			AttrId: seq.Generator(),
 			SpecCd: host.Spec_cd_osName,
-			Value: hostDto.OsName,
+			Value:  hostDto.OsName,
 			HostId: hostDto.HostId,
 		}
 		hostService.hostAttrDao.SaveHostAttr(hostAttrDto)
@@ -260,7 +265,8 @@ func (hostService *HostService) SaveHost(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (hostService *HostService) UpdateHost(ctx iris.Context) result.ResultDto {
@@ -278,24 +284,24 @@ func (hostService *HostService) UpdateHost(ctx iris.Context) result.ResultDto {
 		return result.Error(err.Error())
 	}
 
-	if !utils.IsEmpty(hostDto.OsName){
+	if !utils.IsEmpty(hostDto.OsName) {
 		hostAttrDto := host.HostAttrDto{
 			SpecCd: host.Spec_cd_osName,
 			HostId: hostDto.HostId,
 		}
-		attrs ,_:= hostService.hostAttrDao.GetHostAttrs(hostAttrDto)
-		if attrs != nil && len(attrs)> 0{
+		attrs, _ := hostService.hostAttrDao.GetHostAttrs(hostAttrDto)
+		if attrs != nil && len(attrs) > 0 {
 			hostAttrDto = host.HostAttrDto{
 				SpecCd: host.Spec_cd_osName,
-				Value: hostDto.OsName,
+				Value:  hostDto.OsName,
 				HostId: hostDto.HostId,
 			}
 			hostService.hostAttrDao.UpdateHostAttr(hostAttrDto)
-		}else{
+		} else {
 			hostAttrDto = host.HostAttrDto{
 				AttrId: seq.Generator(),
 				SpecCd: host.Spec_cd_osName,
-				Value: hostDto.OsName,
+				Value:  hostDto.OsName,
 				HostId: hostDto.HostId,
 			}
 			hostService.hostAttrDao.SaveHostAttr(hostAttrDto)
@@ -307,7 +313,8 @@ func (hostService *HostService) UpdateHost(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (hostService *HostService) DeleteHost(ctx iris.Context) result.ResultDto {
@@ -329,7 +336,8 @@ func (hostService *HostService) DeleteHost(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 主机生成token
 */
 func (hostService *HostService) GetHostToken(ctx iris.Context) result.ResultDto {
@@ -358,7 +366,8 @@ func (hostService *HostService) GetHostToken(ctx iris.Context) result.ResultDto 
 
 }
 
-/**
+/*
+*
 主机生成token
 */
 func (hostService *HostService) GetContainers(ctx iris.Context) result.ResultDto {
@@ -427,7 +436,8 @@ func (hostService *HostService) GetContainers(ctx iris.Context) result.ResultDto
 
 }
 
-/**
+/*
+*
 主机生成token
 */
 func (hostService *HostService) GetHostPort(ctx iris.Context) result.ResultDto {
@@ -494,7 +504,8 @@ func (hostService *HostService) GetHostPort(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
+/*
+*
 查询主机资源
 */
 func (hostService *HostService) GetHostResource(ctx iris.Context) result.ResultDto {
@@ -546,7 +557,8 @@ func (hostService *HostService) GetHostResource(ctx iris.Context) result.ResultD
 
 }
 
-/**
+/*
+*
 查询主机资源
 */
 func (hostService *HostService) GetHostDisk(ctx iris.Context) result.ResultDto {
@@ -617,8 +629,10 @@ func (hostService *HostService) GetHostDisk(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
-  控制主机
+/*
+*
+
+	控制主机
 */
 func (hostService *HostService) ControlHost(ctx iris.Context) result.ResultDto {
 	var user *user.UserDto = ctx.Values().Get(constants.UINFO).(*user.UserDto)
@@ -661,8 +675,10 @@ func (hostService *HostService) ControlHost(ctx iris.Context) result.ResultDto {
 
 }
 
-/**
-  控制主机
+/*
+*
+
+	控制主机
 */
 func (hostService *HostService) SlaveHealth(ctx iris.Context) result.ResultDto {
 
@@ -707,57 +723,54 @@ func (hostService *HostService) SlaveHealth(ctx iris.Context) result.ResultDto {
 	//保存告警信息
 	saveMonitorHostLog(hostDto)
 
-
 	if len(hostDto.Containers) < 1 {
-		return result.Success();
+		return result.Success()
 	}
 
-	for _,tempContainer := range hostDto.Containers{
+	for _, tempContainer := range hostDto.Containers {
 		container := appService.AppServiceContainerDto{
-			HostId: hostDtos[0].HostId,
-			DockerContainerId:tempContainer.Id,
-			State: tempContainer.State,
-			UpdateTime: hostDto.HeartbeatTime,
+			HostId:            hostDtos[0].HostId,
+			DockerContainerId: tempContainer.Id,
+			State:             tempContainer.State,
+			UpdateTime:        hostDto.HeartbeatTime,
 		}
 		hostService.appServiceDao.UpdateAppServiceContainer(container)
 	}
-
 
 	return result.Success()
 
 }
 
-
 func saveMonitorHostLog(host host.HostDto) {
 
-	useCpu , err := strconv.ParseFloat(host.UseCpu,10)
+	useCpu, err := strconv.ParseFloat(host.UseCpu, 10)
 
-	if err != nil{
+	if err != nil {
 		return
 	}
-	useCpu = useCpu/100
+	useCpu = useCpu / 100
 
-	useMem , err := strconv.ParseFloat(host.UseMem,10)
-	if err != nil{
+	useMem, err := strconv.ParseFloat(host.UseMem, 10)
+	if err != nil {
 		return
 	}
-	mem , err := strconv.ParseFloat(host.Mem,10)
-	if err != nil{
+	mem, err := strconv.ParseFloat(host.Mem, 10)
+	if err != nil {
 		return
 	}
 	useMem = useMem / mem
-	useDisk , err := strconv.ParseFloat(host.UseDisk,10)
-	if err != nil{
+	useDisk, err := strconv.ParseFloat(host.UseDisk, 10)
+	if err != nil {
 		return
 	}
-	disk , err := strconv.ParseFloat(host.Disk,10)
-	if err != nil{
+	disk, err := strconv.ParseFloat(host.Disk, 10)
+	if err != nil {
 		return
 	}
 	useDisk = useDisk / disk
 
-	if useCpu < 0.9 && useMem < 0.9 && useDisk < 0.9{
-		return ;
+	if useCpu < 0.9 && useMem < 0.9 && useDisk < 0.9 {
+		return
 	}
 
 	var monitorHostLogDto = monitor.MonitorHostLogDto{}
@@ -773,16 +786,16 @@ func saveMonitorHostLog(host host.HostDto) {
 
 	//告警
 	monitorHost := monitor.MonitorHostDto{
-		CpuThreshold:"0.9",
-		MemThreshold:"0.9",
-		 DiskThreshold:"0.9",
-		 CpuRate: fmt.Sprintf("%.2f", useCpu),
-		MemRate:fmt.Sprintf("%.2f", useMem),
-		DiskRate: fmt.Sprintf("%.2f", useDisk),
-		HostId: host.HostId,
-		Name: host.Name,
-		TenantId:host.TenantId,
-		NoticeType: "2002",
+		CpuThreshold:  "0.9",
+		MemThreshold:  "0.9",
+		DiskThreshold: "0.9",
+		CpuRate:       fmt.Sprintf("%.2f", useCpu),
+		MemRate:       fmt.Sprintf("%.2f", useMem),
+		DiskRate:      fmt.Sprintf("%.2f", useDisk),
+		HostId:        host.HostId,
+		Name:          host.Name,
+		TenantId:      host.TenantId,
+		NoticeType:    "2002",
 	}
 	monitorHostQueue.SendData(monitorHost)
 }
@@ -1003,6 +1016,6 @@ func (hostService *HostService) DownloadFile(ctx iris.Context) {
 	hostDto.CurPath = ctx.FormValue("curPath")
 	hostDto.Ip = hostDtos[0].Ip
 	responseWriter.Header().Set("Content-Disposition", "attachment; filename="+ctx.URLParam("fileName"))
-	shell.ExecDownloadFile(hostDto,responseWriter)
+	shell.ExecDownloadFile(hostDto, responseWriter)
 
 }

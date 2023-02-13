@@ -3,18 +3,17 @@ package ftp
 import (
 	"fmt"
 	"github.com/kataras/iris/v12/context"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/entity/dto/ls"
-	"github.com/zihao-boy/zihao/entity/dto/resources"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/entity/dto/ls"
+	"github.com/letheliu/hhjc-devops/entity/dto/resources"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"gopkg.in/dutchcoders/goftp.v1"
 	"io"
 	"mime/multipart"
 	"os"
 	"path"
 	"strconv"
 	"strings"
-
-	"gopkg.in/dutchcoders/goftp.v1"
 )
 
 // upload file
@@ -52,11 +51,11 @@ func UploadFile(filePath string, resourcesFtpDto resources.ResourcesFtpDto) erro
 		return err
 	}
 
-	fileName :=  path.Base(filePath)
+	fileName := path.Base(filePath)
 
 	defer file.Close()
 
-	if err := ftp.Stor(path.Join(pathTmp,fileName), file); err != nil {
+	if err := ftp.Stor(path.Join(pathTmp, fileName), file); err != nil {
 		return err
 	}
 	return nil
@@ -172,7 +171,7 @@ func ListFile(resourcesFtpDto resources.ResourcesFtpDto) result.ResultDto {
 				}
 				lss = append(lss, lsDto)
 			}
-		}else{
+		} else {
 			lsrs := getLsLines(fil)
 			if len(lsrs) == 9 {
 				name := strings.Trim(lsrs[len(lsrs)-1], " ")
@@ -184,7 +183,7 @@ func ListFile(resourcesFtpDto resources.ResourcesFtpDto) result.ResultDto {
 						Name:         name,
 						Privilege:    lsrs[0],
 						Size:         0,
-						LastModified: lsrs[5]+" "+lsrs[6]+" "+lsrs[7],
+						LastModified: lsrs[5] + " " + lsrs[6] + " " + lsrs[7],
 					}
 					lss = append(lss, lsDto)
 				}
@@ -210,7 +209,7 @@ func ListFile(resourcesFtpDto resources.ResourcesFtpDto) result.ResultDto {
 				}
 				lss = append(lss, lsDto)
 			}
-		}else{
+		} else {
 			lsrs := getLsLines(fil)
 			if len(lsrs) == 9 {
 				size, _ := strconv.ParseInt(lsrs[4], 10, 64)
@@ -235,13 +234,13 @@ func ListFile(resourcesFtpDto resources.ResourcesFtpDto) result.ResultDto {
 }
 
 func getLsLines(line string) []string {
-	lines := strings.Split(line," ")
+	lines := strings.Split(line, " ")
 	var newLines []string
-	for _,l := range lines{
-		if utils.IsEmpty(l){
+	for _, l := range lines {
+		if utils.IsEmpty(l) {
 			continue
 		}
-		newLines = append(newLines,l)
+		newLines = append(newLines, l)
 	}
 	return newLines
 }

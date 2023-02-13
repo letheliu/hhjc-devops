@@ -3,16 +3,16 @@ package jwt
 import (
 	"errors"
 	"fmt"
-	"github.com/zihao-boy/zihao/common/utils"
+	"github.com/dgrijalva/jwt-go"
+	"github.com/letheliu/hhjc-devops/common/utils"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
 	"github.com/kataras/iris/v12/context"
-	"github.com/zihao-boy/zihao/common/cache/factory"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/sysError"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/common/cache/factory"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/sysError"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
 )
 
 var G_JWT *JWT
@@ -40,8 +40,8 @@ func InitJWT() {
 // Serve the middleware's action
 func (j *JWT) ServeHTTP(ctx *context.Context) (err error) {
 	var (
-		token *jwt.Token
-		user  *user.UserDto
+		token    *jwt.Token
+		user     *user.UserDto
 		tokenStr string
 	)
 	if token, err = j.Check(*ctx); err != nil {
@@ -60,7 +60,7 @@ func (j *JWT) ServeHTTP(ctx *context.Context) (err error) {
 		return err
 	}
 
-	if utils.IsEmpty(tokenStr){
+	if utils.IsEmpty(tokenStr) {
 		return errors.New("session error")
 	}
 	// token校验通过，设置当前用户id到上下文
@@ -117,7 +117,7 @@ func (j *JWT) Token2Model(token *jwt.Token) (*user.UserDto, error) {
 		phone         string
 		realName      string
 		tenantId      string
-		tokenId string
+		tokenId       string
 	)
 	if !ok {
 		return nil, fmt.Errorf("%s", constants.CODE_TOKEN_INVALID.String())
@@ -129,13 +129,12 @@ func (j *JWT) Token2Model(token *jwt.Token) (*user.UserDto, error) {
 	tenantId = mapClaims["tenantId"].(string)
 	tokenId = mapClaims["tokenId"].(string)
 
-
 	return &user.UserDto{
 		UserId:   id,
 		Phone:    phone,
 		RealName: realName,
 		TenantId: tenantId,
-		TokenId: tokenId,
+		TokenId:  tokenId,
 	}, nil
 }
 

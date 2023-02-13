@@ -1,10 +1,10 @@
 package firewallRuleDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/firewall"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/firewall"
 	"gorm.io/gorm"
 )
 
@@ -75,7 +75,8 @@ VALUES(#GroupId#,#GroupName#,#State#)
 type FirewallRuleGroupDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*FirewallRuleGroupDao) GetFirewallRuleGroupCount(firewallRuleGroupDto firewall.FirewallRuleGroupDto) (int64, error) {
@@ -91,7 +92,8 @@ func (*FirewallRuleGroupDao) GetFirewallRuleGroupCount(firewallRuleGroupDto fire
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*FirewallRuleGroupDao) GetFirewallRuleGroups(firewallRuleGroupDto firewall.FirewallRuleGroupDto) ([]*firewall.FirewallRuleGroupDto, error) {
@@ -103,21 +105,24 @@ func (*FirewallRuleGroupDao) GetFirewallRuleGroups(firewallRuleGroupDto firewall
 	return firewallRuleGroupDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*FirewallRuleGroupDao) SaveFirewallRuleGroup(firewallRuleGroupDto firewall.FirewallRuleGroupDto) error {
 	return sqlTemplate.Insert(insert_firewallRuleGroup, objectConvert.Struct2Map(firewallRuleGroupDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*FirewallRuleGroupDao) UpdateFirewallRuleGroup(firewallRuleGroupDto firewall.FirewallRuleGroupDto) error {
 	return sqlTemplate.Update(update_firewallRuleGroup, objectConvert.Struct2Map(firewallRuleGroupDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*FirewallRuleGroupDao) DeleteFirewallRuleGroup(firewallRuleGroupDto firewall.FirewallRuleGroupDto) error {

@@ -1,17 +1,17 @@
 package defaultWebsocket
 
 import (
-	"github.com/zihao-boy/zihao/common/webLog"
-	"github.com/zihao-boy/zihao/common/webWindow"
+	"github.com/kataras/iris/v12"
+	"github.com/letheliu/hhjc-devops/common/webLog"
+	"github.com/letheliu/hhjc-devops/common/webWindow"
 	"log"
 	"net/http"
 	"strconv"
 
 	gorillaWs "github.com/gorilla/websocket"
-	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/websocket"
 	"github.com/kataras/neffos/gorilla"
-	"github.com/zihao-boy/zihao/common/webshell"
+	"github.com/letheliu/hhjc-devops/common/webshell"
 )
 
 func InitWebsocket(app *iris.Application) {
@@ -44,22 +44,21 @@ func InitWebsocket(app *iris.Application) {
 	app.Get("/app/console/ssh", websocket.Handler(ws))
 }
 
-
 func InitWebsocketWindow(app *iris.Application) {
 	// create our echo websocket server
 	var reqData webWindow.Request
-	upgrader :=gorillaWs.Upgrader{CheckOrigin: func(req *http.Request) bool {
+	upgrader := gorillaWs.Upgrader{CheckOrigin: func(req *http.Request) bool {
 		values := req.URL.Query()
-		winWidth,_:=strconv.Atoi(values.Get("winWidth"))
-		winHeight,_:=strconv.Atoi(values.Get("winHeight"))
+		winWidth, _ := strconv.Atoi(values.Get("winWidth"))
+		winHeight, _ := strconv.Atoi(values.Get("winHeight"))
 		reqData = webWindow.Request{
-			ZihaoToken:values.Get("zihaoToken"),
-			HostId:values.Get("hostId"),
-			WinWidth:winWidth,
-			WinHeight:winHeight,
+			ZihaoToken: values.Get("zihaoToken"),
+			HostId:     values.Get("hostId"),
+			WinWidth:   winWidth,
+			WinHeight:  winHeight,
 		}
 		return true
-	},Subprotocols: []string{"guacamole"}}
+	}, Subprotocols: []string{"guacamole"}}
 
 	ws := websocket.New(gorilla.Upgrader(upgrader), websocket.Events{
 		websocket.OnNativeMessage: func(nsConn *websocket.NSConn, msg websocket.Message) error {
@@ -69,12 +68,9 @@ func InitWebsocketWindow(app *iris.Application) {
 		},
 	})
 
-
-
-
 	ws.OnConnect = func(c *websocket.Conn) error {
 		log.Printf("[%s] Connected to server!", c.ID())
-		webWindow.WebSocketConn(reqData,c.ID(),c)
+		webWindow.WebSocketConn(reqData, c.ID(), c)
 		return nil
 	}
 
@@ -89,7 +85,6 @@ func InitWebsocketWindow(app *iris.Application) {
 
 	app.Get("/app/console/webWindow", websocket.Handler(ws))
 }
-
 
 func InitLogWebsocket(app *iris.Application) {
 	// create our echo websocket server
@@ -120,5 +115,3 @@ func InitLogWebsocket(app *iris.Application) {
 
 	app.Get("/app/console/tailLog", websocket.Handler(ws))
 }
-
-

@@ -3,16 +3,17 @@ package service
 import (
 	"errors"
 	"fmt"
-	"github.com/zihao-boy/zihao/common/costTime"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/notifyMessage"
-	"github.com/zihao-boy/zihao/common/queue/dockerfileQueue"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/businessDockerfile"
-	"github.com/zihao-boy/zihao/entity/dto/businessPackage"
-	"github.com/zihao-boy/zihao/entity/dto/jobYaml"
+	"github.com/kataras/iris/v12"
+	"github.com/letheliu/hhjc-devops/common/costTime"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/notifyMessage"
+	"github.com/letheliu/hhjc-devops/common/queue/dockerfileQueue"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessDockerfile"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessPackage"
+	"github.com/letheliu/hhjc-devops/entity/dto/jobYaml"
 	"golang.org/x/net/html/atom"
 	"io/ioutil"
 	"os"
@@ -22,14 +23,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/appService/dao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/appVersionJob"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	softDao "github.com/zihao-boy/zihao/softService/dao"
+	"github.com/letheliu/hhjc-devops/appService/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/appVersionJob"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	softDao "github.com/letheliu/hhjc-devops/softService/dao"
 	"gopkg.in/yaml.v3"
 )
 
@@ -40,7 +40,8 @@ type AppVersionJobService struct {
 	businessDockerfileDao  softDao.BusinessDockerfileDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (appVersionJobService *AppVersionJobService) GetAppVersionJobAll(appVersionJobDto appVersionJob.AppVersionJobDto) ([]*appVersionJob.AppVersionJobDto, error) {
@@ -58,7 +59,8 @@ func (appVersionJobService *AppVersionJobService) GetAppVersionJobAll(appVersion
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (appVersionJobService *AppVersionJobService) GetAppVersionJobs(ctx iris.Context) result.ResultDto {
@@ -112,7 +114,8 @@ func (appVersionJobService *AppVersionJobService) GetAppVersionJobs(ctx iris.Con
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (appVersionJobService *AppVersionJobService) SaveAppVersionJobs(ctx iris.Context) result.ResultDto {
@@ -247,7 +250,8 @@ func (appVersionJobService *AppVersionJobService) UpdateAppVersionJobs(ctx iris.
 	return result.SuccessData(appVersionJobDto)
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (appVersionJobService *AppVersionJobService) DoJob(ctx iris.Context) result.ResultDto {
@@ -267,8 +271,7 @@ func (appVersionJobService *AppVersionJobService) DoJob(ctx iris.Context) result
 
 func (appVersionJobService *AppVersionJobService) commonJob(appVersionJobParam appVersionJob.AppVersionJobParam, user *user.UserDto) result.ResultDto {
 
-	appVersionJobDto := appVersionJob.AppVersionJobDto{
-	}
+	appVersionJobDto := appVersionJob.AppVersionJobDto{}
 	appVersionJobDto.TenantId = user.TenantId
 	appVersionJobDto.JobId = appVersionJobParam.JobId
 	appVersionJobDtos, err := appVersionJobService.appVersionJobDao.GetAppVersionJobs(appVersionJobDto)
@@ -521,7 +524,8 @@ func (appVersionJobService *AppVersionJobService) doGeneratorImages(jobImagesDto
 	dockerfileQueue.SendData(businessDockerfileDtos[0])
 }
 
-/**
+/*
+*
 构建
 */
 func (appVersionJobService *AppVersionJobService) DeleteAppVersionJobs(ctx iris.Context) result.ResultDto {
@@ -730,7 +734,8 @@ func (appVersionJobService *AppVersionJobService) Payload(ctx iris.Context) inte
 }
 
 // export job build yaml
-//  get file
+//
+//	get file
 func (appVersionJobService *AppVersionJobService) ExportJobBuildYaml(ctx iris.Context) {
 
 	var (
@@ -876,9 +881,8 @@ func (appVersionJobService *AppVersionJobService) doFreshPlan(image *appVersionJ
 func (appVersionJobService *AppVersionJobService) ImportJobBuildYaml(ctx iris.Context) interface{} {
 
 	var (
-		jobYamlDto = jobYaml.JobYamlDto{
-		}
-		err error
+		jobYamlDto = jobYaml.JobYamlDto{}
+		err        error
 	)
 	ctx.SetMaxRequestBodySize(maxSize)
 	var user *user.UserDto = ctx.Values().Get(constants.UINFO).(*user.UserDto)

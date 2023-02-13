@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
 	"github.com/kataras/iris/v12/context"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/entity/dto/ls"
-	"github.com/zihao-boy/zihao/entity/dto/resources"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/entity/dto/ls"
+	"github.com/letheliu/hhjc-devops/entity/dto/resources"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"io"
 	"os"
 	"strings"
@@ -187,19 +187,19 @@ func DeleteALiOss(resourcesOssDto resources.ResourcesOssDto) error {
 	//	marker = marker[:len(marker)-1]
 	//}
 	// 上传文件。
-	if resourcesOssDto.FileGroupName == "-"{
+	if resourcesOssDto.FileGroupName == "-" {
 		err = bucket.DeleteObject(marker)
-	}else{
+	} else {
 		lsRes, err := bucket.ListObjectsV2(oss.Prefix(marker), oss.Delimiter(""), oss.MaxKeys(100))
 		if err != nil {
 			return err
 		}
 		var keys []string
-		for _,object:= range lsRes.Objects{
-			keys = append(keys,object.Key)
+		for _, object := range lsRes.Objects {
+			keys = append(keys, object.Key)
 		}
 
-		if len(keys) > 0{
+		if len(keys) > 0 {
 			bucket.DeleteObjects(keys)
 		}
 		if strings.HasSuffix(marker, "/") {

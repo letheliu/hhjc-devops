@@ -1,7 +1,7 @@
 package firewall
 
 import (
-	"github.com/zihao-boy/zihao/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto"
 	"time"
 )
 
@@ -18,4 +18,3 @@ type FirewallRuleGroupDto struct {
 	CreateTime time.Time `json:"createTime" sql:"-"`
 	StatusCd   string    `json:"statusCd" sql:"-"`
 }
-

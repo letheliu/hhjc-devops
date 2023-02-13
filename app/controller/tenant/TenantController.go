@@ -3,7 +3,7 @@ package tenant
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/user/service"
+	"github.com/letheliu/hhjc-devops/user/service"
 )
 
 type TenantController struct {
@@ -48,7 +48,8 @@ func (aus *TenantController) getTenants(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *TenantController) saveTenant(ctx iris.Context) {
@@ -56,7 +57,8 @@ func (aus *TenantController) saveTenant(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *TenantController) updateTenant(ctx iris.Context) {
@@ -64,7 +66,8 @@ func (aus *TenantController) updateTenant(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *TenantController) deleteTenant(ctx iris.Context) {
@@ -77,7 +80,8 @@ func (aus *TenantController) getTenantSettings(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *TenantController) saveTenantSetting(ctx iris.Context) {
@@ -85,7 +89,8 @@ func (aus *TenantController) saveTenantSetting(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *TenantController) updateTenantSetting(ctx iris.Context) {
@@ -93,7 +98,8 @@ func (aus *TenantController) updateTenantSetting(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *TenantController) deleteTenantSetting(ctx iris.Context) {

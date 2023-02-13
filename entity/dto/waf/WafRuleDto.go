@@ -1,33 +1,33 @@
 package waf
 
 import (
-	"github.com/zihao-boy/zihao/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto"
 	"time"
 )
 
 const (
-	Waf_Rule_State_T = "T" //start
-	Waf_Rule_State_F = "F" //stop
-	Waf_Rule_Obj_Type_Ip  = "IP"
-	Waf_Rule_Obj_Type_CC  = "CC"
-	Waf_Rule_Obj_Type_Location  = "Location"
+	Waf_Rule_State_T           = "T" //start
+	Waf_Rule_State_F           = "F" //stop
+	Waf_Rule_Obj_Type_Ip       = "IP"
+	Waf_Rule_Obj_Type_CC       = "CC"
+	Waf_Rule_Obj_Type_Location = "Location"
 
-	Waf_obj_type_ip = "ip"
-	Waf_obj_type_area = "area"
-	Waf_obj_type_cc = "cc"
+	Waf_obj_type_ip       = "ip"
+	Waf_obj_type_area     = "area"
+	Waf_obj_type_cc       = "cc"
 	Waf_obj_type_accurate = "accurate"
 )
 
 type WafRuleDto struct {
 	dto.PageDto
-	RuleId    string    `json:"ruleId" sql:"-" `
+	RuleId     string    `json:"ruleId" sql:"-" `
 	GroupId    string    `json:"groupId" sql:"-" `
-	GroupName    string    `json:"groupName" sql:"-" `
-	RuleName  string    `json:"ruleName" sql:"-" `
-	Scope  string    `json:"scope" `
-	ObjId  string    `json:"objId" sql:"-" `
-	ObjType  string    `json:"objType" sql:"-" `
-	Seq string `json:"seq"`
+	GroupName  string    `json:"groupName" sql:"-" `
+	RuleName   string    `json:"ruleName" sql:"-" `
+	Scope      string    `json:"scope" `
+	ObjId      string    `json:"objId" sql:"-" `
+	ObjType    string    `json:"objType" sql:"-" `
+	Seq        string    `json:"seq"`
 	State      string    `json:"state" `
 	CreateTime time.Time `json:"createTime" sql:"-"`
 	StatusCd   string    `json:"statusCd" sql:"-"`
@@ -35,9 +35,8 @@ type WafRuleDto struct {
 
 type WafRuleDataDto struct {
 	WafRuleDto
-	Ip *WafIpBlackWhiteDto `json:"ip"`
-	Area *WafAreaDto `json:"area"`
-	CC *WafCCDto `json:"cc"`
-	Accurate *WafAccurateDto `json:"accurate"`
-
+	Ip       *WafIpBlackWhiteDto `json:"ip"`
+	Area     *WafAreaDto         `json:"area"`
+	CC       *WafCCDto           `json:"cc"`
+	Accurate *WafAccurateDto     `json:"accurate"`
 }

@@ -1,7 +1,7 @@
 package waf
 
 import (
-	"github.com/zihao-boy/zihao/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto"
 	"time"
 )
 
@@ -22,9 +22,9 @@ type WafDto struct {
 }
 
 type SlaveWafDataDto struct {
-	ServerIpUrl string `json:"serverIpUrl"`
-	Waf    WafDto               `json:"waf"`
-	Routes []*WafRouteDto        `json:"routes"`
-	Certs  []*WafHostnameCertDto `json:"certs"`
-	Rules []*WafRuleDataDto `json:"rules"`
+	ServerIpUrl string                `json:"serverIpUrl"`
+	Waf         WafDto                `json:"waf"`
+	Routes      []*WafRouteDto        `json:"routes"`
+	Certs       []*WafHostnameCertDto `json:"certs"`
+	Rules       []*WafRuleDataDto     `json:"rules"`
 }

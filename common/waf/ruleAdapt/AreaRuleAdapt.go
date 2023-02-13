@@ -2,8 +2,8 @@ package ruleAdapt
 
 import (
 	"errors"
-	"github.com/zihao-boy/zihao/common/ip"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/ip"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"net/http"
 	"strings"
 )
@@ -47,7 +47,7 @@ func (area *AreaRuleAdapt) whiteValidate(w http.ResponseWriter,
 	ruleAreas := strings.Split(ruleArea, ",")
 
 	for _, area := range ruleAreas {
-		if strings.Contains(srcArea,area) {
+		if strings.Contains(srcArea, area) {
 			return false, nil
 		}
 	}
@@ -71,7 +71,7 @@ func (area *AreaRuleAdapt) blackValidate(w http.ResponseWriter,
 	ruleAreas := strings.Split(ruleArea, ",")
 
 	for _, area := range ruleAreas {
-		if strings.Contains(srcArea,area) {
+		if strings.Contains(srcArea, area) {
 			return false, errors.New("当前区域没有权限访问")
 		}
 	}

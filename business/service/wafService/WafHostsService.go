@@ -2,10 +2,10 @@ package wafService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/wafDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/business/dao/wafDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"strconv"
 )
 
@@ -17,7 +17,7 @@ type WafHostsService struct {
 // all db by this user
 func (wafService *WafHostsService) GetWafHostsAll(WafHostsDto waf.WafHostsDto) ([]*waf.WafHostsDto, error) {
 	var (
-		err        error
+		err          error
 		WafHostsDtos []*waf.WafHostsDto
 	)
 
@@ -30,15 +30,16 @@ func (wafService *WafHostsService) GetWafHostsAll(WafHostsDto waf.WafHostsDto) (
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (wafService *WafHostsService) GetWafHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err        error
-		page       int64
-		row        int64
-		total      int64
+		err     error
+		page    int64
+		row     int64
+		total   int64
 		wafDto  = waf.WafHostsDto{}
 		wafDtos []*waf.WafHostsDto
 	)
@@ -78,12 +79,13 @@ func (wafService *WafHostsService) GetWafHostss(ctx iris.Context) result.ResultD
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (wafService *WafHostsService) SaveWafHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err    error
 		wafDto waf.WafHostsDto
 	)
 	if err = ctx.ReadJSON(&wafDto); err != nil {
@@ -101,12 +103,13 @@ func (wafService *WafHostsService) SaveWafHostss(ctx iris.Context) result.Result
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (wafService *WafHostsService) UpdateWafHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err    error
 		wafDto waf.WafHostsDto
 	)
 	if err = ctx.ReadJSON(&wafDto); err != nil {
@@ -126,12 +129,13 @@ func (wafService *WafHostsService) UpdateWafHostss(ctx iris.Context) result.Resu
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (wafService *WafHostsService) DeleteWafHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err    error
 		wafDto waf.WafHostsDto
 	)
 	if err = ctx.ReadJSON(&wafDto); err != nil {

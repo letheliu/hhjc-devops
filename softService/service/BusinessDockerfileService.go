@@ -1,30 +1,31 @@
 package service
 
 import (
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
-	"github.com/zihao-boy/zihao/entity/dto/businessPackage"
+	"github.com/kataras/iris/v12"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessPackage"
 	"os"
 	"path/filepath"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/businessDockerfile"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	"github.com/zihao-boy/zihao/softService/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessDockerfile"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/softService/dao"
 )
 
 type BusinessDockerfileService struct {
 	businessDockerfileDao dao.BusinessDockerfileDao
-	businessPackageDao dao.BusinessPackageDao
+	businessPackageDao    dao.BusinessPackageDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (businessDockerfileService *BusinessDockerfileService) GetBusinessDockerfileAll(businessDockerfileDto businessDockerfile.BusinessDockerfileDto) ([]*businessDockerfile.BusinessDockerfileDto, error) {
@@ -42,7 +43,8 @@ func (businessDockerfileService *BusinessDockerfileService) GetBusinessDockerfil
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (businessDockerfileService *BusinessDockerfileService) GetBusinessDockerfiles(ctx iris.Context) result.ResultDto {
@@ -95,7 +97,8 @@ func (businessDockerfileService *BusinessDockerfileService) GetBusinessDockerfil
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (businessDockerfileService *BusinessDockerfileService) SaveBusinessDockerfiles(ctx iris.Context) result.ResultDto {
@@ -127,13 +130,12 @@ func (businessDockerfileService *BusinessDockerfileService) SaveBusinessDockerfi
 
 }
 
-
 func (businessDockerfileService *BusinessDockerfileService) SaveBusinessDockerfileCommon(ctx iris.Context) interface{} {
 	var (
-		err                   error
+		err                         error
 		businessDockerfileCommonDto businessDockerfile.BusinessDockerfileCommonDto
-		businessDockerfileDto businessDockerfile.BusinessDockerfileDto
-		businessPackageDto businessPackage.BusinessPackageDto
+		businessDockerfileDto       businessDockerfile.BusinessDockerfileDto
+		businessPackageDto          businessPackage.BusinessPackageDto
 	)
 	if err = ctx.ReadJSON(&businessDockerfileCommonDto); err != nil {
 		return result.Error("解析入参失败")
@@ -162,7 +164,7 @@ func (businessDockerfileService *BusinessDockerfileService) SaveBusinessDockerfi
 	//businessPackageDto.Path = filepath.Join(curDest, fileHeader.Filename)
 	businessPackageDto.Path = filepath.Join(businessPackageDto.Id, "start_"+businessDockerfileCommonDto.Name+".sh")
 	businessPackageDto.Varsion = "V" + date.GetNowAString()
-	businessPackageDto.Name = "start_"+businessDockerfileCommonDto.Name+".sh"
+	businessPackageDto.Name = "start_" + businessDockerfileCommonDto.Name + ".sh"
 
 	err = businessDockerfileService.businessPackageDao.SaveBusinessPackage(businessPackageDto)
 	if err != nil {
@@ -178,16 +180,16 @@ func (businessDockerfileService *BusinessDockerfileService) SaveBusinessDockerfi
 		"# 维护者/拥有者\nMAINTAINER xxx <xxx@xx.com>\n" +
 		"# 从宿主机上传文件 ，这里上传一个脚本，\n" +
 		"# 具体脚本可以去业务包上传后复制路径\n" +
-		"ADD "+businessDockerfileCommonDto.Path+" /root/\n" +
+		"ADD " + businessDockerfileCommonDto.Path + " /root/\n" +
 		"# 从宿主机上传文件 ，这里上传一个业务文件，\n" +
 		"# 具体脚本可以去业务包上传后复制路径\n" +
-		"ADD "+businessPackageDto.Path+" /root/\n" +
+		"ADD " + businessPackageDto.Path + " /root/\n" +
 		"# 容器内执行相应指令\n" +
-		"RUN chmod u+x /root/start_"+businessDockerfileCommonDto.Name+".sh\n" +
+		"RUN chmod u+x /root/start_" + businessDockerfileCommonDto.Name + ".sh\n" +
 		"# 运行命令\n" +
 		"# CMD <command>   or CMD [<command>]\n" +
 		"# 整个Dockerfile 中只能有一个,多个会被覆盖的\n" +
-		"CMD [\"/root/start_"+businessDockerfileCommonDto.Name+".sh\"]\n"
+		"CMD [\"/root/start_" + businessDockerfileCommonDto.Name + ".sh\"]\n"
 
 	businessDockerfileDto.Name = businessDockerfileCommonDto.Name
 	businessDockerfileDto.Dockerfile = dockerfile
@@ -209,7 +211,9 @@ func (businessDockerfileService *BusinessDockerfileService) SaveBusinessDockerfi
 
 	return result.SuccessData(businessDockerfileDto)
 }
-/**
+
+/*
+*
 修改 系统信息
 */
 func (businessDockerfileService *BusinessDockerfileService) UpdateBusinessDockerfiles(ctx iris.Context) result.ResultDto {
@@ -231,7 +235,8 @@ func (businessDockerfileService *BusinessDockerfileService) UpdateBusinessDocker
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (businessDockerfileService *BusinessDockerfileService) DeleteBusinessDockerfiles(ctx iris.Context) result.ResultDto {
@@ -252,5 +257,3 @@ func (businessDockerfileService *BusinessDockerfileService) DeleteBusinessDocker
 	return result.SuccessData(businessDockerfileDto)
 
 }
-
-

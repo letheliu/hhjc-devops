@@ -3,9 +3,9 @@ package monitor
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	logTraceService "github.com/zihao-boy/zihao/business/service/logTrace"
-	"github.com/zihao-boy/zihao/common/crontab"
-	"github.com/zihao-boy/zihao/monitor/service"
+	logTraceService "github.com/letheliu/hhjc-devops/business/service/logTrace"
+	"github.com/letheliu/hhjc-devops/common/crontab"
+	"github.com/letheliu/hhjc-devops/monitor/service"
 )
 
 type MonitorController struct {
@@ -15,7 +15,7 @@ type MonitorController struct {
 	monitorEventService     service.MonitorEventService
 	monitorTaskService      service.MonitorTaskService
 	monitorTaskAttrService  service.MonitorTaskAttrService
-	logTraceService logTraceService.LogTraceService
+	logTraceService         logTraceService.LogTraceService
 }
 
 func MonitorControllerRouter(party iris.Party) {
@@ -103,7 +103,8 @@ func (aus *MonitorController) getMonitorHosts(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) saveMonitorHost(ctx iris.Context) {
@@ -111,7 +112,8 @@ func (aus *MonitorController) saveMonitorHost(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) updateMonitorHost(ctx iris.Context) {
@@ -119,7 +121,8 @@ func (aus *MonitorController) updateMonitorHost(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) deleteMonitorHost(ctx iris.Context) {
@@ -132,7 +135,8 @@ func (aus *MonitorController) getMonitorHostGroups(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) saveMonitorHostGroup(ctx iris.Context) {
@@ -140,7 +144,8 @@ func (aus *MonitorController) saveMonitorHostGroup(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) updateMonitorHostGroup(ctx iris.Context) {
@@ -148,7 +153,8 @@ func (aus *MonitorController) updateMonitorHostGroup(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) deleteMonitorHostGroup(ctx iris.Context) {
@@ -156,7 +162,8 @@ func (aus *MonitorController) deleteMonitorHostGroup(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) startMonitorHostGroup(ctx iris.Context) {
@@ -168,7 +175,8 @@ func (aus *MonitorController) startMonitorHostGroup(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) stopMonitorHostGroup(ctx iris.Context) {
@@ -196,9 +204,8 @@ func (aus *MonitorController) getMonitorTasks(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-
-
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) saveMonitorTask(ctx iris.Context) {
@@ -206,7 +213,8 @@ func (aus *MonitorController) saveMonitorTask(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) updateMonitorTask(ctx iris.Context) {
@@ -214,7 +222,8 @@ func (aus *MonitorController) updateMonitorTask(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) deleteMonitorTask(ctx iris.Context) {
@@ -222,7 +231,8 @@ func (aus *MonitorController) deleteMonitorTask(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) startMonitorTask(ctx iris.Context) {
@@ -234,7 +244,8 @@ func (aus *MonitorController) startMonitorTask(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *MonitorController) stopMonitorTask(ctx iris.Context) {
@@ -274,6 +285,3 @@ func (aus *MonitorController) getLogTraceDb(ctx iris.Context) {
 	relustDto := aus.logTraceService.GetLogTraceDb(ctx)
 	ctx.JSON(relustDto)
 }
-
-
-

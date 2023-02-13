@@ -2,10 +2,10 @@ package wafService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/wafDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/business/dao/wafDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"strconv"
 )
 
@@ -18,7 +18,7 @@ type WafRuleGroupService struct {
 // all db by this user
 func (wafService *WafRuleGroupService) GetWafRuleGroupAll(WafRuleGroupDto waf.WafRuleGroupDto) ([]*waf.WafRuleGroupDto, error) {
 	var (
-		err          error
+		err              error
 		WafRuleGroupDtos []*waf.WafRuleGroupDto
 	)
 
@@ -31,7 +31,8 @@ func (wafService *WafRuleGroupService) GetWafRuleGroupAll(WafRuleGroupDto waf.Wa
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (wafService *WafRuleGroupService) GetWafRuleGroups(ctx iris.Context) result.ResultDto {
@@ -75,13 +76,12 @@ func (wafService *WafRuleGroupService) GetWafRuleGroups(ctx iris.Context) result
 		return result.Error(err.Error())
 	}
 
-
-
 	return result.SuccessData(wafDtos, total, row)
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (wafService *WafRuleGroupService) SaveWafRuleGroups(ctx iris.Context) result.ResultDto {
@@ -104,7 +104,8 @@ func (wafService *WafRuleGroupService) SaveWafRuleGroups(ctx iris.Context) resul
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (wafService *WafRuleGroupService) UpdateWafRuleGroups(ctx iris.Context) result.ResultDto {
@@ -125,12 +126,12 @@ func (wafService *WafRuleGroupService) UpdateWafRuleGroups(ctx iris.Context) res
 		return result.Error(err.Error())
 	}
 
-
 	return result.SuccessData(wafDto)
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (wafService *WafRuleGroupService) DeleteWafRuleGroups(ctx iris.Context) result.ResultDto {
@@ -161,21 +162,20 @@ func (wafService *WafRuleGroupService) StartWafRuleGroup(ctx iris.Context) inter
 	}
 
 	tmpWafRuleGroupDto := waf.WafRuleGroupDto{
-		State:waf.Waf_Rule_Group_State_F,
+		State: waf.Waf_Rule_Group_State_F,
 	}
 	err = wafService.wafDao.UpdateWafRuleGroup(tmpWafRuleGroupDto)
 	if err != nil {
 		return result.Error(err.Error())
 	}
 	tmpWafRuleGroupDto = waf.WafRuleGroupDto{
-		State:waf.Waf_Rule_Group_State_T,
+		State:   waf.Waf_Rule_Group_State_T,
 		GroupId: wafDto.GroupId,
 	}
 	err = wafService.wafDao.UpdateWafRuleGroup(tmpWafRuleGroupDto)
 	if err != nil {
 		return result.Error(err.Error())
 	}
-
 
 	return result.SuccessData(wafDto)
 }

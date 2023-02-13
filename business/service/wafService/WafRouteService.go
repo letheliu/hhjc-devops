@@ -2,10 +2,10 @@ package wafService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/wafDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/business/dao/wafDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"strconv"
 )
 
@@ -31,7 +31,8 @@ func (wafService *WafRouteService) GetWafRouteAll(WafRouteDto waf.WafRouteDto) (
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (wafService *WafRouteService) GetWafRoutes(ctx iris.Context) result.ResultDto {
@@ -75,8 +76,8 @@ func (wafService *WafRouteService) GetWafRoutes(ctx iris.Context) result.ResultD
 		return result.Error(err.Error())
 	}
 
-	for _,_wafDto := range wafDtos{
-		if _wafDto.Scheme == waf.Scheme_http{
+	for _, _wafDto := range wafDtos {
+		if _wafDto.Scheme == waf.Scheme_http {
 			continue
 		}
 		//has exits cert
@@ -85,12 +86,11 @@ func (wafService *WafRouteService) GetWafRoutes(ctx iris.Context) result.ResultD
 		}
 		wafHostnameCertDtos, _ := wafService.wafHostnameCertDao.GetWafHostnameCerts(wafHostnameCertDto)
 
-		if wafHostnameCertDtos == nil || len(wafHostnameCertDtos) < 1{
+		if wafHostnameCertDtos == nil || len(wafHostnameCertDtos) < 1 {
 			continue
 		}
 		_wafDto.CertContent = wafHostnameCertDtos[0].CertContent
 		_wafDto.PrivKeyContent = wafHostnameCertDtos[0].PrivKeyContent
-
 
 	}
 
@@ -98,7 +98,8 @@ func (wafService *WafRouteService) GetWafRoutes(ctx iris.Context) result.ResultD
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (wafService *WafRouteService) SaveWafRoutes(ctx iris.Context) result.ResultDto {
@@ -117,7 +118,7 @@ func (wafService *WafRouteService) SaveWafRoutes(ctx iris.Context) result.Result
 		return result.Error(err.Error())
 	}
 
-	if wafDto.Scheme == waf.Scheme_http{
+	if wafDto.Scheme == waf.Scheme_http {
 		return result.SuccessData(wafDto)
 	}
 
@@ -127,19 +128,19 @@ func (wafService *WafRouteService) SaveWafRoutes(ctx iris.Context) result.Result
 	}
 	wafHostnameCertDtos, _ := wafService.wafHostnameCertDao.GetWafHostnameCerts(wafHostnameCertDto)
 
-	if wafHostnameCertDtos == nil || len(wafHostnameCertDtos) < 1{
+	if wafHostnameCertDtos == nil || len(wafHostnameCertDtos) < 1 {
 		wafHostnameCertDto = waf.WafHostnameCertDto{
-			CertId: seq.Generator(),
-			Hostname: wafDto.Hostname,
-			CertContent: wafDto.CertContent,
+			CertId:         seq.Generator(),
+			Hostname:       wafDto.Hostname,
+			CertContent:    wafDto.CertContent,
 			PrivKeyContent: wafDto.PrivKeyContent,
 		}
 		wafService.wafHostnameCertDao.SaveWafHostnameCert(wafHostnameCertDto)
-	}else{
+	} else {
 		wafHostnameCertDto = waf.WafHostnameCertDto{
-			CertId: wafHostnameCertDtos[0].CertId,
-			Hostname: wafDto.Hostname,
-			CertContent: wafDto.CertContent,
+			CertId:         wafHostnameCertDtos[0].CertId,
+			Hostname:       wafDto.Hostname,
+			CertContent:    wafDto.CertContent,
 			PrivKeyContent: wafDto.PrivKeyContent,
 		}
 		wafService.wafHostnameCertDao.UpdateWafHostnameCert(wafHostnameCertDto)
@@ -149,7 +150,8 @@ func (wafService *WafRouteService) SaveWafRoutes(ctx iris.Context) result.Result
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (wafService *WafRouteService) UpdateWafRoutes(ctx iris.Context) result.ResultDto {
@@ -170,7 +172,7 @@ func (wafService *WafRouteService) UpdateWafRoutes(ctx iris.Context) result.Resu
 		return result.Error(err.Error())
 	}
 
-	if wafDto.Scheme == waf.Scheme_http{
+	if wafDto.Scheme == waf.Scheme_http {
 		return result.SuccessData(wafDto)
 	}
 
@@ -180,19 +182,19 @@ func (wafService *WafRouteService) UpdateWafRoutes(ctx iris.Context) result.Resu
 	}
 	wafHostnameCertDtos, _ := wafService.wafHostnameCertDao.GetWafHostnameCerts(wafHostnameCertDto)
 
-	if wafHostnameCertDtos == nil || len(wafHostnameCertDtos) < 1{
+	if wafHostnameCertDtos == nil || len(wafHostnameCertDtos) < 1 {
 		wafHostnameCertDto = waf.WafHostnameCertDto{
-			CertId: seq.Generator(),
-			Hostname: wafDto.Hostname,
-			CertContent: wafDto.CertContent,
+			CertId:         seq.Generator(),
+			Hostname:       wafDto.Hostname,
+			CertContent:    wafDto.CertContent,
 			PrivKeyContent: wafDto.PrivKeyContent,
 		}
 		wafService.wafHostnameCertDao.SaveWafHostnameCert(wafHostnameCertDto)
-	}else{
+	} else {
 		wafHostnameCertDto = waf.WafHostnameCertDto{
-			CertId: wafHostnameCertDtos[0].CertId,
-			Hostname: wafDto.Hostname,
-			CertContent: wafDto.CertContent,
+			CertId:         wafHostnameCertDtos[0].CertId,
+			Hostname:       wafDto.Hostname,
+			CertContent:    wafDto.CertContent,
 			PrivKeyContent: wafDto.PrivKeyContent,
 		}
 		wafService.wafHostnameCertDao.UpdateWafHostnameCert(wafHostnameCertDto)
@@ -202,7 +204,8 @@ func (wafService *WafRouteService) UpdateWafRoutes(ctx iris.Context) result.Resu
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (wafService *WafRouteService) DeleteWafRoutes(ctx iris.Context) result.ResultDto {

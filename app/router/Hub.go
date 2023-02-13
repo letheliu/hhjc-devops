@@ -4,24 +4,24 @@ import (
 	"github.com/iris-contrib/middleware/cors"
 	"github.com/kataras/iris/v12"
 	rcover "github.com/kataras/iris/v12/middleware/recover"
-	"github.com/zihao-boy/zihao/app/controller/appService"
-	"github.com/zihao-boy/zihao/app/controller/appVersion"
-	"github.com/zihao-boy/zihao/app/controller/dbClient"
-	"github.com/zihao-boy/zihao/app/controller/dns"
-	"github.com/zihao-boy/zihao/app/controller/firewall"
-	"github.com/zihao-boy/zihao/app/controller/home"
-	"github.com/zihao-boy/zihao/app/controller/host"
-	"github.com/zihao-boy/zihao/app/controller/innerNet"
-	"github.com/zihao-boy/zihao/app/controller/menu"
-	"github.com/zihao-boy/zihao/app/controller/monitor"
-	"github.com/zihao-boy/zihao/app/controller/resources"
-	"github.com/zihao-boy/zihao/app/controller/soft"
-	"github.com/zihao-boy/zihao/app/controller/system"
-	"github.com/zihao-boy/zihao/app/controller/tenant"
-	"github.com/zihao-boy/zihao/app/controller/user"
-	"github.com/zihao-boy/zihao/app/controller/workflow"
-	"github.com/zihao-boy/zihao/common/aop"
-	"github.com/zihao-boy/zihao/common/defaultWebsocket"
+	"github.com/letheliu/hhjc-devops/app/controller/appService"
+	"github.com/letheliu/hhjc-devops/app/controller/appVersion"
+	"github.com/letheliu/hhjc-devops/app/controller/dbClient"
+	"github.com/letheliu/hhjc-devops/app/controller/dns"
+	"github.com/letheliu/hhjc-devops/app/controller/firewall"
+	"github.com/letheliu/hhjc-devops/app/controller/home"
+	"github.com/letheliu/hhjc-devops/app/controller/host"
+	"github.com/letheliu/hhjc-devops/app/controller/innerNet"
+	"github.com/letheliu/hhjc-devops/app/controller/menu"
+	"github.com/letheliu/hhjc-devops/app/controller/monitor"
+	"github.com/letheliu/hhjc-devops/app/controller/resources"
+	"github.com/letheliu/hhjc-devops/app/controller/soft"
+	"github.com/letheliu/hhjc-devops/app/controller/system"
+	"github.com/letheliu/hhjc-devops/app/controller/tenant"
+	"github.com/letheliu/hhjc-devops/app/controller/user"
+	"github.com/letheliu/hhjc-devops/app/controller/workflow"
+	"github.com/letheliu/hhjc-devops/common/aop"
+	"github.com/letheliu/hhjc-devops/common/defaultWebsocket"
 )
 
 // 所有的路由
@@ -31,7 +31,6 @@ func Hub(app *iris.Application) {
 	defaultWebsocket.InitWebsocket(app)
 
 	defaultWebsocket.InitWebsocketWindow(app)
-
 
 	defaultWebsocket.InitLogWebsocket(app)
 
@@ -76,10 +75,8 @@ func Hub(app *iris.Application) {
 	//firewall
 	firewall.FirewallControllerRouter(party)
 
-
 	//firewall
 	innerNet.InnerNetControllerRouter(party)
-
 
 	//firewall
 	dns.DnsControllerRouter(party)

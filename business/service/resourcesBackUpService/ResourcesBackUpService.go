@@ -2,15 +2,15 @@ package resourcesBackUpService
 
 import (
 	"github.com/kataras/iris/v12"
-	hostDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/business/dao/resourcesBackUpDao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/crontab"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/resources"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
+	hostDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/business/dao/resourcesBackUpDao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/crontab"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/resources"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
 	"strconv"
 )
 
@@ -36,7 +36,8 @@ func (resourcesBackUpService *ResourcesBackUpService) GetResourcesBackUpAll(Reso
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (resourcesBackUpService *ResourcesBackUpService) GetResourcesBackUps(ctx iris.Context) result.ResultDto {
@@ -88,7 +89,8 @@ func (resourcesBackUpService *ResourcesBackUpService) GetResourcesBackUps(ctx ir
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (resourcesBackUpService *ResourcesBackUpService) SaveResourcesBackUps(ctx iris.Context) result.ResultDto {
@@ -116,7 +118,8 @@ func (resourcesBackUpService *ResourcesBackUpService) SaveResourcesBackUps(ctx i
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (resourcesBackUpService *ResourcesBackUpService) UpdateResourcesBackUps(ctx iris.Context) result.ResultDto {
@@ -142,7 +145,8 @@ func (resourcesBackUpService *ResourcesBackUpService) UpdateResourcesBackUps(ctx
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (resourcesBackUpService *ResourcesBackUpService) DeleteResourcesBackUps(ctx iris.Context) result.ResultDto {
@@ -165,18 +169,18 @@ func (resourcesBackUpService *ResourcesBackUpService) DeleteResourcesBackUps(ctx
 
 func (resourcesBackUpService *ResourcesBackUpService) freshBackUpObjectName(dtos []*resources.ResourcesBackUpDto) []*resources.ResourcesBackUpDto {
 
-	for _,dto := range dtos{
-		if dto.TypeCd == resources.Back_up_Type_Cd_db{
+	for _, dto := range dtos {
+		if dto.TypeCd == resources.Back_up_Type_Cd_db {
 			dto.SrcName = dto.SrcDbName
-		}else{
+		} else {
 			dto.SrcName = dto.SrcHostName
 		}
 
-		if dto.TargetTypeCd == resources.Back_up_Target_Type_Cd_db{
+		if dto.TargetTypeCd == resources.Back_up_Target_Type_Cd_db {
 			dto.TargetName = dto.TargetDbName
-		}else if dto.TargetTypeCd == resources.Back_up_Target_Type_Cd_oss{
+		} else if dto.TargetTypeCd == resources.Back_up_Target_Type_Cd_oss {
 			dto.TargetName = dto.TargetOssName
-		}else{
+		} else {
 			dto.TargetName = dto.TargetFtpName
 		}
 	}
@@ -190,7 +194,7 @@ func (resourcesBackUpService *ResourcesBackUpService) StartResourcesBackUps(ctx 
 	var (
 		err                error
 		resourcesBackUpDto resources.ResourcesBackUpDto
-		backUpJob  crontab.BackUpJob
+		backUpJob          crontab.BackUpJob
 	)
 	if err = ctx.ReadJSON(&resourcesBackUpDto); err != nil {
 		return result.Error("解析入参失败")
@@ -217,7 +221,7 @@ func (resourcesBackUpService *ResourcesBackUpService) StopResourcesBackUps(ctx i
 	var (
 		err                error
 		resourcesBackUpDto resources.ResourcesBackUpDto
-		backUpJob  crontab.BackUpJob
+		backUpJob          crontab.BackUpJob
 	)
 	if err = ctx.ReadJSON(&resourcesBackUpDto); err != nil {
 		return result.Error("解析入参失败")

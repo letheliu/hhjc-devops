@@ -2,10 +2,10 @@ package dnsService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/dnsDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/dns"
+	"github.com/letheliu/hhjc-devops/business/dao/dnsDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/dns"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 )
 
@@ -17,7 +17,7 @@ type DnsHostsService struct {
 // all db by this user
 func (dnsService *DnsHostsService) GetDnsHostsAll(DnsHostsDto dns.DnsHostsDto) ([]*dns.DnsHostsDto, error) {
 	var (
-		err        error
+		err          error
 		DnsHostsDtos []*dns.DnsHostsDto
 	)
 
@@ -30,15 +30,16 @@ func (dnsService *DnsHostsService) GetDnsHostsAll(DnsHostsDto dns.DnsHostsDto) (
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (dnsService *DnsHostsService) GetDnsHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err        error
-		page       int64
-		row        int64
-		total      int64
+		err     error
+		page    int64
+		row     int64
+		total   int64
 		dnsDto  = dns.DnsHostsDto{}
 		dnsDtos []*dns.DnsHostsDto
 	)
@@ -78,12 +79,13 @@ func (dnsService *DnsHostsService) GetDnsHostss(ctx iris.Context) result.ResultD
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (dnsService *DnsHostsService) SaveDnsHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err    error
 		dnsDto dns.DnsHostsDto
 	)
 	if err = ctx.ReadJSON(&dnsDto); err != nil {
@@ -101,12 +103,13 @@ func (dnsService *DnsHostsService) SaveDnsHostss(ctx iris.Context) result.Result
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (dnsService *DnsHostsService) UpdateDnsHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err    error
 		dnsDto dns.DnsHostsDto
 	)
 	if err = ctx.ReadJSON(&dnsDto); err != nil {
@@ -126,12 +129,13 @@ func (dnsService *DnsHostsService) UpdateDnsHostss(ctx iris.Context) result.Resu
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (dnsService *DnsHostsService) DeleteDnsHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err    error
 		dnsDto dns.DnsHostsDto
 	)
 	if err = ctx.ReadJSON(&dnsDto); err != nil {

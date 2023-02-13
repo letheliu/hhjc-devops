@@ -3,12 +3,12 @@ package user
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/common/cache/factory"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/jwt"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/user/service"
+	"github.com/letheliu/hhjc-devops/common/cache/factory"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/jwt"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/user/service"
 )
 
 type UserController struct {
@@ -34,7 +34,8 @@ func UserControllerRouter(party iris.Party) {
 
 }
 
-/**
+/*
+*
 登录处理类
 */
 func (aus *UserController) login(ctx iris.Context) {
@@ -51,7 +52,8 @@ func (aus *UserController) login(ctx iris.Context) {
 	ctx.JSON(resultDto)
 }
 
-/**
+/*
+*
 退出登录处理类
 */
 func (aus *UserController) logout(ctx iris.Context) {
@@ -61,7 +63,8 @@ func (aus *UserController) logout(ctx iris.Context) {
 	ctx.JSON(result.Success())
 }
 
-/**
+/*
+*
 登录处理类
 */
 func (aus *UserController) changePwd(ctx iris.Context) {
@@ -69,7 +72,8 @@ func (aus *UserController) changePwd(ctx iris.Context) {
 	ctx.JSON(resultDto)
 }
 
-/**
+/*
+*
 登录处理类
 */
 func (aus *UserController) getUserInfo(ctx iris.Context) {

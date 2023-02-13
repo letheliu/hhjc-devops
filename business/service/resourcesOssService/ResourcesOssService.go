@@ -2,14 +2,14 @@ package resourcesOssService
 
 import (
 	"github.com/kataras/iris/v12"
-	hostDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/business/dao/resourcesOssDao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/oss"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/resources"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
+	hostDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/business/dao/resourcesOssDao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/oss"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/resources"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
 	"path"
 	"path/filepath"
 	"strconv"
@@ -39,7 +39,8 @@ func (resourcesOssService *ResourcesOssService) GetResourcesOssAll(ResourcesOssD
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (resourcesOssService *ResourcesOssService) GetResourcesOsss(ctx iris.Context) result.ResultDto {
@@ -89,7 +90,8 @@ func (resourcesOssService *ResourcesOssService) GetResourcesOsss(ctx iris.Contex
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (resourcesOssService *ResourcesOssService) SaveResourcesOsss(ctx iris.Context) result.ResultDto {
@@ -115,7 +117,8 @@ func (resourcesOssService *ResourcesOssService) SaveResourcesOsss(ctx iris.Conte
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (resourcesOssService *ResourcesOssService) UpdateResourcesOsss(ctx iris.Context) result.ResultDto {
@@ -141,7 +144,8 @@ func (resourcesOssService *ResourcesOssService) UpdateResourcesOsss(ctx iris.Con
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (resourcesOssService *ResourcesOssService) DeleteResourcesOsss(ctx iris.Context) result.ResultDto {
@@ -192,9 +196,8 @@ func (resourcesOssService *ResourcesOssService) RemoveOssFile(ctx iris.Context) 
 	var user *user.UserDto = ctx.Values().Get(constants.UINFO).(*user.UserDto)
 
 	var (
-		resourcesOssDto  resources.ResourcesOssDto
+		resourcesOssDto resources.ResourcesOssDto
 	)
-
 
 	if err := ctx.ReadJSON(&resourcesOssDto); err != nil {
 		return result.Error("解析入参失败" + err.Error())
@@ -282,6 +285,5 @@ func (resourcesOssService *ResourcesOssService) DownloadOssFile(ctx iris.Context
 	resourcesOssDto.CurPath = path.Join(ctx.URLParam("curPath"), ctx.URLParam("fileName"))
 	//hostDto.CurPath = ctx.URLParam("curPath")
 	responseWriter.Header().Set("Content-Disposition", "attachment; filename="+ctx.URLParam("fileName"))
-	oss.DownloadALiOssByReader( responseWriter,resourcesOssDto)
+	oss.DownloadALiOssByReader(responseWriter, resourcesOssDto)
 }
-

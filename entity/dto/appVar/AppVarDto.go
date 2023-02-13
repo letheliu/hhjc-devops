@@ -1,6 +1,6 @@
 package appVar
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
 type AppVarDto struct {
 	dto.PageDto

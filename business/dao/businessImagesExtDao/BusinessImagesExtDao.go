@@ -1,10 +1,10 @@
 package businessImagesExtDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	businessImagesExt "github.com/zihao-boy/zihao/entity/dto/businessImages"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	businessImagesExt "github.com/letheliu/hhjc-devops/entity/dto/businessImages"
 	"gorm.io/gorm"
 )
 
@@ -105,7 +105,8 @@ VALUES(#Id#,#ImagesId#,#AppId#,#AppName#,#ExtImagesId#,#ExtPublisherId#,#TenantI
 type BusinessImagesExtDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*BusinessImagesExtDao) GetBusinessImagesExtCount(businessImagesExtDto businessImagesExt.BusinessImagesExtDto) (int64, error) {
@@ -121,7 +122,8 @@ func (*BusinessImagesExtDao) GetBusinessImagesExtCount(businessImagesExtDto busi
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*BusinessImagesExtDao) GetBusinessImagesExts(businessImagesExtDto businessImagesExt.BusinessImagesExtDto) ([]*businessImagesExt.BusinessImagesExtDto, error) {
@@ -133,21 +135,24 @@ func (*BusinessImagesExtDao) GetBusinessImagesExts(businessImagesExtDto business
 	return businessImagesExtDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*BusinessImagesExtDao) SaveBusinessImagesExt(businessImagesExtDto businessImagesExt.BusinessImagesExtDto) error {
 	return sqlTemplate.Insert(insert_businessImagesExt, objectConvert.Struct2Map(businessImagesExtDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*BusinessImagesExtDao) UpdateBusinessImagesExt(businessImagesExtDto businessImagesExt.BusinessImagesExtDto) error {
 	return sqlTemplate.Update(update_businessImagesExt, objectConvert.Struct2Map(businessImagesExtDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*BusinessImagesExtDao) DeleteBusinessImagesExt(businessImagesExtDto businessImagesExt.BusinessImagesExtDto) error {

@@ -3,14 +3,14 @@ package logTraceService
 import (
 	"encoding/json"
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/logTraceAnnotationsDao"
-	"github.com/zihao-boy/zihao/business/dao/logTraceDao"
-	"github.com/zihao-boy/zihao/business/dao/logTraceDbDao"
-	"github.com/zihao-boy/zihao/business/dao/logTraceParamDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/entity/dto/log"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/business/dao/logTraceAnnotationsDao"
+	"github.com/letheliu/hhjc-devops/business/dao/logTraceDao"
+	"github.com/letheliu/hhjc-devops/business/dao/logTraceDbDao"
+	"github.com/letheliu/hhjc-devops/business/dao/logTraceParamDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/entity/dto/log"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 )
 
@@ -38,7 +38,8 @@ func (logTraceService *LogTraceService) GetLogTraceAll(LogTraceDto log.LogTraceD
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (logTraceService *LogTraceService) GetLogTraces(ctx iris.Context) result.ResultDto {
@@ -90,7 +91,8 @@ func (logTraceService *LogTraceService) GetLogTraces(ctx iris.Context) result.Re
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (logTraceService *LogTraceService) GetLogTraceDetail(ctx iris.Context) result.ResultDto {
@@ -144,7 +146,8 @@ func (logTraceService *LogTraceService) GetLogTraceDetail(ctx iris.Context) resu
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (logTraceService *LogTraceService) SaveLogTraces(param string) result.ResultDto {
@@ -234,7 +237,8 @@ func (logTraceService *LogTraceService) SaveLogTraces(param string) result.Resul
 	return result.SuccessData(logTraceDto)
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (logTraceService *LogTraceService) UpdateLogTraces(ctx iris.Context) result.ResultDto {
@@ -255,7 +259,8 @@ func (logTraceService *LogTraceService) UpdateLogTraces(ctx iris.Context) result
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (logTraceService *LogTraceService) DeleteLogTraces(ctx iris.Context) result.ResultDto {
@@ -343,10 +348,10 @@ func (logTraceService *LogTraceService) GetLogTraceParam(ctx iris.Context) inter
 
 func (logTraceService *LogTraceService) GetLogTraceDb(ctx iris.Context) interface{} {
 	var (
-		err               error
-		page              int64
-		row               int64
-		total             int64
+		err            error
+		page           int64
+		row            int64
+		total          int64
 		logTraceDbDto  = log.LogTraceDbDto{}
 		logTraceDbDtos []*log.LogTraceDbDto
 	)

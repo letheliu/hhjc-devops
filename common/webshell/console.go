@@ -9,9 +9,9 @@ import (
 	"unicode/utf8"
 
 	"github.com/kataras/iris/v12/websocket"
-	"github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/common/cache/factory"
-	"github.com/zihao-boy/zihao/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/common/cache/factory"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
 
 	gossh "golang.org/x/crypto/ssh"
 )
@@ -119,8 +119,8 @@ type Request struct {
 	Command    string `json:"command"`
 	WinWidth   uint32 `json:"winWidth"`
 	WinHeight  uint32 `json:"winHeight"`
-	Cols uint32 `json:"cols"`
-	Rows uint32 `json:"rows"`
+	Cols       uint32 `json:"cols"`
+	Rows       uint32 `json:"rows"`
 }
 
 func WebSocketHandler(data []byte, connId string, nsConn *websocket.NSConn) {
@@ -234,7 +234,7 @@ func checkUserToken(token string) bool {
 		return false
 	}
 
-	if len(cacheToken) <1{
+	if len(cacheToken) < 1 {
 		return false
 	}
 

@@ -2,13 +2,13 @@ package client
 
 import (
 	"fmt"
+	encrypt2 "github.com/letheliu/hhjc-devops/common/encrypt"
+	"github.com/letheliu/hhjc-devops/common/innerNet/encrypt"
+	"github.com/letheliu/hhjc-devops/common/innerNet/header"
+	"github.com/letheliu/hhjc-devops/common/innerNet/iface"
+	"github.com/letheliu/hhjc-devops/common/innerNet/io"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
 	"github.com/songgao/water"
-	encrypt2 "github.com/zihao-boy/zihao/common/encrypt"
-	"github.com/zihao-boy/zihao/common/innerNet/encrypt"
-	"github.com/zihao-boy/zihao/common/innerNet/header"
-	"github.com/zihao-boy/zihao/common/innerNet/iface"
-	"github.com/zihao-boy/zihao/common/innerNet/io"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
 	"golang.zx2c4.com/wireguard/tun"
 	"net"
 	"os/exec"
@@ -49,7 +49,7 @@ func NewTcpClient(innerNetClientDto *innerNet.InnerNetClientDto) (*TcpClient, er
 		TcpConn:           conn,
 		TunConn:           tun.TunConn,
 		WinTunConn:        tun.WinTunConn,
-		HeartbeatTime: time.Now().Add(60 * time.Second),
+		HeartbeatTime:     time.Now().Add(60 * time.Second),
 	}, nil
 }
 
@@ -108,9 +108,9 @@ func (tc *TcpClient) readFromServer() error {
 					continue
 				}
 				ipData := string(data)
-				if ipData == "ping"{
-					tc.HeartbeatTime = time.Now().Add(60*time.Second)
-					fmt.Println("收到ping 包 回写时间",ipData,tc.HeartbeatTime)
+				if ipData == "ping" {
+					tc.HeartbeatTime = time.Now().Add(60 * time.Second)
+					fmt.Println("收到ping 包 回写时间", ipData, tc.HeartbeatTime)
 					continue
 				}
 				if !strings.HasPrefix(ipData, "ip=") {
@@ -187,9 +187,9 @@ func (tc *TcpClient) Start() error {
 	encryptKey := encrypt.GetAESKey([]byte(encrypt2.Md5(tc.InnerNetClientDto.Username + tc.InnerNetClientDto.Password)))
 	endata, _ := encrypt.EncryptAES([]byte("ping"), encryptKey)
 	go func() {
-		for{
-			n,err := io.WritePacket(tc.TcpConn, endata)
-			fmt.Println("client heart beat",n,err,endata)
+		for {
+			n, err := io.WritePacket(tc.TcpConn, endata)
+			fmt.Println("client heart beat", n, err, endata)
 			time.Sleep(5 * time.Second)
 		}
 	}()
@@ -210,7 +210,7 @@ func (tc *TcpClient) Stop() error {
 	return nil
 }
 
-func (tc *TcpClient)Recover() error {
+func (tc *TcpClient) Recover() error {
 	tc.TcpConn.Close()
 	saddr := tc.InnerNetClientDto.ServerAddr
 	addr, err := net.ResolveTCPAddr("", saddr)

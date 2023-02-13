@@ -2,19 +2,20 @@ package service
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	"github.com/zihao-boy/zihao/monitor/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/monitor/dao"
 )
 
 type MonitorHostLogService struct {
 	monitorHostDao dao.MonitorHostLogDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (monitorHostService *MonitorHostLogService) GetMonitorHostLogAll(monitorHostDto monitor.MonitorHostLogDto) ([]*monitor.MonitorHostLogDto, error) {
@@ -32,7 +33,8 @@ func (monitorHostService *MonitorHostLogService) GetMonitorHostLogAll(monitorHos
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (monitorHostService *MonitorHostLogService) GetMonitorHostLogs(ctx iris.Context) result.ResultDto {
@@ -59,7 +61,8 @@ func (monitorHostService *MonitorHostLogService) GetMonitorHostLogs(ctx iris.Con
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (monitorHostService *MonitorHostLogService) SaveMonitorHostLogs(ctx iris.Context) result.ResultDto {
@@ -87,7 +90,8 @@ func (monitorHostService *MonitorHostLogService) SaveMonitorHostLogs(ctx iris.Co
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (monitorHostService *MonitorHostLogService) UpdateMonitorHostLogs(ctx iris.Context) result.ResultDto {
@@ -109,7 +113,8 @@ func (monitorHostService *MonitorHostLogService) UpdateMonitorHostLogs(ctx iris.
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (monitorHostService *MonitorHostLogService) DeleteMonitorHostLogs(ctx iris.Context) result.ResultDto {

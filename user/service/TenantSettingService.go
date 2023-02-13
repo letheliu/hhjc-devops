@@ -1,15 +1,15 @@
 package service
 
 import (
+	"github.com/kataras/iris/v12"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/tenant"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	"github.com/zihao-boy/zihao/user/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/tenant"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/user/dao"
 )
 
 type TenantSettingService struct {
@@ -17,7 +17,8 @@ type TenantSettingService struct {
 	userDao          dao.UserDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (tenantSettingService *TenantSettingService) GetTenantSettings(ctx iris.Context) result.ResultDto {
@@ -65,7 +66,8 @@ func (tenantSettingService *TenantSettingService) GetTenantSettings(ctx iris.Con
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (tenantSettingService *TenantSettingService) GetTenantSettingAll(tenantSettingDto tenant.TenantSettingDto) ([]*tenant.TenantSettingDto, error) {
@@ -82,7 +84,8 @@ func (tenantSettingService *TenantSettingService) GetTenantSettingAll(tenantSett
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (tenantSettingService *TenantSettingService) SaveTenantSettings(ctx iris.Context) result.ResultDto {
@@ -109,7 +112,8 @@ func (tenantSettingService *TenantSettingService) SaveTenantSettings(ctx iris.Co
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (tenantSettingService *TenantSettingService) UpdateTenantSettings(ctx iris.Context) result.ResultDto {
@@ -131,7 +135,8 @@ func (tenantSettingService *TenantSettingService) UpdateTenantSettings(ctx iris.
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (tenantSettingService *TenantSettingService) DeleteTenantSettings(ctx iris.Context) result.ResultDto {

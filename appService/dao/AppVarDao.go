@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/appVar"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/appVar"
 	"gorm.io/gorm"
 )
 
@@ -97,7 +97,8 @@ VALUES (#AvId#, #AvgId#, #TenantId#, #VarName#, #VarType#,#VarSpec#)
 type AppVarDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppVarDao) GetAppVarCount(appVarDto appVar.AppVarDto) (int64, error) {
@@ -113,7 +114,8 @@ func (*AppVarDao) GetAppVarCount(appVarDto appVar.AppVarDto) (int64, error) {
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppVarDao) GetAppVars(appVarDto appVar.AppVarDto) ([]*appVar.AppVarDto, error) {
@@ -125,21 +127,24 @@ func (*AppVarDao) GetAppVars(appVarDto appVar.AppVarDto) ([]*appVar.AppVarDto, e
 	return appVarDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*AppVarDao) SaveAppVar(appVarDto appVar.AppVarDto) error {
 	return sqlTemplate.Insert(insert_appVar, objectConvert.Struct2Map(appVarDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*AppVarDao) UpdateAppVar(appVarDto appVar.AppVarDto) error {
 	return sqlTemplate.Update(update_appVar, objectConvert.Struct2Map(appVarDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*AppVarDao) DeleteAppVar(appVarDto appVar.AppVarDto) error {

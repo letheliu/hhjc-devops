@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/tenant"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/tenant"
 	"gorm.io/gorm"
 )
 
@@ -99,7 +99,8 @@ VALUES(#TenantId#, #TenantName#, #Address#, #PersonName#, #Phone#, #Remark#)
 type TenantDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*TenantDao) GetTenantCount(tenantDto tenant.TenantDto) (int64, error) {
@@ -115,7 +116,8 @@ func (*TenantDao) GetTenantCount(tenantDto tenant.TenantDto) (int64, error) {
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*TenantDao) GetTenants(tenantDto tenant.TenantDto) ([]*tenant.TenantDto, error) {
@@ -127,21 +129,24 @@ func (*TenantDao) GetTenants(tenantDto tenant.TenantDto) ([]*tenant.TenantDto, e
 	return tenantDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*TenantDao) SaveTenant(tenantDto tenant.TenantDto) error {
 	return sqlTemplate.Insert(insert_tenant, objectConvert.Struct2Map(tenantDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*TenantDao) UpdateTenant(tenantDto tenant.TenantDto) error {
 	return sqlTemplate.Update(update_tenant, objectConvert.Struct2Map(tenantDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*TenantDao) DeleteTenant(tenantDto tenant.TenantDto) error {

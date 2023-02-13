@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/entity/dto/mapping"
-	"github.com/zihao-boy/zihao/system/mapper"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/entity/dto/mapping"
+	"github.com/letheliu/hhjc-devops/system/mapper"
 )
 
 func (r *Local) SaveMapping(mappingDto mapping.MappingDto) (err error) {
@@ -19,8 +19,8 @@ func (r *Local) SaveMapping(mappingDto mapping.MappingDto) (err error) {
 
 func (r *Local) GetMapping(zKey string) (mapping mapping.MappingDto, err error) {
 	data, _ := r.client.Get(constants.DOMAIN_COMMON + zKey)
-	if data == nil{
-		return mapping,err
+	if data == nil {
+		return mapping, err
 	}
 	json.Unmarshal(data.([]byte), &mapping)
 	return mapping, err

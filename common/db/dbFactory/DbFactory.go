@@ -2,12 +2,12 @@ package dbFactory
 
 import (
 	"fmt"
-	"github.com/zihao-boy/zihao/common/date"
-	mysqlUtil "github.com/zihao-boy/zihao/common/db/mysql"
-	"github.com/zihao-boy/zihao/common/db/sqlite"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/dbLink"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/common/date"
+	mysqlUtil "github.com/letheliu/hhjc-devops/common/db/mysql"
+	"github.com/letheliu/hhjc-devops/common/db/sqlite"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/dbLink"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"reflect"

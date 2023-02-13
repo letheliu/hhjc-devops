@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/zihao-boy/zihao/common/db/mysql"
-	"github.com/zihao-boy/zihao/common/db/sqlite"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
+	"github.com/letheliu/hhjc-devops/common/db/mysql"
+	"github.com/letheliu/hhjc-devops/common/db/sqlite"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
 	"gorm.io/gorm"
 )
 
@@ -17,17 +17,19 @@ const (
 	Cache_mysql  = "local"
 )
 
-/**
+/*
+*
 解析sql 引擎
-		`select * count from host_group t
-						where
-						1=1
-						$if name != '' then
-						and t.name = #name#
-						$endif
-						$if name != '' then
-						and t.name = #name#
-						$endif
+
+	`select * count from host_group t
+					where
+					1=1
+					$if name != '' then
+					and t.name = #name#
+					$endif
+					$if name != '' then
+					and t.name = #name#
+					$endif
 */
 func ParseSql(sql string, param map[string]interface{}) (string, []interface{}) {
 
@@ -79,7 +81,8 @@ func ParseSql(sql string, param map[string]interface{}) (string, []interface{}) 
 	return newSql, sqlParams
 }
 
-/**
+/*
+*
 解析参数
 */
 func parseParam(sql string, param map[string]interface{}) (string, []interface{}) {
@@ -131,7 +134,8 @@ currentParams.add(param);
 }
 */
 
-/**
+/*
+*
 表达式 解析
 */
 func parseExpression(tmpWhere string, param map[string]interface{}) bool {
@@ -227,7 +231,8 @@ for (String oSql : oSqls) {
         }
 */
 
-/**
+/*
+*
 封装 查询列表
 */
 func SelectList(sql string, param map[string]interface{}, callback func(db *gorm.DB), cacheSql bool) {
@@ -259,7 +264,8 @@ func SelectList(sql string, param map[string]interface{}, callback func(db *gorm
 
 }
 
-/**
+/*
+*
 封装 查询单个
 */
 func SelectOne(sql string, param map[string]interface{}, callback func(db *gorm.DB), cacheSql bool) {
@@ -287,7 +293,8 @@ func SelectOne(sql string, param map[string]interface{}, callback func(db *gorm.
 	}
 }
 
-/**
+/*
+*
 封装 新增数据
 */
 func Insert(sql string, param map[string]interface{}, cacheSql bool) error {
@@ -315,7 +322,8 @@ func Insert(sql string, param map[string]interface{}, cacheSql bool) error {
 	return nil
 }
 
-/**
+/*
+*
 封装 修改数据
 */
 func Update(sql string, param map[string]interface{}, cacheSql bool) error {
@@ -341,7 +349,8 @@ func Update(sql string, param map[string]interface{}, cacheSql bool) error {
 	return nil
 }
 
-/**
+/*
+*
 封装  删除数据
 */
 func Delete(sql string, param map[string]interface{}, cacheSql bool) error {

@@ -3,20 +3,20 @@ package task
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/letheliu/hhjc-devops/common/docker"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
+	"github.com/letheliu/hhjc-devops/entity/dto/firewall"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/disk"
 	"github.com/shirou/gopsutil/mem"
 	"github.com/shopspring/decimal"
-	"github.com/zihao-boy/zihao/common/docker"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
-	"github.com/zihao-boy/zihao/entity/dto/firewall"
-	"github.com/zihao-boy/zihao/entity/dto/result"
 	"strconv"
 	"time"
 
-	"github.com/zihao-boy/zihao/common/httpReq"
-	"github.com/zihao-boy/zihao/config"
+	"github.com/letheliu/hhjc-devops/common/httpReq"
+	"github.com/letheliu/hhjc-devops/config"
 )
 
 func doSlaveHealth() {
@@ -67,7 +67,7 @@ func doSlaveHealth() {
 		"mem":    fmt.Sprintf("%.2f", totalMemValue),
 		"disk":   fmt.Sprintf("%.2f", totalDiskValue),
 		//"useCpu":     fmt.Sprintf("%.2f", useCpu),
-		"useCpu":     fmt.Sprintf("%.2f",cpuPercent[0]),
+		"useCpu":     fmt.Sprintf("%.2f", cpuPercent[0]),
 		"useMem":     fmt.Sprintf("%.2f", totalMemUseValue),
 		"useDisk":    fmt.Sprintf("%.2f", totalDiskUseValue),
 		"containers": relContainers,
@@ -144,9 +144,9 @@ func SlaveHealth() {
 }
 
 // slave firewall
-func SlaveFireWall(){
+func SlaveFireWall() {
 	var (
-		resultDto result.ResultDto
+		resultDto        result.ResultDto
 		firewallRuleDtos []*firewall.FirewallRuleDto
 	)
 	mastIp, isExist := config.Prop.Property("mastIp")
@@ -159,7 +159,7 @@ func SlaveFireWall(){
 	if !isExist {
 		slaveId = "-1"
 	}
-	url = url+"?hostId="+slaveId
+	url = url + "?hostId=" + slaveId
 	resp, err := httpReq.Get(url, nil)
 	if err != nil {
 		fmt.Print(err.Error(), url)
@@ -170,13 +170,13 @@ func SlaveFireWall(){
 		fmt.Print(resultDto)
 		return
 	}
-	if resultDto.Data == nil{
+	if resultDto.Data == nil {
 		return
 	}
 
-	data,_ :=json.Marshal(resultDto.Data)
+	data, _ := json.Marshal(resultDto.Data)
 
-	json.Unmarshal(data,&firewallRuleDtos)
+	json.Unmarshal(data, &firewallRuleDtos)
 
 	shell.ExecLocalShell("/sbin/iptables -P INPUT ACCEPT")
 	shell.ExecLocalShell("/sbin/iptables -F INPUT")
@@ -193,8 +193,8 @@ func SlaveFireWall(){
 		shellStr string
 	)
 
-	if len(firewallRuleDtos) < 1{
-		return ;
+	if len(firewallRuleDtos) < 1 {
+		return
 	}
 	for _, rule := range firewallRuleDtos {
 		if rule.Inout == "in" {
@@ -204,7 +204,7 @@ func SlaveFireWall(){
 			} else {
 				shellStr += "DROP"
 			}
-		}else{
+		} else {
 			shellStr = "/sbin/iptables -A OUTPUT -p " + rule.Protocol + " -d " + rule.SrcObj + " --dport " + rule.DstObj + " -j "
 			if rule.AllowLimit == "allow" {
 				shellStr += "ACCEPT"
@@ -215,7 +215,6 @@ func SlaveFireWall(){
 
 		shell.ExecLocalShell(shellStr)
 	}
-
 
 	fmt.Print(resp)
 }

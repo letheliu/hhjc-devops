@@ -1,23 +1,24 @@
 package service
 
 import (
+	"github.com/kataras/iris/v12"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	"github.com/zihao-boy/zihao/monitor/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/monitor/dao"
 )
 
 type MonitorHostGroupService struct {
 	monitorHostGroupDao dao.MonitorHostGroupDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (monitorHostGroupService *MonitorHostGroupService) GetMonitorHostGroups(ctx iris.Context) result.ResultDto {
@@ -67,7 +68,8 @@ func (monitorHostGroupService *MonitorHostGroupService) GetMonitorHostGroups(ctx
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (monitorHostGroupService *MonitorHostGroupService) SaveMonitorHostGroups(ctx iris.Context) result.ResultDto {
@@ -94,7 +96,8 @@ func (monitorHostGroupService *MonitorHostGroupService) SaveMonitorHostGroups(ct
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (monitorHostGroupService *MonitorHostGroupService) UpdateMonitorHostGroups(ctx iris.Context) result.ResultDto {
@@ -116,7 +119,8 @@ func (monitorHostGroupService *MonitorHostGroupService) UpdateMonitorHostGroups(
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (monitorHostGroupService *MonitorHostGroupService) DeleteMonitorHostGroups(ctx iris.Context) result.ResultDto {
@@ -138,7 +142,8 @@ func (monitorHostGroupService *MonitorHostGroupService) DeleteMonitorHostGroups(
 
 }
 
-/**
+/*
+*
 启动组
 */
 func (monitorHostGroupService *MonitorHostGroupService) StartMonitorHostGroups(ctx iris.Context) result.ResultDto {
@@ -161,7 +166,8 @@ func (monitorHostGroupService *MonitorHostGroupService) StartMonitorHostGroups(c
 
 }
 
-/**
+/*
+*
 停止组
 */
 func (monitorHostGroupService *MonitorHostGroupService) StopMonitorHostGroups(ctx iris.Context) result.ResultDto {

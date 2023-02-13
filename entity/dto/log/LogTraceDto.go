@@ -1,6 +1,6 @@
 package log
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
 // trace dto
 type LogTraceDto struct {

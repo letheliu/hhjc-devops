@@ -1,16 +1,16 @@
 package server
 
 import (
-	"github.com/zihao-boy/zihao/common/innerNet/io"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/common/innerNet/io"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
 	"net"
 )
 
 type TcpServer struct {
-	Addr         string
-	InnerNetDataDto   *innerNet.SlaveInnerNetDataDto
-	TcpListener  net.Listener
-	LoginManager *LoginManager
+	Addr            string
+	InnerNetDataDto *innerNet.SlaveInnerNetDataDto
+	TcpListener     net.Listener
+	LoginManager    *LoginManager
 }
 
 func NewTcpServer(innerNetDataDto innerNet.SlaveInnerNetDataDto, loginManager *LoginManager) (*TcpServer, error) {
@@ -20,10 +20,10 @@ func NewTcpServer(innerNetDataDto innerNet.SlaveInnerNetDataDto, loginManager *L
 	}
 
 	return &TcpServer{
-		Addr:         ":" + innerNetDataDto.InnerNet.InnerNetPort,
-		InnerNetDataDto:   &innerNetDataDto,
-		TcpListener:  tcpListener,
-		LoginManager: loginManager,
+		Addr:            ":" + innerNetDataDto.InnerNet.InnerNetPort,
+		InnerNetDataDto: &innerNetDataDto,
+		TcpListener:     tcpListener,
+		LoginManager:    loginManager,
 	}, nil
 }
 
@@ -56,6 +56,6 @@ func (ts *TcpServer) login(client string, conn net.Conn) error {
 	if data, err := io.ReadPacket(conn); err != nil {
 		return err
 	} else {
-		return ts.LoginManager.Login(client, "tcp", string(data),conn)
+		return ts.LoginManager.Login(client, "tcp", string(data), conn)
 	}
 }

@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/appVersion"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/appVersion"
 	"gorm.io/gorm"
 )
 
@@ -71,7 +71,8 @@ VALUES (#AvId#,#Name#,#Remark#,#TenantId#)
 type AppVersionDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppVersionDao) GetAppVersionCount(appVersionDto appVersion.AppVersionDto) (int64, error) {
@@ -87,7 +88,8 @@ func (*AppVersionDao) GetAppVersionCount(appVersionDto appVersion.AppVersionDto)
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppVersionDao) GetAppVersions(appVersionDto appVersion.AppVersionDto) ([]*appVersion.AppVersionDto, error) {
@@ -99,21 +101,24 @@ func (*AppVersionDao) GetAppVersions(appVersionDto appVersion.AppVersionDto) ([]
 	return appVersionDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*AppVersionDao) SaveAppVersion(appVersionDto appVersion.AppVersionDto) error {
 	return sqlTemplate.Insert(insert_appVersion, objectConvert.Struct2Map(appVersionDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*AppVersionDao) UpdateAppVersion(appVersionDto appVersion.AppVersionDto) error {
 	return sqlTemplate.Update(update_appVersion, objectConvert.Struct2Map(appVersionDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*AppVersionDao) DeleteAppVersion(appVersionDto appVersion.AppVersionDto) error {

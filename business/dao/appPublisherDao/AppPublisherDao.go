@@ -1,10 +1,10 @@
 package appPublisherDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	appPublisher "github.com/zihao-boy/zihao/entity/dto/appPublisherDto"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	appPublisher "github.com/letheliu/hhjc-devops/entity/dto/appPublisherDto"
 	"gorm.io/gorm"
 )
 
@@ -93,7 +93,8 @@ VALUES(#PublisherId#,#Username#,#Email#,#Token#,#Phone#,#State#,#TenantId#,#ExtP
 type AppPublisherDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppPublisherDao) GetAppPublisherCount(appPublisherDto appPublisher.AppPublisherDto) (int64, error) {
@@ -109,7 +110,8 @@ func (*AppPublisherDao) GetAppPublisherCount(appPublisherDto appPublisher.AppPub
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*AppPublisherDao) GetAppPublishers(appPublisherDto appPublisher.AppPublisherDto) ([]*appPublisher.AppPublisherDto, error) {
@@ -121,21 +123,24 @@ func (*AppPublisherDao) GetAppPublishers(appPublisherDto appPublisher.AppPublish
 	return appPublisherDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*AppPublisherDao) SaveAppPublisher(appPublisherDto appPublisher.AppPublisherDto) error {
 	return sqlTemplate.Insert(insert_appPublisher, objectConvert.Struct2Map(appPublisherDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*AppPublisherDao) UpdateAppPublisher(appPublisherDto appPublisher.AppPublisherDto) error {
 	return sqlTemplate.Update(update_appPublisher, objectConvert.Struct2Map(appPublisherDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*AppPublisherDao) DeleteAppPublisher(appPublisherDto appPublisher.AppPublisherDto) error {

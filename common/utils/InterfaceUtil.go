@@ -4,10 +4,11 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/zihao-boy/zihao/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto"
 )
 
-/**
+/*
+*
 从interface 对象中反射 出值
 */
 func ParseIntValueFromInterface(param map[string]interface{}, name string) int64 {

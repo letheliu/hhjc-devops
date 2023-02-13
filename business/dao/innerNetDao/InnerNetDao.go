@@ -1,10 +1,10 @@
 package innerNetDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
 	"gorm.io/gorm"
 )
 
@@ -111,7 +111,8 @@ VALUES(#InnerNetId#,#InnerNetPort#,#Tun#,#TunName#,#Dns#,#Protocol#,#State#)
 type InnerNetDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*InnerNetDao) GetInnerNetCount(inner_netDto innerNet.InnerNetDto) (int64, error) {
@@ -127,7 +128,8 @@ func (*InnerNetDao) GetInnerNetCount(inner_netDto innerNet.InnerNetDto) (int64, 
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*InnerNetDao) GetInnerNets(inner_netDto innerNet.InnerNetDto) ([]*innerNet.InnerNetDto, error) {
@@ -139,21 +141,24 @@ func (*InnerNetDao) GetInnerNets(inner_netDto innerNet.InnerNetDto) ([]*innerNet
 	return inner_netDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*InnerNetDao) SaveInnerNet(inner_netDto innerNet.InnerNetDto) error {
 	return sqlTemplate.Insert(insert_inner_net, objectConvert.Struct2Map(inner_netDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*InnerNetDao) UpdateInnerNet(inner_netDto innerNet.InnerNetDto) error {
 	return sqlTemplate.Update(update_inner_net, objectConvert.Struct2Map(inner_netDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*InnerNetDao) DeleteInnerNet(inner_netDto innerNet.InnerNetDto) error {

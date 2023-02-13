@@ -1,10 +1,10 @@
 package innerNetDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
 	"gorm.io/gorm"
 )
 
@@ -93,7 +93,8 @@ VALUES(#UserId#,#Username#,#Password#,#Tel#,#Ip#,#LoginTime#)
 type InnerNetUserDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*InnerNetUserDao) GetInnerNetUserCount(innerNetUserDto innerNet.InnerNetUserDto) (int64, error) {
@@ -109,7 +110,8 @@ func (*InnerNetUserDao) GetInnerNetUserCount(innerNetUserDto innerNet.InnerNetUs
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*InnerNetUserDao) GetInnerNetUsers(innerNetUserDto innerNet.InnerNetUserDto) ([]*innerNet.InnerNetUserDto, error) {
@@ -121,21 +123,24 @@ func (*InnerNetUserDao) GetInnerNetUsers(innerNetUserDto innerNet.InnerNetUserDt
 	return innerNetUserDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*InnerNetUserDao) SaveInnerNetUser(innerNetUserDto innerNet.InnerNetUserDto) error {
 	return sqlTemplate.Insert(insert_innerNetUser, objectConvert.Struct2Map(innerNetUserDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*InnerNetUserDao) UpdateInnerNetUser(innerNetUserDto innerNet.InnerNetUserDto) error {
 	return sqlTemplate.Update(update_innerNetUser, objectConvert.Struct2Map(innerNetUserDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*InnerNetUserDao) DeleteInnerNetUser(innerNetUserDto innerNet.InnerNetUserDto) error {

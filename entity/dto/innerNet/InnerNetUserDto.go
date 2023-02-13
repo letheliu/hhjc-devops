@@ -1,7 +1,7 @@
 package innerNet
 
 import (
-	"github.com/zihao-boy/zihao/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto"
 	"time"
 )
 
@@ -15,5 +15,5 @@ type InnerNetUserDto struct {
 	LoginTime  time.Time `json:"loginTime" sql:"-"`
 	CreateTime time.Time `json:"createTime" sql:"-"`
 	StatusCd   string    `json:"statusCd" sql:"-"`
-	Token string `json:"token"`
+	Token      string    `json:"token"`
 }

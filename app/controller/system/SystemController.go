@@ -3,8 +3,8 @@ package system
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/system/service"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/system/service"
 )
 
 type SystemController struct {
@@ -60,7 +60,8 @@ func (aus *SystemController) getServiceSqls(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *SystemController) saveServiceSql(ctx iris.Context) {
@@ -68,7 +69,8 @@ func (aus *SystemController) saveServiceSql(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *SystemController) updateServiceSql(ctx iris.Context) {
@@ -76,7 +78,8 @@ func (aus *SystemController) updateServiceSql(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *SystemController) deleteServiceSql(ctx iris.Context) {
@@ -94,7 +97,8 @@ func (aus *SystemController) getDicts(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *SystemController) saveMapping(ctx iris.Context) {
@@ -102,7 +106,8 @@ func (aus *SystemController) saveMapping(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *SystemController) updateMapping(ctx iris.Context) {
@@ -110,7 +115,8 @@ func (aus *SystemController) updateMapping(ctx iris.Context) {
 	ctx.JSON(relustDto)
 }
 
-/**
+/*
+*
 保存sql信息
 */
 func (aus *SystemController) deleteMapping(ctx iris.Context) {

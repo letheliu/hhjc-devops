@@ -4,25 +4,25 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/appService/dao"
-	assetsDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/containerScheduling"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/queue/dockerfileQueue"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/appService"
-	"github.com/zihao-boy/zihao/entity/dto/businessDockerfile"
-	"github.com/zihao-boy/zihao/entity/dto/businessImages"
-	"github.com/zihao-boy/zihao/entity/dto/businessPackage"
-	"github.com/zihao-boy/zihao/entity/dto/composeYaml"
-	"github.com/zihao-boy/zihao/entity/dto/host"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	dao2 "github.com/zihao-boy/zihao/softService/dao"
+	"github.com/letheliu/hhjc-devops/appService/dao"
+	assetsDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/containerScheduling"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/queue/dockerfileQueue"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/appService"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessDockerfile"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessImages"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessPackage"
+	"github.com/letheliu/hhjc-devops/entity/dto/composeYaml"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	dao2 "github.com/letheliu/hhjc-devops/softService/dao"
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
 	"os"
@@ -41,7 +41,8 @@ type AppServiceService struct {
 	businessImagesVerDao  dao2.BusinessImagesVerDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (appServiceService *AppServiceService) GetAppServiceAll(appServiceDto appService.AppServiceDto) ([]*appService.AppServiceDto, error) {
@@ -59,7 +60,8 @@ func (appServiceService *AppServiceService) GetAppServiceAll(appServiceDto appSe
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (appServiceService *AppServiceService) GetAppServices(ctx iris.Context) result.ResultDto {
@@ -114,7 +116,8 @@ func (appServiceService *AppServiceService) GetAppServices(ctx iris.Context) res
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (appServiceService *AppServiceService) SaveAppServices(ctx iris.Context) result.ResultDto {
@@ -175,7 +178,8 @@ func (appServiceService *AppServiceService) SaveAppServices(ctx iris.Context) re
 	return result.SuccessData(appServiceDto)
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (appServiceService *AppServiceService) UpdateAppServices(ctx iris.Context) result.ResultDto {
@@ -289,7 +293,8 @@ func (appServiceService *AppServiceService) CopyAppServices(ctx iris.Context) re
 	return result.SuccessData(newAppServiceDto)
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (appServiceService *AppServiceService) DeleteAppServices(ctx iris.Context) result.ResultDto {
@@ -1365,10 +1370,9 @@ func (appServiceService *AppServiceService) getServiceDto(appServiceDto *appServ
 
 func (appServiceService *AppServiceService) ImportAppService(ctx iris.Context) result.ResultDto {
 	var (
-		composeYamlDto = composeYaml.ComposeYamlZiHaoDto{
-		}
-		serviceName   string
-		appServiceDto appService.AppServiceDto
+		composeYamlDto = composeYaml.ComposeYamlZiHaoDto{}
+		serviceName    string
+		appServiceDto  appService.AppServiceDto
 	)
 	ctx.SetMaxRequestBodySize(maxSize)
 	var user *user.UserDto = ctx.Values().Get(constants.UINFO).(*user.UserDto)
@@ -1592,7 +1596,7 @@ func (appServiceService *AppServiceService) UpgradeAppService(ctx iris.Context) 
 	}
 
 	appServiceDto := appService.AppServiceDto{
-		AsId:  tmpAppServiceDto.AsId,
+		AsId: tmpAppServiceDto.AsId,
 	}
 	appServiceDtos, err := appServiceService.appServiceDao.GetAppServices(appServiceDto)
 

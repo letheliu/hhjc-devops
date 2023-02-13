@@ -2,10 +2,10 @@ package innerNetService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/innerNetDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/business/dao/innerNetDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 )
 
@@ -17,7 +17,7 @@ type InnerNetHostsService struct {
 // all db by this user
 func (innerNetService *InnerNetHostsService) GetInnerNetHostsAll(InnerNetHostsDto innerNet.InnerNetHostsDto) ([]*innerNet.InnerNetHostsDto, error) {
 	var (
-		err        error
+		err               error
 		InnerNetHostsDtos []*innerNet.InnerNetHostsDto
 	)
 
@@ -30,15 +30,16 @@ func (innerNetService *InnerNetHostsService) GetInnerNetHostsAll(InnerNetHostsDt
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (innerNetService *InnerNetHostsService) GetInnerNetHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err        error
-		page       int64
-		row        int64
-		total      int64
+		err          error
+		page         int64
+		row          int64
+		total        int64
 		innerNetDto  = innerNet.InnerNetHostsDto{}
 		innerNetDtos []*innerNet.InnerNetHostsDto
 	)
@@ -78,12 +79,13 @@ func (innerNetService *InnerNetHostsService) GetInnerNetHostss(ctx iris.Context)
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (innerNetService *InnerNetHostsService) SaveInnerNetHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err         error
 		innerNetDto innerNet.InnerNetHostsDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {
@@ -101,12 +103,13 @@ func (innerNetService *InnerNetHostsService) SaveInnerNetHostss(ctx iris.Context
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (innerNetService *InnerNetHostsService) UpdateInnerNetHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err         error
 		innerNetDto innerNet.InnerNetHostsDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {
@@ -126,12 +129,13 @@ func (innerNetService *InnerNetHostsService) UpdateInnerNetHostss(ctx iris.Conte
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (innerNetService *InnerNetHostsService) DeleteInnerNetHostss(ctx iris.Context) result.ResultDto {
 	var (
-		err       error
+		err         error
 		innerNetDto innerNet.InnerNetHostsDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {

@@ -3,35 +3,36 @@ package service
 import (
 	"encoding/json"
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/appPublisherDao"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/encrypt"
-	"github.com/zihao-boy/zihao/common/httpReq"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/config"
-	appPublisher "github.com/zihao-boy/zihao/entity/dto/appPublisherDto"
-	"github.com/zihao-boy/zihao/entity/dto/businessImages"
-	installApp2 "github.com/zihao-boy/zihao/entity/dto/installApp"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	"github.com/zihao-boy/zihao/softService/dao"
+	"github.com/letheliu/hhjc-devops/business/dao/appPublisherDao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/encrypt"
+	"github.com/letheliu/hhjc-devops/common/httpReq"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/config"
+	appPublisher "github.com/letheliu/hhjc-devops/entity/dto/appPublisherDto"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessImages"
+	installApp2 "github.com/letheliu/hhjc-devops/entity/dto/installApp"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/softService/dao"
 	"strconv"
 )
 
 type BusinessImagesVerService struct {
-	businessImagesVerDao     dao.BusinessImagesVerDao
+	businessImagesVerDao  dao.BusinessImagesVerDao
 	businessDockerfileDao dao.BusinessDockerfileDao
 
 	appPublisherDao appPublisherDao.AppPublisherDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (businessImagesVerService *BusinessImagesVerService) GetBusinessImagesVerAll(businessImagesVerDto businessImages.BusinessImagesVerDto) ([]*businessImages.BusinessImagesVerDto, error) {
 	var (
-		err                error
+		err                   error
 		businessImagesVerDtos []*businessImages.BusinessImagesVerDto
 	)
 
@@ -44,15 +45,16 @@ func (businessImagesVerService *BusinessImagesVerService) GetBusinessImagesVerAl
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (businessImagesVerService *BusinessImagesVerService) GetBusinessImagesVer(ctx iris.Context) result.ResultDto {
 	var (
-		err                error
-		page               int64
-		row                int64
-		total              int64
+		err                   error
+		page                  int64
+		row                   int64
+		total                 int64
 		businessImagesVerDto  = businessImages.BusinessImagesVerDto{}
 		businessImagesVerDtos []*businessImages.BusinessImagesVerDto
 	)
@@ -74,8 +76,8 @@ func (businessImagesVerService *BusinessImagesVerService) GetBusinessImagesVer(c
 	businessImagesVerDto.Page = (page - 1) * row
 	var user *user.UserDto = ctx.Values().Get(constants.UINFO).(*user.UserDto)
 	businessImagesVerDto.TenantId = user.TenantId
-	businessImagesVerDto.ImagesId=ctx.URLParam("imagesId")
-	businessImagesVerDto.Version=ctx.URLParam("version")
+	businessImagesVerDto.ImagesId = ctx.URLParam("imagesId")
+	businessImagesVerDto.Version = ctx.URLParam("version")
 
 	total, err = businessImagesVerService.businessImagesVerDao.GetBusinessImagesVerCount(businessImagesVerDto)
 
@@ -96,12 +98,13 @@ func (businessImagesVerService *BusinessImagesVerService) GetBusinessImagesVer(c
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (businessImagesVerService *BusinessImagesVerService) SaveBusinessImagesVer(ctx iris.Context) result.ResultDto {
 	var (
-		err               error
+		err                  error
 		businessImagesVerDto businessImages.BusinessImagesVerDto
 	)
 
@@ -109,11 +112,11 @@ func (businessImagesVerService *BusinessImagesVerService) SaveBusinessImagesVer(
 	ctx.ReadJSON(&businessImagesVerDto)
 	tmpBusinessImagesVerDto := businessImages.BusinessImagesVerDto{
 		ImagesId: businessImagesVerDto.ImagesId,
-		Version: businessImagesVerDto.Version,
+		Version:  businessImagesVerDto.Version,
 	}
 	businessImagesVerDtos, _ := businessImagesVerService.businessImagesVerDao.GetBusinessImagesVers(tmpBusinessImagesVerDto)
 
-	if businessImagesVerDtos != nil && len(businessImagesVerDtos) > 0{
+	if businessImagesVerDtos != nil && len(businessImagesVerDtos) > 0 {
 		return result.Error("版本已存在")
 	}
 	businessImagesVerDto.Id = seq.Generator()
@@ -130,12 +133,13 @@ func (businessImagesVerService *BusinessImagesVerService) SaveBusinessImagesVer(
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (businessImagesVerService *BusinessImagesVerService) UpdateBusinessImagesVer(ctx iris.Context) result.ResultDto {
 	var (
-		err               error
+		err                  error
 		businessImagesVerDto businessImages.BusinessImagesVerDto
 	)
 
@@ -152,12 +156,13 @@ func (businessImagesVerService *BusinessImagesVerService) UpdateBusinessImagesVe
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (businessImagesVerService *BusinessImagesVerService) DeleteBusinessImagesVer(ctx iris.Context) result.ResultDto {
 	var (
-		err               error
+		err                  error
 		businessImagesVerDto businessImages.BusinessImagesVerDto
 	)
 
@@ -206,7 +211,7 @@ func (businessImagesVerService *BusinessImagesVerService) GetRemoteBusinessImage
 func (businessImagesVerService *BusinessImagesVerService) SaveRemoteBusinessImagesVer(ctx iris.Context) interface{} {
 
 	var (
-		err                error
+		err                        error
 		remoteBusinessImagesVerDto businessImages.RemoteBusinessImagesVerDto
 
 		resultDto result.ResultDto
@@ -228,7 +233,6 @@ func (businessImagesVerService *BusinessImagesVerService) SaveRemoteBusinessImag
 	}
 
 	remoteBusinessImagesVerDto.PublisherId = appPublisherDtos[0].ExtPublisherId
-
 
 	headers := map[string]string{
 		"APP-ID":         config.Hc_cloud_app_id,
@@ -254,4 +258,3 @@ func (businessImagesVerService *BusinessImagesVerService) SaveRemoteBusinessImag
 
 	return resultDto
 }
-

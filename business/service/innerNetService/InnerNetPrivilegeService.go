@@ -2,22 +2,22 @@ package innerNetService
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/business/dao/innerNetDao"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/business/dao/innerNetDao"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"strconv"
 )
 
 type InnerNetPrivilegeService struct {
-	innerNetDao             innerNetDao.InnerNetPrivilegeDao
+	innerNetDao innerNetDao.InnerNetPrivilegeDao
 }
 
 // get db link
 // all db by this user
 func (innerNetService *InnerNetPrivilegeService) GetInnerNetPrivilegeAll(InnerNetPrivilegeDto innerNet.InnerNetPrivilegeDto) ([]*innerNet.InnerNetPrivilegeDto, error) {
 	var (
-		err          error
+		err                   error
 		InnerNetPrivilegeDtos []*innerNet.InnerNetPrivilegeDto
 	)
 
@@ -30,15 +30,16 @@ func (innerNetService *InnerNetPrivilegeService) GetInnerNetPrivilegeAll(InnerNe
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (innerNetService *InnerNetPrivilegeService) GetInnerNetPrivileges(ctx iris.Context) result.ResultDto {
 	var (
-		err     error
-		page    int64
-		row     int64
-		total   int64
+		err          error
+		page         int64
+		row          int64
+		total        int64
 		innerNetDto  = innerNet.InnerNetPrivilegeDto{}
 		innerNetDtos []*innerNet.InnerNetPrivilegeDto
 	)
@@ -78,12 +79,13 @@ func (innerNetService *InnerNetPrivilegeService) GetInnerNetPrivileges(ctx iris.
 
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (innerNetService *InnerNetPrivilegeService) SaveInnerNetPrivileges(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		innerNetDto innerNet.InnerNetPrivilegeDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {
@@ -101,12 +103,13 @@ func (innerNetService *InnerNetPrivilegeService) SaveInnerNetPrivileges(ctx iris
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (innerNetService *InnerNetPrivilegeService) UpdateInnerNetPrivileges(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		innerNetDto innerNet.InnerNetPrivilegeDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {
@@ -122,17 +125,17 @@ func (innerNetService *InnerNetPrivilegeService) UpdateInnerNetPrivileges(ctx ir
 		return result.Error(err.Error())
 	}
 
-
 	return result.SuccessData(innerNetDto)
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (innerNetService *InnerNetPrivilegeService) DeleteInnerNetPrivileges(ctx iris.Context) result.ResultDto {
 	var (
-		err    error
+		err         error
 		innerNetDto innerNet.InnerNetPrivilegeDto
 	)
 	if err = ctx.ReadJSON(&innerNetDto); err != nil {

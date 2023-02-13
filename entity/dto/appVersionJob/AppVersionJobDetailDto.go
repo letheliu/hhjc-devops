@@ -1,6 +1,6 @@
 package appVersionJob
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
 type AppVersionJobDetailDto struct {
 	dto.PageDto
@@ -12,4 +12,3 @@ type AppVersionJobDetailDto struct {
 	CreateTime string `json:"createTime" sql:"-"`
 	StatusCd   string `json:"statusCd" sql:"-"`
 }
-

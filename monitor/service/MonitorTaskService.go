@@ -1,15 +1,15 @@
 package service
 
 import (
+	"github.com/kataras/iris/v12"
 	"strconv"
 
-	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
-	"github.com/zihao-boy/zihao/entity/dto/result"
-	"github.com/zihao-boy/zihao/entity/dto/user"
-	"github.com/zihao-boy/zihao/monitor/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
+	"github.com/letheliu/hhjc-devops/entity/dto/user"
+	"github.com/letheliu/hhjc-devops/monitor/dao"
 )
 
 type MonitorTaskService struct {
@@ -17,7 +17,8 @@ type MonitorTaskService struct {
 	monitorTaskAttrDao dao.MonitorTaskAttrDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (monitorTaskService *MonitorTaskService) GetMonitorTaskAll(monitorTaskDto monitor.MonitorTaskDto) ([]*monitor.MonitorTaskDto, error) {
@@ -35,7 +36,8 @@ func (monitorTaskService *MonitorTaskService) GetMonitorTaskAll(monitorTaskDto m
 
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (monitorTaskService *MonitorTaskService) GetMonitorTasks(ctx iris.Context) result.ResultDto {
@@ -141,7 +143,8 @@ func checkHasTemplate(i []*monitor.MonitorTaskTemplateDto, dto monitor.MonitorTa
 	return false
 }
 
-/**
+/*
+*
 保存 系统信息
 */
 func (monitorTaskService *MonitorTaskService) SaveMonitorTasks(ctx iris.Context) result.ResultDto {
@@ -185,7 +188,8 @@ func (monitorTaskService *MonitorTaskService) SaveMonitorTasks(ctx iris.Context)
 
 }
 
-/**
+/*
+*
 修改 系统信息
 */
 func (monitorTaskService *MonitorTaskService) UpdateMonitorTasks(ctx iris.Context) result.ResultDto {
@@ -231,7 +235,8 @@ func (monitorTaskService *MonitorTaskService) UpdateMonitorTasks(ctx iris.Contex
 
 }
 
-/**
+/*
+*
 删除 系统信息
 */
 func (monitorTaskService *MonitorTaskService) DeleteMonitorTasks(ctx iris.Context) result.ResultDto {
@@ -253,7 +258,8 @@ func (monitorTaskService *MonitorTaskService) DeleteMonitorTasks(ctx iris.Contex
 
 }
 
-/**
+/*
+*
 停止组
 */
 func (monitorTaskService *MonitorTaskService) StartMonitorTask(ctx iris.Context) result.ResultDto {
@@ -276,7 +282,8 @@ func (monitorTaskService *MonitorTaskService) StartMonitorTask(ctx iris.Context)
 
 }
 
-/**
+/*
+*
 停止组
 */
 func (monitorTaskService *MonitorTaskService) StopMonitorTasks(ctx iris.Context) result.ResultDto {

@@ -2,17 +2,18 @@ package service
 
 import (
 	"github.com/kataras/iris/v12"
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/entity/dto/menu"
-	"github.com/zihao-boy/zihao/entity/vo"
-	"github.com/zihao-boy/zihao/system/dao"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/entity/dto/menu"
+	"github.com/letheliu/hhjc-devops/entity/vo"
+	"github.com/letheliu/hhjc-devops/system/dao"
 )
 
 type MenuService struct {
 	menuDao dao.MenuDao
 }
 
-/**
+/*
+*
 查询 系统信息
 */
 func (menuService *MenuService) GetMenus(ctx iris.Context) []map[string]interface{} {

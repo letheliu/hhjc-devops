@@ -1,8 +1,9 @@
 package mapping
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
-/**
+/*
+*
 编码映射实体类
 */
 type MappingDto struct {

@@ -6,13 +6,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/queue/monitorHostQueue"
-	"github.com/zihao-boy/zihao/common/seq"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
-	"github.com/zihao-boy/zihao/monitor/dao"
-	"github.com/zihao-boy/zihao/monitor/service"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/queue/monitorHostQueue"
+	"github.com/letheliu/hhjc-devops/common/seq"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/monitor/dao"
+	"github.com/letheliu/hhjc-devops/monitor/service"
 	"golang.org/x/crypto/ssh"
 )
 
@@ -43,14 +43,14 @@ func (h HostGroupTask) Run() {
 	}
 }
 
-/**
+/*
+*
 检查host
 cpu_rate,cpu 使用率
 mem_rate,内存使用率
 disk_rate,磁盘使用率
 free_mem,空闲内存，单位为G
 free_disk,空闲磁盘单位为G
-
 */
 func (h *HostGroupTask) checkHost(host *monitor.MonitorHostDto, group monitor.MonitorHostGroupDto) {
 

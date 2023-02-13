@@ -2,7 +2,7 @@ package mysql
 
 import (
 	"github.com/kataras/golog"
-	"github.com/zihao-boy/zihao/config"
+	"github.com/letheliu/hhjc-devops/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

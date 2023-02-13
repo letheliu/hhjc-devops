@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/businessPackage"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessPackage"
 	"gorm.io/gorm"
 )
 
@@ -92,7 +92,8 @@ VALUES(#Id#,#Name#,#Varsion#,#Path#,#CreateUserId#,#TenantId#)
 type BusinessPackageDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*BusinessPackageDao) GetBusinessPackageCount(businessPackageDto businessPackage.BusinessPackageDto) (int64, error) {
@@ -108,7 +109,8 @@ func (*BusinessPackageDao) GetBusinessPackageCount(businessPackageDto businessPa
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*BusinessPackageDao) GetBusinessPackages(businessPackageDto businessPackage.BusinessPackageDto) ([]*businessPackage.BusinessPackageDto, error) {
@@ -120,21 +122,24 @@ func (*BusinessPackageDao) GetBusinessPackages(businessPackageDto businessPackag
 	return businessPackageDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*BusinessPackageDao) SaveBusinessPackage(businessPackageDto businessPackage.BusinessPackageDto) error {
 	return sqlTemplate.Insert(insert_businessPackage, objectConvert.Struct2Map(businessPackageDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*BusinessPackageDao) UpdateBusinessPackage(businessPackageDto businessPackage.BusinessPackageDto) error {
 	return sqlTemplate.Update(update_businessPackage, objectConvert.Struct2Map(businessPackageDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*BusinessPackageDao) DeleteBusinessPackage(businessPackageDto businessPackage.BusinessPackageDto) error {

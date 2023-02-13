@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/entity/dto/host"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
-	"github.com/zihao-boy/zihao/monitor/service"
+	"github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/monitor/service"
 )
 
 type MonitorCommonTask struct {
@@ -24,14 +24,14 @@ func (h MonitorCommonTask) Run() {
 
 }
 
-/**
+/*
+*
 检查host
 cpu_rate,cpu 使用率
 mem_rate,内存使用率
 disk_rate,磁盘使用率
 free_mem,空闲内存，单位为G
 free_disk,空闲磁盘单位为G
-
 */
 func (h *MonitorCommonTask) checkHost(taskDto *monitor.MonitorTaskDto) {
 

@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/businessImages"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessImages"
 	"gorm.io/gorm"
 )
 
@@ -105,7 +105,8 @@ VALUES(#Id#,#Name#,#Version#,#ImagesType#,#TypeUrl#,#ImagesFlag#,#CreateUserId#,
 type BusinessImagesDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*BusinessImagesDao) GetBusinessImagesCount(businessImagesDto businessImages.BusinessImagesDto) (int64, error) {
@@ -121,7 +122,8 @@ func (*BusinessImagesDao) GetBusinessImagesCount(businessImagesDto businessImage
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*BusinessImagesDao) GetBusinessImagess(businessImagesDto businessImages.BusinessImagesDto) ([]*businessImages.BusinessImagesDto, error) {
@@ -133,21 +135,24 @@ func (*BusinessImagesDao) GetBusinessImagess(businessImagesDto businessImages.Bu
 	return businessImagesDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*BusinessImagesDao) SaveBusinessImages(businessImagesDto businessImages.BusinessImagesDto) error {
 	return sqlTemplate.Insert(insert_businessImages, objectConvert.Struct2Map(businessImagesDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*BusinessImagesDao) UpdateBusinessImages(businessImagesDto businessImages.BusinessImagesDto) error {
 	return sqlTemplate.Update(update_businessImages, objectConvert.Struct2Map(businessImagesDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*BusinessImagesDao) DeleteBusinessImages(businessImagesDto businessImages.BusinessImagesDto) error {

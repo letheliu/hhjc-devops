@@ -3,11 +3,11 @@ package dao
 import (
 	"fmt"
 
-	"github.com/zihao-boy/zihao/common/db/mysql"
-	"github.com/zihao-boy/zihao/common/db/sqlite"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/menu"
-	"github.com/zihao-boy/zihao/entity/vo"
+	"github.com/letheliu/hhjc-devops/common/db/mysql"
+	"github.com/letheliu/hhjc-devops/common/db/sqlite"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/menu"
+	"github.com/letheliu/hhjc-devops/entity/vo"
 )
 
 const (
@@ -50,7 +50,8 @@ const (
 	Cache_mysql  = "local"
 )
 
-/**
+/*
+*
 查询用户
 */
 func (*MenuDao) GetMenu(userVo vo.LoginUserVo) ([]*menu.MenusDto, error) {

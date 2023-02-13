@@ -3,9 +3,9 @@ package iface
 import (
 	"errors"
 	"fmt"
+	"github.com/letheliu/hhjc-devops/common/innerNet/cache"
+	"github.com/letheliu/hhjc-devops/common/innerNet/header"
 	"github.com/songgao/water"
-	"github.com/zihao-boy/zihao/common/innerNet/cache"
-	"github.com/zihao-boy/zihao/common/innerNet/header"
 	"golang.zx2c4.com/wireguard/tun"
 	"runtime"
 	"strings"
@@ -142,7 +142,7 @@ func (ts *TunServer) StartClient(client string, connToTunChan chan string, tunTo
 		for {
 			data, ok := <-connToTunChan
 			if !ok {
-				fmt.Println("data,ok=", data, ok,client)
+				fmt.Println("data,ok=", data, ok, client)
 				return
 			}
 			if proto, src, dst, err := header.GetBase([]byte(data)); err == nil {

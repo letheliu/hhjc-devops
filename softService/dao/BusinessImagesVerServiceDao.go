@@ -1,10 +1,10 @@
 package dao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/businessImages"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/businessImages"
 	"gorm.io/gorm"
 )
 
@@ -82,7 +82,8 @@ VALUES(#Id#,#ImagesId#,#Version#,#TypeUrl#,#TenantId#)
 type BusinessImagesVerDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*BusinessImagesVerDao) GetBusinessImagesVerCount(businessImagesVerDto businessImages.BusinessImagesVerDto) (int64, error) {
@@ -98,7 +99,8 @@ func (*BusinessImagesVerDao) GetBusinessImagesVerCount(businessImagesVerDto busi
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*BusinessImagesVerDao) GetBusinessImagesVers(businessImagesVerDto businessImages.BusinessImagesVerDto) ([]*businessImages.BusinessImagesVerDto, error) {
@@ -110,21 +112,24 @@ func (*BusinessImagesVerDao) GetBusinessImagesVers(businessImagesVerDto business
 	return businessImagesVerDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*BusinessImagesVerDao) SaveBusinessImagesVer(businessImagesVerDto businessImages.BusinessImagesVerDto) error {
 	return sqlTemplate.Insert(insert_businessImagesVer, objectConvert.Struct2Map(businessImagesVerDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*BusinessImagesVerDao) UpdateBusinessImagesVer(businessImagesVerDto businessImages.BusinessImagesVerDto) error {
 	return sqlTemplate.Update(update_businessImagesVer, objectConvert.Struct2Map(businessImagesVerDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*BusinessImagesVerDao) DeleteBusinessImagesVer(businessImagesVerDto businessImages.BusinessImagesVerDto) error {

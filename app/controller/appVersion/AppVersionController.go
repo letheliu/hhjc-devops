@@ -3,7 +3,7 @@ package appVersion
 import (
 	"github.com/kataras/iris/v12"
 	"github.com/kataras/iris/v12/hero"
-	"github.com/zihao-boy/zihao/appService/service"
+	"github.com/letheliu/hhjc-devops/appService/service"
 )
 
 type AppVersionController struct {
@@ -56,7 +56,8 @@ func AppVersionControllerRouter(party iris.Party) {
 	adinMenu.Post("/importJobBuildYaml", hero.Handler(aus.importJobBuildYaml))
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppVersionController) getAppVersion(ctx iris.Context) {
@@ -65,7 +66,8 @@ func (aus *AppVersionController) getAppVersion(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppVersionController) saveAppVersion(ctx iris.Context) {
@@ -74,7 +76,8 @@ func (aus *AppVersionController) saveAppVersion(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppVersionController) updateAppVersion(ctx iris.Context) {
@@ -83,7 +86,8 @@ func (aus *AppVersionController) updateAppVersion(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppVersionController) deleteAppVersion(ctx iris.Context) {
@@ -92,7 +96,8 @@ func (aus *AppVersionController) deleteAppVersion(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppVersionController) getAppVersionAttr(ctx iris.Context) {
@@ -101,7 +106,8 @@ func (aus *AppVersionController) getAppVersionAttr(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppVersionController) getAppVersionJob(ctx iris.Context) {
@@ -110,7 +116,8 @@ func (aus *AppVersionController) getAppVersionJob(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppVersionController) saveAppVersionJob(ctx iris.Context) {
@@ -119,7 +126,8 @@ func (aus *AppVersionController) saveAppVersionJob(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppVersionController) updateAppVersionJob(ctx iris.Context) {
@@ -128,7 +136,8 @@ func (aus *AppVersionController) updateAppVersionJob(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppVersionController) deleteAppVersionJob(ctx iris.Context) {
@@ -137,7 +146,8 @@ func (aus *AppVersionController) deleteAppVersionJob(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppVersionController) doJob(ctx iris.Context) {
@@ -146,7 +156,8 @@ func (aus *AppVersionController) doJob(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppVersionController) doJobHook(ctx iris.Context) {
@@ -155,7 +166,8 @@ func (aus *AppVersionController) doJobHook(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppVersionController) getAppVersionJobImages(ctx iris.Context) {
@@ -164,7 +176,8 @@ func (aus *AppVersionController) getAppVersionJobImages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 添加 主机组
 */
 func (aus *AppVersionController) saveAppVersionJobImages(ctx iris.Context) {
@@ -173,7 +186,8 @@ func (aus *AppVersionController) saveAppVersionJobImages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 修改 主机组
 */
 func (aus *AppVersionController) updateAppVersionJobImages(ctx iris.Context) {
@@ -182,7 +196,8 @@ func (aus *AppVersionController) updateAppVersionJobImages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 删除 主机组
 */
 func (aus *AppVersionController) deleteAppVersionJobImages(ctx iris.Context) {
@@ -191,7 +206,8 @@ func (aus *AppVersionController) deleteAppVersionJobImages(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
+/*
+*
 查询 主机组
 */
 func (aus *AppVersionController) getJobLog(ctx iris.Context) {
@@ -207,9 +223,13 @@ func (aus *AppVersionController) payload(ctx iris.Context) {
 	ctx.JSON(reslut)
 }
 
-/**
- export job build yaml file
-**/
+/*
+*
+
+	export job build yaml file
+
+*
+*/
 func (aus *AppVersionController) exportJobBuildYaml(ctx iris.Context) {
 	aus.appVersionJobService.ExportJobBuildYaml(ctx)
 
@@ -219,5 +239,3 @@ func (aus *AppVersionController) importJobBuildYaml(ctx iris.Context) {
 
 	ctx.JSON(reslut)
 }
-
-

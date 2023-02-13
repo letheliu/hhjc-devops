@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/zihao-boy/zihao/common/constants"
-	"github.com/zihao-boy/zihao/entity/dto/mapping"
-	"github.com/zihao-boy/zihao/system/mapper"
+	"github.com/letheliu/hhjc-devops/common/constants"
+	"github.com/letheliu/hhjc-devops/entity/dto/mapping"
+	"github.com/letheliu/hhjc-devops/system/mapper"
 )
 
 func (r *Redis) SaveMapping(mappingDto mapping.MappingDto) (err error) {

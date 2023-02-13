@@ -1,9 +1,9 @@
 package businessDockerfile
 
-import "github.com/zihao-boy/zihao/entity/dto"
+import "github.com/letheliu/hhjc-devops/entity/dto"
 
 const (
-	ActionBuild = "build"
+	ActionBuild      = "build"
 	ActionBuildStart = "buildAndStart"
 )
 
@@ -20,18 +20,18 @@ type BusinessDockerfileDto struct {
 	TenantId     string `json:"tenantId" sql:"-"`
 	Username     string `json:"username" sql:"-"`
 	LogPath      string `json:"logPath"`
-	Action string 	`json:"action"`
-	AvgIds string `json:"avgIds"`
+	Action       string `json:"action"`
+	AvgIds       string `json:"avgIds"`
 }
 
 type BusinessDockerfileCommonDto struct {
 	Name         string `json:"name" sql:"-"`
-	ShellContext  string `json:"shellContext" sql:"-"`
-	DeployType  string `json:"deployType" sql:"-"`
-	Path string `json:"path" sql:"-"`
+	ShellContext string `json:"shellContext" sql:"-"`
+	DeployType   string `json:"deployType" sql:"-"`
+	Path         string `json:"path" sql:"-"`
 }
 
 type ImagesVersion struct {
 	ImagesId string `json:"imagesId"`
-	VerId string `json:"verId"`
+	VerId    string `json:"verId"`
 }

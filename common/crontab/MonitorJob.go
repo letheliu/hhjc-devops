@@ -1,13 +1,13 @@
 package crontab
 
 import (
+	"github.com/robfig/cron/v3"
 	"reflect"
 	"sync"
 
-	"github.com/robfig/cron/v3"
-	task2 "github.com/zihao-boy/zihao/common/task"
-	"github.com/zihao-boy/zihao/entity/dto/monitor"
-	"github.com/zihao-boy/zihao/monitor/dao"
+	task2 "github.com/letheliu/hhjc-devops/common/task"
+	"github.com/letheliu/hhjc-devops/entity/dto/monitor"
+	"github.com/letheliu/hhjc-devops/monitor/dao"
 )
 
 var lock sync.Mutex
@@ -31,7 +31,7 @@ func (task MonitorJob) init() {
 
 }
 
-//启动多个任务
+// 启动多个任务
 func (task MonitorJob) Start() error {
 	var (
 		hostGroups []*monitor.MonitorHostGroupDto
@@ -106,7 +106,7 @@ func (job MonitorJob) hasInHostGroup(dto monitor.MonitorHostGroupDto) (bool, cro
 	return false, -1
 }
 
-//启动多个任务
+// 启动多个任务
 func (task MonitorJob) Restart() {
 	//停止 所有定时器
 

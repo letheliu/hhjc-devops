@@ -2,26 +2,28 @@ package server
 
 import (
 	"fmt"
-	"github.com/zihao-boy/zihao/common/innerNet/encrypt"
-	"github.com/zihao-boy/zihao/common/innerNet/iface"
-	"github.com/zihao-boy/zihao/common/innerNet/io"
-	"github.com/zihao-boy/zihao/entity/dto/innerNet"
+	"github.com/letheliu/hhjc-devops/common/innerNet/encrypt"
+	"github.com/letheliu/hhjc-devops/common/innerNet/iface"
+	"github.com/letheliu/hhjc-devops/common/innerNet/io"
+	"github.com/letheliu/hhjc-devops/entity/dto/innerNet"
 	"net"
 	"os/exec"
 	"runtime"
 	"strings"
 	"sync"
 )
+
 const Mtu = 1500
-//todo: add sync.Mutx for Users change
+
+// todo: add sync.Mutx for Users change
 type LoginManager struct {
 	//key: clientProtocol:clientIP:clientPort  value: key for AES
-	Users    map[string]*User
-	Tokens   map[string]innerNet.InnerNetUserDto
-	InnerNetDataDto      *innerNet.SlaveInnerNetDataDto
-	TunServer  *iface.TunServer
-	DhcpServer *Dhcp
-	Mutex    sync.Mutex
+	Users           map[string]*User
+	Tokens          map[string]innerNet.InnerNetUserDto
+	InnerNetDataDto *innerNet.SlaveInnerNetDataDto
+	TunServer       *iface.TunServer
+	DhcpServer      *Dhcp
+	Mutex           sync.Mutex
 }
 
 func NewLoginManager(innerNetDataDto innerNet.SlaveInnerNetDataDto) (*LoginManager, error) {
@@ -34,18 +36,18 @@ func NewLoginManager(innerNetDataDto innerNet.SlaveInnerNetDataDto) (*LoginManag
 	}
 
 	lm := &LoginManager{
-		Users:      map[string]*User{},
-		Tokens:     map[string]innerNet.InnerNetUserDto{},
-		InnerNetDataDto:       & innerNetDataDto,
-		TunServer:  tunServer,
-		DhcpServer: NewDhcp(&innerNetDataDto),
+		Users:           map[string]*User{},
+		Tokens:          map[string]innerNet.InnerNetUserDto{},
+		InnerNetDataDto: &innerNetDataDto,
+		TunServer:       tunServer,
+		DhcpServer:      NewDhcp(&innerNetDataDto),
 	}
 
 	for _, user := range innerNetDataDto.Users {
 		lm.Tokens[user.Token] = *user
 	}
 
-	ipData,err := lm.DhcpServer.ApplyIp()
+	ipData, err := lm.DhcpServer.ApplyIp()
 	//setting tun
 
 	sysType := runtime.GOOS
@@ -57,37 +59,36 @@ func NewLoginManager(innerNetDataDto innerNet.SlaveInnerNetDataDto) (*LoginManag
 		nIpData := strings.Join(ipDatas, ".")
 		cmd = exec.Command("cmd", "-c", "route -n add -net "+nIpData+" -netmask 255.255.255.0 "+ipData)
 		cmd.CombinedOutput()
-	} else if(sysType == "darwin") {
-		shellCmd := "ifconfig "+tunServer.TunConn.Name()+" "+ipData+" 255.255.255.0 up"
+	} else if sysType == "darwin" {
+		shellCmd := "ifconfig " + tunServer.TunConn.Name() + " " + ipData + " 255.255.255.0 up"
 		cmd = exec.Command("bash", "-c", shellCmd)
 		fmt.Println(shellCmd)
 		cmd.CombinedOutput()
 		ipDatas := strings.Split(ipData, ".")
 		ipDatas[3] = "0"
 		nIpData := strings.Join(ipDatas, ".")
-		shellCmd = "route -n add -net "+nIpData+" -netmask 255.255.255.0 "+ipData
+		shellCmd = "route -n add -net " + nIpData + " -netmask 255.255.255.0 " + ipData
 		fmt.Println(shellCmd)
 		cmd = exec.Command("bash", "-c", shellCmd)
 		cmd.CombinedOutput()
-	}else{
-		shellCmd := "ifconfig "+tunServer.TunConn.Name()+" "+ipData+" 255.255.255.0 up"
+	} else {
+		shellCmd := "ifconfig " + tunServer.TunConn.Name() + " " + ipData + " 255.255.255.0 up"
 		cmd = exec.Command("bash", "-c", shellCmd)
 		fmt.Println(shellCmd)
 		cmd.CombinedOutput()
 		ipDatas := strings.Split(ipData, ".")
 		ipDatas[3] = "0"
 		nIpData := strings.Join(ipDatas, ".")
-		shellCmd = "route add -net "+nIpData+" netmask 255.255.255.0 gw "+ipData
+		shellCmd = "route add -net " + nIpData + " netmask 255.255.255.0 gw " + ipData
 		fmt.Println(shellCmd)
 		cmd = exec.Command("bash", "-c", shellCmd)
 		cmd.CombinedOutput()
 	}
 
-
 	return lm, nil
 }
 
-func (lm *LoginManager) Login(client string, protocol string, token string,conn net.Conn) error {
+func (lm *LoginManager) Login(client string, protocol string, token string, conn net.Conn) error {
 	defer lm.Mutex.Unlock()
 	lm.Mutex.Lock()
 	if innerNetUser, ok := lm.Tokens[token]; ok {
@@ -95,21 +96,21 @@ func (lm *LoginManager) Login(client string, protocol string, token string,conn 
 			user.Close()
 		}
 		var localTunIp string
-		var  err error
-		if innerNetUser.Ip == "0.0.0.0"{
+		var err error
+		if innerNetUser.Ip == "0.0.0.0" {
 			localTunIp, err = lm.DhcpServer.ApplyIp()
-		}else{
-			localTunIp,err = innerNetUser.Ip,nil
+		} else {
+			localTunIp, err = innerNetUser.Ip, nil
 		}
 		if err != nil {
 			return err
 		}
 
 		user := NewUser(client, protocol, localTunIp, token, nil, lm.Logout)
-		oldUser,ok := lm.Users[client] // 假如key存在,则name = 李四 ，ok = true,否则，ok = false
-		if ok{
+		oldUser, ok := lm.Users[client] // 假如key存在,则name = 李四 ，ok = true,否则，ok = false
+		if ok {
 			oldUser.Close()
-			delete(lm.Users,client)
+			delete(lm.Users, client)
 		}
 
 		lm.Users[client] = user
@@ -149,7 +150,7 @@ func (lm *LoginManager) StartClient(client string, conn net.Conn) {
 	if user, ok := lm.Users[client]; ok {
 		user.Conn = conn
 		user.Start()
-		lm.TunServer.StartClient(client, user.ConnToTunChan, user.TunToConnChan,user.LocalTunIp,user.Protocol)
+		lm.TunServer.StartClient(client, user.ConnToTunChan, user.TunToConnChan, user.LocalTunIp, user.Protocol)
 	}
 }
 

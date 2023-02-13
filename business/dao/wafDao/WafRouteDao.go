@@ -1,10 +1,10 @@
 package wafDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"gorm.io/gorm"
 )
 
@@ -101,7 +101,8 @@ VALUES(#RouteId#,#WafId#,#Hostname#,#Ip#,#Port#,#Scheme#)
 type WafRouteDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafRouteDao) GetWafRouteCount(wafRouteDto waf.WafRouteDto) (int64, error) {
@@ -117,7 +118,8 @@ func (*WafRouteDao) GetWafRouteCount(wafRouteDto waf.WafRouteDto) (int64, error)
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafRouteDao) GetWafRoutes(wafRouteDto waf.WafRouteDto) ([]*waf.WafRouteDto, error) {
@@ -129,21 +131,24 @@ func (*WafRouteDao) GetWafRoutes(wafRouteDto waf.WafRouteDto) ([]*waf.WafRouteDt
 	return wafRouteDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*WafRouteDao) SaveWafRoute(wafRouteDto waf.WafRouteDto) error {
 	return sqlTemplate.Insert(insert_wafRoute, objectConvert.Struct2Map(wafRouteDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*WafRouteDao) UpdateWafRoute(wafRouteDto waf.WafRouteDto) error {
 	return sqlTemplate.Update(update_wafRoute, objectConvert.Struct2Map(wafRouteDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*WafRouteDao) DeleteWafRoute(wafRouteDto waf.WafRouteDto) error {

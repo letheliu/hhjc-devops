@@ -2,21 +2,21 @@ package task
 
 import (
 	"bufio"
-	hostDao "github.com/zihao-boy/zihao/assets/dao"
-	"github.com/zihao-boy/zihao/business/dao/resourcesDbDao"
-	"github.com/zihao-boy/zihao/business/dao/resourcesFtpDao"
-	"github.com/zihao-boy/zihao/business/dao/resourcesOssDao"
-	"github.com/zihao-boy/zihao/common/date"
-	"github.com/zihao-boy/zihao/common/db/dbFactory"
-	"github.com/zihao-boy/zihao/common/ftp"
-	"github.com/zihao-boy/zihao/common/oss"
-	"github.com/zihao-boy/zihao/common/shell"
-	"github.com/zihao-boy/zihao/common/utils"
-	"github.com/zihao-boy/zihao/config"
-	"github.com/zihao-boy/zihao/entity/dto/dbLink"
-	"github.com/zihao-boy/zihao/entity/dto/host"
-	"github.com/zihao-boy/zihao/entity/dto/resources"
-	"github.com/zihao-boy/zihao/entity/dto/result"
+	hostDao "github.com/letheliu/hhjc-devops/assets/dao"
+	"github.com/letheliu/hhjc-devops/business/dao/resourcesDbDao"
+	"github.com/letheliu/hhjc-devops/business/dao/resourcesFtpDao"
+	"github.com/letheliu/hhjc-devops/business/dao/resourcesOssDao"
+	"github.com/letheliu/hhjc-devops/common/date"
+	"github.com/letheliu/hhjc-devops/common/db/dbFactory"
+	"github.com/letheliu/hhjc-devops/common/ftp"
+	"github.com/letheliu/hhjc-devops/common/oss"
+	"github.com/letheliu/hhjc-devops/common/shell"
+	"github.com/letheliu/hhjc-devops/common/utils"
+	"github.com/letheliu/hhjc-devops/config"
+	"github.com/letheliu/hhjc-devops/entity/dto/dbLink"
+	"github.com/letheliu/hhjc-devops/entity/dto/host"
+	"github.com/letheliu/hhjc-devops/entity/dto/resources"
+	"github.com/letheliu/hhjc-devops/entity/dto/result"
 	"io"
 	"os"
 	"path"
@@ -73,25 +73,24 @@ func (h ResourcesBackUpTask) backUpDb(dto *resources.ResourcesBackUpDto) {
 		TenantId: resourcesDbs[0].TenantId,
 	}
 
-	workDir := path.Join(config.WorkSpace, dblinkDto.TenantId,"backUp")
+	workDir := path.Join(config.WorkSpace, dblinkDto.TenantId, "backUp")
 
-	if !utils.IsDir(workDir){
-		os.MkdirAll(workDir,os.ModePerm)
+	if !utils.IsDir(workDir) {
+		os.MkdirAll(workDir, os.ModePerm)
 	}
 
-
 	dbSqlDto := dbLink.DbSqlDto{
-		FileName: path.Join(workDir,resourcesDbs[0].DbName + date.GetNowAString() + ".sql"),
+		FileName: path.Join(workDir, resourcesDbs[0].DbName+date.GetNowAString()+".sql"),
 	}
 
 	// execute sql
-	data := dbFactory.ExportSqlFile(dblinkDto, dbSqlDto,dto.SrcObject)
+	data := dbFactory.ExportSqlFile(dblinkDto, dbSqlDto, dto.SrcObject)
 
 	if data.Code != result.CODE_SUCCESS {
 		return
 	}
 
-	tmpFilePath :=  dbSqlDto.FileName
+	tmpFilePath := dbSqlDto.FileName
 
 	if !utils.IsFile(tmpFilePath) {
 		return
@@ -227,26 +226,26 @@ func (h ResourcesBackUpTask) saveToDb(filePath string, dto *resources.ResourcesB
 		lineStr string
 	)
 	for {
-			line, err := buf.ReadString('\n')
-			if err != nil || io.EOF == err {
-				//lineStr = ""
-				break
-			}
-
-			if utils.IsEmpty(line) {
-				continue
-			}
-
-			lineStr += line
-
-			if strings.HasSuffix(line,";\n"){
-				dbSqlDto := dbLink.DbSqlDto{
-					Sql: lineStr,
-				}
-				// execute sql
-				dbFactory.ExecSql(dblinkDto, dbSqlDto)
-
-				lineStr = ""
-			}
+		line, err := buf.ReadString('\n')
+		if err != nil || io.EOF == err {
+			//lineStr = ""
+			break
 		}
+
+		if utils.IsEmpty(line) {
+			continue
+		}
+
+		lineStr += line
+
+		if strings.HasSuffix(line, ";\n") {
+			dbSqlDto := dbLink.DbSqlDto{
+				Sql: lineStr,
+			}
+			// execute sql
+			dbFactory.ExecSql(dblinkDto, dbSqlDto)
+
+			lineStr = ""
+		}
+	}
 }

@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/zihao-boy/zihao/entity/dto/serviceSql"
-	"github.com/zihao-boy/zihao/system/mapper"
+	"github.com/letheliu/hhjc-devops/entity/dto/serviceSql"
+	"github.com/letheliu/hhjc-devops/system/mapper"
 )
 
 func (r *Local) SaveServiceSql(serviceSqlDto serviceSql.ServiceSqlDto) (err error) {

@@ -1,10 +1,10 @@
 package workflowDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/workflow"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/workflow"
 	"gorm.io/gorm"
 )
 
@@ -75,7 +75,8 @@ VALUES(#StepId#,#Name#,#Step#)
 type WorkflowStepDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WorkflowStepDao) GetWorkflowStepCount(workflowStepDto workflow.WorkflowStepDto) (int64, error) {
@@ -91,7 +92,8 @@ func (*WorkflowStepDao) GetWorkflowStepCount(workflowStepDto workflow.WorkflowSt
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WorkflowStepDao) GetWorkflowSteps(workflowStepDto workflow.WorkflowStepDto) ([]*workflow.WorkflowStepDto, error) {
@@ -103,21 +105,24 @@ func (*WorkflowStepDao) GetWorkflowSteps(workflowStepDto workflow.WorkflowStepDt
 	return workflowStepDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*WorkflowStepDao) SaveWorkflowStep(workflowStepDto workflow.WorkflowStepDto) error {
 	return sqlTemplate.Insert(insert_workflowStep, objectConvert.Struct2Map(workflowStepDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*WorkflowStepDao) UpdateWorkflowStep(workflowStepDto workflow.WorkflowStepDto) error {
 	return sqlTemplate.Update(update_workflowStep, objectConvert.Struct2Map(workflowStepDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*WorkflowStepDao) DeleteWorkflowStep(workflowStepDto workflow.WorkflowStepDto) error {

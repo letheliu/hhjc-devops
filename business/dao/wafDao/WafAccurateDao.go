@@ -1,10 +1,10 @@
 package wafDao
 
 import (
-	"github.com/zihao-boy/zihao/common/db/sqlTemplate"
-	"github.com/zihao-boy/zihao/common/objectConvert"
-	"github.com/zihao-boy/zihao/entity/dto"
-	"github.com/zihao-boy/zihao/entity/dto/waf"
+	"github.com/letheliu/hhjc-devops/common/db/sqlTemplate"
+	"github.com/letheliu/hhjc-devops/common/objectConvert"
+	"github.com/letheliu/hhjc-devops/entity/dto"
+	"github.com/letheliu/hhjc-devops/entity/dto/waf"
 	"gorm.io/gorm"
 )
 
@@ -94,7 +94,8 @@ VALUES(#Id#,#Action#,#TypeCd#,#Include#,#IncludeValue#)
 type WafAccurateDao struct {
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafAccurateDao) GetWafAccurateCount(wafAccurateDto waf.WafAccurateDto) (int64, error) {
@@ -110,7 +111,8 @@ func (*WafAccurateDao) GetWafAccurateCount(wafAccurateDto waf.WafAccurateDto) (i
 	return pageDto.Total, err
 }
 
-/**
+/*
+*
 查询用户
 */
 func (*WafAccurateDao) GetWafAccurates(wafAccurateDto waf.WafAccurateDto) ([]*waf.WafAccurateDto, error) {
@@ -122,21 +124,24 @@ func (*WafAccurateDao) GetWafAccurates(wafAccurateDto waf.WafAccurateDto) ([]*wa
 	return wafAccurateDtos, nil
 }
 
-/**
+/*
+*
 保存服务sql
 */
 func (*WafAccurateDao) SaveWafAccurate(wafAccurateDto waf.WafAccurateDto) error {
 	return sqlTemplate.Insert(insert_wafAccurate, objectConvert.Struct2Map(wafAccurateDto), false)
 }
 
-/**
+/*
+*
 修改服务sql
 */
 func (*WafAccurateDao) UpdateWafAccurate(wafAccurateDto waf.WafAccurateDto) error {
 	return sqlTemplate.Update(update_wafAccurate, objectConvert.Struct2Map(wafAccurateDto), false)
 }
 
-/**
+/*
+*
 删除服务sql
 */
 func (*WafAccurateDao) DeleteWafAccurate(wafAccurateDto waf.WafAccurateDto) error {
