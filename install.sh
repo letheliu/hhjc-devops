@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#wget http://cdn.homecommunity.cn/zihao_release.tar
-
 tar -xvf zihao_release.tar
 
 mv zihao_release /zihao/master

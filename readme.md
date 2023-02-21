@@ -1,4 +1,4 @@
-## 梓豪平台是一个docker 容器化管理平台 包括主机管理，手工制作镜像，镜像管理，ci/cd 构建和应用管理的paas平台。欢迎安装使用，也欢迎贡献！
+## 华恒军创DevOps平台是一个docker 容器化管理平台 包括主机管理，手工制作镜像，镜像管理，ci/cd 构建和应用管理的paas平台。欢迎安装使用，也欢迎贡献！
 
 ## qq:709574906
 
@@ -62,36 +62,5 @@ https://www.bilibili.com/video/BV1BM4y1w7Ti?spm_id_from=333.999.0.0
 
  14、加入dns 功能
 
-未来我们还会加入很多有趣的功能。
-
-### 7.0 系统截图
-
-![image](doc/1.png)
-
-![image](doc/7.png)
-
-![image](doc/15.png)
-
-![image](doc/2.png)
-
-![image](doc/3.png)
-
-![image](doc/4.png)
-
-![image](doc/10.png)
-
-![image](doc/11.png)
-
-![image](doc/12.png)
-
-![image](doc/13.png)
-
-![image](doc/5.png)
-
-![image](doc/6.png)
-
-![image](doc/8.png)
-
-![image](doc/14.png)
 
 
